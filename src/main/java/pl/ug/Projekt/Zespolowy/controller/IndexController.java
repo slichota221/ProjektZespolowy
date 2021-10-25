@@ -1,4 +1,4 @@
-package pl.ug.Projekt.Zespolowy;
+package pl.ug.Projekt.Zespolowy.controller;
 
 
 import org.springframework.stereotype.Controller;
