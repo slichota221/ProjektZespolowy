@@ -3,6 +3,7 @@ package pl.ug.Projekt.Zespolowy.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import java.util.Objects;
 
 
@@ -14,7 +15,11 @@ public class Game {
     private String dateRelease;
     private String description;
     private String pathCover;
+    // Teoretycznie gra może mieć więcej niż jeden gatunek, więc nie wiem
+    @OneToOne
     private int IdGenre;
+    //tutaj także do przemyślenia, bo gra "teoretycznie" może mieć wielu wydawców
+    @OneToOne
     private int IdPublisher;
 
     public Game() {
