@@ -7,8 +7,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import pl.ug.Projekt.Zespolowy.domain.Game;
 import pl.ug.Projekt.Zespolowy.domain.Genre;
+import pl.ug.Projekt.Zespolowy.domain.Publisher;
 import pl.ug.Projekt.Zespolowy.repository.GameRepository;
 import pl.ug.Projekt.Zespolowy.repository.GenreRepository;
+import pl.ug.Projekt.Zespolowy.repository.PublisherRepository;
 
 @Configuration
 public class LoadDatabase {
@@ -20,10 +22,24 @@ public class LoadDatabase {
         return args ->{
             log.info("Preloading " + repository.save(new Genre("RPG")));
             log.info("Preloading " + repository.save(new Genre("Action")));
+
         };
     }
-
     @Bean
+    CommandLineRunner addPublisher(PublisherRepository publisherRepository){
+        return args ->{
+            log.info("Preloading " + publisherRepository.save(new Publisher("Konami")));
+        };
+    }
+    @Bean
+    CommandLineRunner addGame(GameRepository gameRepository){
+        return args ->{
+            log.info("Preloading" + gameRepository.save(new Game("Witcher", "26.10.2007",
+                    "You kill monsters", "", new Genre("test"), new Publisher("test"))));
+        };
+    }
+    /*
+        @Bean
     CommandLineRunner initDatabaseGame(GameRepository gameRepository){
         return args ->{
             // String nameGame, String dateRelease, String description, String linkCover, int idGenre, int idPublisher
@@ -35,4 +51,6 @@ public class LoadDatabase {
             log.info("Preloading " + gameRepository.save(new Game("The Elder Scrolls V: Skyrim", "11.11.2011" ,"You kill dragons", "", 1,2 )));
         };
     }
+     */
+
 }

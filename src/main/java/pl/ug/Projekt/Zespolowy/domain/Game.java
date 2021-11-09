@@ -1,26 +1,27 @@
 package pl.ug.Projekt.Zespolowy.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.Objects;
 
 
 @Entity
+@Table(name="game_table")
 public class Game {
 
-    private @Id @GeneratedValue long ID;
+    private @Id @GeneratedValue @Column(name="id") long ID;
+
     private String nameGame;
     private String dateRelease;
     private String description;
     private String pathCover;
-    // Teoretycznie gra może mieć więcej niż jeden gatunek, więc nie wiem
-    @OneToOne
-    private int IdGenre;
-    //tutaj także do przemyślenia, bo gra "teoretycznie" może mieć wielu wydawców
-    @OneToOne
-    private int IdPublisher;
+
+    @OneToOne(cascade = CascadeType.ALL) // może OneToMany?
+    @JoinColumn(name="genre_id", referencedColumnName = "id")
+    private Genre genre;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "publisher_id", referencedColumnName = "id")
+    private Publisher publisher;
 
     public Game() {
 
@@ -30,13 +31,13 @@ public class Game {
         this.nameGame = nameGame;
     }
 
-    public Game(String nameGame, String dateRelease, String description, String pathCover, int idGenre, int idPublisher) {
+    public Game(String nameGame, String dateRelease, String description, String pathCover, Genre genre, Publisher publisher) {
         this.nameGame = nameGame;
         this.dateRelease = dateRelease;
         this.description = description;
         this.pathCover = pathCover;
-        IdGenre = idGenre;
-        IdPublisher = idPublisher;
+        this.genre = genre;
+        this.publisher = publisher;
     }
 
     public long getID() {
@@ -76,23 +77,23 @@ public class Game {
     }
 
     public void setPathCover(String idCover) {
-        pathCover = idCover;
+        this.pathCover = idCover;
     }
 
-    public int getIdGenre() {
-        return IdGenre;
+    public Genre getGenre() {
+        return genre;
     }
 
-    public void setIdGenre(int idGenre) {
-        IdGenre = idGenre;
+    public void setIdGenre(Genre genre) {
+        this.genre = genre;
     }
 
-    public int getIdPublisher() {
-        return IdPublisher;
+    public Publisher getIdPublisher() {
+        return publisher;
     }
 
-    public void setIdPublisher(int idPublisher) {
-        IdPublisher = idPublisher;
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
     }
 
     @Override
