@@ -1,13 +1,37 @@
-<html>
-<body>
-    <form action="#" th:action="@{/auth/register}" th:object="${user}" method="post">
-        <p>Username: <input type="text" th:field="*{username}" /></p>
-        <p>Email: <input type="text" th:field="*{email}" /></p>
-        <p>Password: <input type="password" th:field="*{password}" /></p>
-        <p><input type="submit" value="Submit" /></p>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <title>Register</title>
+        <meta name="Register" content="Register">
+        <meta name="author" content="Szymon Lichota, Szymon Porębski, Damian Pawłowski">
+        <link th:href="@{/styles/css/styles.css}" rel="stylesheet" />
+    </head>
+    <body>
+        <nav>
+            <ul>
+                <li><a href="">Home</a></li>
+            </ul>
+        </nav>
 
-    </form>
+        <div id="login_page">
+            <h3>Create an account</h3>
+            <form action="#" th:action="@{/auth/register}" th:object="${user}" method="post">
+                <p>Username:<br><input class="login_page_input" type="text" th:field="*{username}" /></p>
+                <p>Email:<br><input class="login_page_input" type="text" th:field="*{email}" /></p>
+                <p>Password:<br><input class="login_page_input" type="password" th:field="*{password}" /></p>
+                <p><input id="login_page_button" type="submit" value="Submit" /></p>
 
-<a th:href="@{/auth/login}" th:text="Login">Login</a>
-</body>
+            </form>
+            <main>
+                <p>Already have an account ?</p>
+                <p>Click below to log in!</p><br>
+                <a th:href="@{/auth/login}" th:text="Login">Log in</a>
+            </main>
+        </div>
+
+        <footer>
+            <p>Szymon Lichota, Szymon Porębski & Damian Pawłowski @2021</p>
+        </footer>
+    </body>
 </html>
