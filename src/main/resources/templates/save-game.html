@@ -9,6 +9,7 @@
     <input id="name" placeholder="Enter name" required type="text" th:field="*{nameGame}"/>
     <input id="date" placeholder="Enter date" required type="text" th:field="*{dateRelease}"/>
     <input id="description" placeholder="Enter description" required type="text" th:field="*{description}"/>
+    <input id="pathCover" placeholder="Enter path cover" required type="text" th:field="*{pathCover}"/>
     <select th:field="*{Genre}" class="form-control">
         <option th:each="genre: ${genres}" th:value="${genre.ID}" th:text="${genre.name}"></option>
     </select>
