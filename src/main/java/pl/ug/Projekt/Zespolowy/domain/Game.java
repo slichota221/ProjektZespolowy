@@ -84,11 +84,11 @@ public class Game {
         return genre;
     }
 
-    public void setIdGenre(Genre genre) {
+    public void setGenre(Genre genre) {
         this.genre = genre;
     }
 
-    public Publisher getIdPublisher() {
+    public Publisher getPublisher() {
         return publisher;
     }
 
