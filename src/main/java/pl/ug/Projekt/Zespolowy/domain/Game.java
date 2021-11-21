@@ -15,7 +15,7 @@ public class Game {
     private String description;
     private String pathCover;
 
-    @OneToOne(cascade = CascadeType.ALL) // może OneToMany?
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="genre_id", referencedColumnName = "id")
     private Genre genre;
 

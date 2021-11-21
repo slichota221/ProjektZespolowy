@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" th:action="@{/saveGame/}" th:object="${Game}">
+    <input id="name" placeholder="Enter name" required type="text" th:field="*{nameGame}"/>
+    <input id="date" placeholder="Enter date" required type="text" th:field="*{dateRelease}"/>
+    <input id="description" placeholder="Enter description" required type="text" th:field="*{description}"/>
+    <select th:field="*{Genre}" class="form-control">
+        <option th:each="genre: ${genres}" th:value="${genre.ID}" th:text="${genre.name}"></option>
+    </select>
+    <select th:field="*{Publisher}" class="form-control">
+        <option th:each="publisher: ${publishers}" th:value="${publisher.ID}" th:text="${publisher.name}"></option>
+    </select>
+
+    <input type="submit" value="Create Game">
+</form>
+</body>
+</html>

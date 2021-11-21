@@ -1,12 +1,10 @@
 package pl.ug.Projekt.Zespolowy.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 
 @Entity
+@Table(name = "publisher_table")
 public class Publisher {
 
     private @Id @GeneratedValue @Column(name="id") long ID;
@@ -36,6 +34,6 @@ public class Publisher {
 
     @Override
     public String toString(){
-        return "Publisher{id="+ID + ", name='"+name+"'}";
+        return "Publisher{id="+this.ID + ", name='"+this.name+"'}";
     }
 }

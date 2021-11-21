@@ -2,11 +2,11 @@ package pl.ug.Projekt.Zespolowy.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import pl.ug.Projekt.Zespolowy.domain.Genre;
 import pl.ug.Projekt.Zespolowy.repository.GenreRepository;
+
+import java.util.List;
 
 
 @Controller
@@ -17,12 +17,15 @@ public class GenreController {
     GenreController(GenreRepository repository){
         this.repository = repository;
     }
-    @RequestMapping(value = "/saveGenre", method = RequestMethod.GET)
-    public String greetingForm(Model model) {
+
+
+    @GetMapping(value = "/saveGenre")
+    public String genreForm(Model model) {
         model.addAttribute("Genre", new Genre());
-        return "saveGenre";
+
+        return "save-genre";
     }
-    @RequestMapping(value = "/saveGenre", method = RequestMethod.POST)
+    @PostMapping(value = "/saveGenre")
     public String createUser(Model model, @ModelAttribute Genre genre) {
         repository.save(genre);
         return "redirect:/saveGenre/";
