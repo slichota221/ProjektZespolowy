@@ -9,6 +9,9 @@ import org.springframework.web.servlet.ModelAndView;
 import pl.ug.Projekt.Zespolowy.dto.UserRequestDTO;
 import pl.ug.Projekt.Zespolowy.service.UserService;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping(value = "/auth")
 public class AuthController {
@@ -34,5 +37,12 @@ public class AuthController {
     public String register(UserRequestDTO userRequestDTO) {
         userService.register(userRequestDTO);
         return "register_success";
+    }
+
+    @GetMapping(value="/logout")
+    public String logout(HttpServletRequest request){
+        HttpSession httpSession = request.getSession();
+        httpSession.invalidate();
+        return "redirect:/";
     }
 }
