@@ -1,14 +1,16 @@
 package pl.ug.Projekt.Zespolowy.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Rating {
     private @Id @GeneratedValue long ID;
-    private long ID_USER;
-    private long ID_GAME;
+    @OneToOne
+    @JoinColumn(name="user_id", referencedColumnName = "id")
+    private User user;
+    @OneToOne
+    @JoinColumn(name="game_id", referencedColumnName = "id")
+    private Game game;
     private int value;
     private String comment;
 }

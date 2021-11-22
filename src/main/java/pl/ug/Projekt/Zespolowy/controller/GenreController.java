@@ -1,15 +1,15 @@
 package pl.ug.Projekt.Zespolowy.controller;
 
-
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.ug.Projekt.Zespolowy.exception.GenreNotFoundException;
-import pl.ug.Projekt.Zespolowy.repository.GenreRepository;
 import pl.ug.Projekt.Zespolowy.domain.Genre;
+import pl.ug.Projekt.Zespolowy.repository.GenreRepository;
 
 import java.util.List;
 
 
-@RestController
+@Controller
 public class GenreController {
 
     private final GenreRepository repository;
@@ -18,37 +18,16 @@ public class GenreController {
         this.repository = repository;
     }
 
-    @GetMapping("/genres")
-    List<Genre> all(){
-        return repository.findAll();
-    }
 
-    @PostMapping("/genres")
-    Genre newGenre(@RequestBody Genre newGenre){
-        return repository.save(newGenre);
-    }
+    @GetMapping(value = "/saveGenre")
+    public String genreForm(Model model) {
+        model.addAttribute("Genre", new Genre());
 
-    @GetMapping("/genre/{id}")
-    Genre one(@PathVariable Long id){
-        return repository.findById(id)
-                .orElseThrow(() -> new GenreNotFoundException(id));
+        return "save-genre";
     }
-
-    @PutMapping("/genre/{id}")
-    Genre replaceGenre(@RequestBody Genre newGenre, @PathVariable Long id){
-
-        return repository.findById(id)
-                .map(employee -> {
-                    employee.setName(newGenre.getName());
-                    return repository.save(employee);
-                })
-                .orElseGet(() -> {
-                    newGenre.setID(id);
-                    return repository.save(newGenre);
-                });
-    }
-    @DeleteMapping("/genre/{id}")
-    void deleteEmployee(@PathVariable Long id){
-        repository.deleteById(id);
+    @PostMapping(value = "/saveGenre")
+    public String createUser(Model model, @ModelAttribute Genre genre) {
+        repository.save(genre);
+        return "redirect:/saveGenre/";
     }
 }

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" th:action="@{/saveGenre/}" th:object="${Genre}">
+    <input id="name" placeholder="Enter name" required type="text" th:field="*{name}"/>
+
+    </div>
+    <input type="submit" value="Create Genre">
+</form>
+</body>
+</html>

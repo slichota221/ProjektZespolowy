@@ -1,23 +1,44 @@
 package pl.ug.Projekt.Zespolowy.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import java.util.Date;
+import javax.persistence.*;
+import java.util.Objects;
 
 
 @Entity
+@Table(name="game_table")
 public class Game {
 
+    private @Id @GeneratedValue @Column(name="id") long ID;
 
-    private @Id @GeneratedValue long ID;
     private String nameGame;
-    private Date dateRelase;
+    private String dateRelease;
     private String description;
-    private int IdCover;
-    private int IdGenre;
-    private int IdPublisher;
+    private String pathCover;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="genre_id", referencedColumnName = "id")
+    private Genre genre;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "publisher_id", referencedColumnName = "id")
+    private Publisher publisher;
+
+    public Game() {
+
+    }
+
+    public Game(String nameGame) {
+        this.nameGame = nameGame;
+    }
+
+    public Game(String nameGame, String dateRelease, String description, String pathCover, Genre genre, Publisher publisher) {
+        this.nameGame = nameGame;
+        this.dateRelease = dateRelease;
+        this.description = description;
+        this.pathCover = pathCover;
+        this.genre = genre;
+        this.publisher = publisher;
+    }
 
     public long getID() {
         return ID;
@@ -35,12 +56,12 @@ public class Game {
         this.nameGame = nameGame;
     }
 
-    public Date getDateRelase() {
-        return dateRelase;
+    public String getDateRelease() {
+        return dateRelease;
     }
 
-    public void setDateRelase(Date dateRelase) {
-        this.dateRelase = dateRelase;
+    public void setDateRelease(String dateRelease) {
+        this.dateRelease = dateRelease;
     }
 
     public String getDescription() {
@@ -51,27 +72,37 @@ public class Game {
         this.description = description;
     }
 
-    public int getIdCover() {
-        return IdCover;
+    public String getPathCover() {
+        return pathCover;
     }
 
-    public void setIdCover(int idCover) {
-        IdCover = idCover;
+    public void setPathCover(String idCover) {
+        this.pathCover = idCover;
     }
 
-    public int getIdGenre() {
-        return IdGenre;
+    public Genre getGenre() {
+        return genre;
     }
 
-    public void setIdGenre(int idGenre) {
-        IdGenre = idGenre;
+    public void setGenre(Genre genre) {
+        this.genre = genre;
     }
 
-    public int getIdPublisher() {
-        return IdPublisher;
+    public Publisher getPublisher() {
+        return publisher;
     }
 
-    public void setIdPublisher(int idPublisher) {
-        IdPublisher = idPublisher;
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.ID);
+    }
+
+    @Override
+    public String toString() {
+        return "Game{" + "id=" + this.ID + ", name='" + this.nameGame + '}';
     }
 }

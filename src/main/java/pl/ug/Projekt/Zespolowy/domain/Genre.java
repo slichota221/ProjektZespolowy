@@ -1,18 +1,15 @@
 package pl.ug.Projekt.Zespolowy.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@Table(name = "genre_table")
 public class Genre {
-    private @Id @GeneratedValue long ID;
+    private @Id @GeneratedValue @Column(name="id") long ID;
     private String name;
 
-    public Genre() {
-
-    }
+    public Genre() {}
 
     public long getID() {
         return ID;
