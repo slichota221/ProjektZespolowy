@@ -20,17 +20,18 @@
             <li style="float:right"><a class="active" href="">My Reviews</a></li>
         </ul>
     </nav>
+
     <div id="save_page">
         <h2>Add a new genre</h2>
-
         <form method="post" th:action="@{/saveGenre/}" th:object="${Genre}">
             <div class="save_page_row">
-                <label for="name">Name: </label>
+                <label for="name">Genre Name: </label>
                 <input id="name" placeholder="Enter genre name" required type="text" th:field="*{name}"/><br>
             </div>
             <input id="save_page_submit" type="submit" value="Create Genre">
         </form>
     </div>
+
     <footer>
         <p>Szymon Lichota, Szymon Porębski & Damian Pawłowski @2021</p>
     </footer>
