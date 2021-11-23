@@ -11,7 +11,7 @@
 <nav>
     <ul>
         <li><a href="/">Home</a></li>
-        <li><a href="">New Releases</a></li>
+        <li><a href="/new-releases">New Releases</a></li>
         <li><a href="/games">Games</a></li>
         <li><a href="">Genres</a></li>
         <li><a href="">Publishers</a></li>
@@ -26,7 +26,7 @@
 <div id="save_page">
     <h2>Add a new game</h2>
 
-    <form method="post" th:action="@{/saveGame/}" th:object="${newGame}">
+    <form method="post" th:action="@{/saveGame}" th:object="${newGame}">
 
         <div class="save_page_row">
             <label for="name">Game name: </label>
@@ -35,7 +35,7 @@
 
         <div class="save_page_row">
             <label for="date">Release date: </label>
-            <input id="date" placeholder="Enter date" required type="text" th:field="*{dateRelease}"/><br>
+            <input id="date" placeholder="Enter date" required type="date" th:field="*{dateRelease}"/><br>
         </div>
 
         <div class="save_page_row">

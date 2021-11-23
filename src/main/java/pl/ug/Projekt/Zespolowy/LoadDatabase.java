@@ -12,6 +12,8 @@ import pl.ug.Projekt.Zespolowy.repository.GameRepository;
 import pl.ug.Projekt.Zespolowy.repository.GenreRepository;
 import pl.ug.Projekt.Zespolowy.repository.PublisherRepository;
 
+import java.time.LocalDate;
+
 @Configuration
 public class LoadDatabase {
 
@@ -34,7 +36,7 @@ public class LoadDatabase {
     @Bean
     CommandLineRunner addGame(GameRepository gameRepository){
         return args ->{
-            log.info("Preloading" + gameRepository.save(new Game("Witcher", "26.10.2007",
+            log.info("Preloading" + gameRepository.save(new Game("Witcher", LocalDate.of(2007, 10, 26),
                     "You kill monsters", "", new Genre("test"), new Publisher("test"))));
         };
     }
