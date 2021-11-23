@@ -1,6 +1,9 @@
 package pl.ug.Projekt.Zespolowy.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Objects;
 
 
@@ -11,7 +14,9 @@ public class Game {
     private @Id @GeneratedValue @Column(name="id") long ID;
 
     private String nameGame;
-    private String dateRelease;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dateRelease;
     private String description;
     private String pathCover;
 
@@ -31,7 +36,7 @@ public class Game {
         this.nameGame = nameGame;
     }
 
-    public Game(String nameGame, String dateRelease, String description, String pathCover, Genre genre, Publisher publisher) {
+    public Game(String nameGame, LocalDate dateRelease, String description, String pathCover, Genre genre, Publisher publisher) {
         this.nameGame = nameGame;
         this.dateRelease = dateRelease;
         this.description = description;
@@ -56,11 +61,11 @@ public class Game {
         this.nameGame = nameGame;
     }
 
-    public String getDateRelease() {
+    public LocalDate getDateRelease() {
         return dateRelease;
     }
 
-    public void setDateRelease(String dateRelease) {
+    public void setDateRelease(LocalDate dateRelease) {
         this.dateRelease = dateRelease;
     }
 

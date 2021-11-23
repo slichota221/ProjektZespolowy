@@ -26,7 +26,7 @@ public class GameController {
 
     @GetMapping("/games")
     String getGame(Model model){
-        model.addAttribute("allGames",gameRepository.findAll());
+        model.addAttribute("allGames", gameRepository.findAll());
         return "game-list";
     }
 
