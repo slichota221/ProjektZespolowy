@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <title>Registration Success</title>
+        <meta name="Registration Success" content="Registration Success">
+        <meta name="author" content="Szymon Lichota, Szymon Porębski, Damian Pawłowski">
+        <link th:href="@{/styles/css/styles.css}" rel="stylesheet" />
+    </head>
+    <body>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/new-releases">New Releases</a></li>
+            <li><a href="/games">Games</a></li>
+            <li><a href="">Genres</a></li>
+            <li><a href="">Publishers</a></li>
+            <li><a href="">Ranking</a></li>
+            <li sec:authorize="isAnonymous() "style="float:right"><a class="active" href="/auth/login">Log in</a></li>
+            <li sec:authorize="isAuthenticated() "style="float:right"><a class="active" href="/auth/logout">Log out</a></li>
+            <li style="float:right"><a class="active" href="">Profile</a></li>
+            <li style="float:right"><a class="active" href="">My Reviews</a></li>
+        </ul>
+    </nav>
+
+        <div id="login_page">
+            <h3>Your account has been created!</h3>
+            <main>
+                <p>Click below to log in!</p><br>
+                <a th:href="@{/auth/login}" th:text="Login">Log in</a>
+            </main>
+        </div>
+
+        <footer>
+            <p>Szymon Lichota, Szymon Porębski & Damian Pawłowski @2021</p>
+        </footer>
+    </body>
+</html>

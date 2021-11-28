@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title>Game list</title>
+		<meta name="Game list" content="List of all games">
+		<meta name="author" content="Szymon Lichota, Szymon Porębski, Damian Pawłowski">
+		<link th:href="@{/styles/css/styles.css}" rel="stylesheet" />
+	</head>
+
+	<body>
+	<nav>
+		<ul>
+			<li><a href="/">Home</a></li>
+			<li><a href="/new-releases">New Releases</a></li>
+			<li><a href="/games">Games</a></li>
+			<li><a href="">Genres</a></li>
+			<li><a href="">Publishers</a></li>
+			<li><a href="">Ranking</a></li>
+			<li sec:authorize="isAnonymous() "style="float:right"><a class="active" href="/auth/login">Log in</a></li>
+			<li sec:authorize="isAuthenticated() "style="float:right"><a class="active" href="/auth/logout">Log out</a></li>
+			<li style="float:right"><a class="active" href="">Profile</a></li>
+			<li style="float:right"><a class="active" href="">My Reviews</a></li>
+		</ul>
+	</nav>
+
+		<div id="game-list-switch" >
+			<a href="/games-admin">Switch to admin panel</a>
+		</div>
+
+		<div id="game-list">
+			<element th:each="game: ${allGames}">
+
+				<div class="element_img">
+					<img th:src="${game.pathCover}" alt="Game Cover" >
+				</div>
+
+				<div class="element_desc">
+					<h1 th:text="${game.nameGame}"></h1>
+					<h2 th:text="${game.dateRelease}"></h2>
+					<p th:text="${game.description}"></p>
+				</div>
+
+			</element>
+		</div>
+
+		<footer>
+			<p>Szymon Lichota, Szymon Porębski & Damian Pawłowski @2021</p>
+		</footer>
+	</body>
+</html>
