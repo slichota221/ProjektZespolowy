@@ -25,12 +25,15 @@
 		</ul>
 	</nav>
 
+		<div id="game-list-switch" >
+			<a href="/games-admin">Switch to admin panel</a>
+		</div>
 
-		<div id="gamelist">
+		<div id="game-list">
 			<element th:each="game: ${allGames}">
 
 				<div class="element_img">
-					<img th:href="${game.pathCover}" alt="Game Cover" >
+					<img th:src="${game.pathCover}" alt="Game Cover" >
 				</div>
 
 				<div class="element_desc">

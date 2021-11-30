@@ -1,10 +1,15 @@
 html, body{
     margin: 0;
     padding: 0;
-    height: 100%;
-    width: 100%;
-    background-color: #222;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../../background/skyrim.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
 }
 
 nav{
@@ -12,6 +17,7 @@ nav{
     text-align: center;
     padding: 5px 0px;
     margin-bottom: 15px;
+    opacity: 0.9;
 
 }
 
@@ -20,8 +26,8 @@ nav ul {
   	position: fixed;
   	top: 0;
   	width: 100%;
-  	border: 1px solid #e7e7e7;
-  	background-color: #333;
+  	border-bottom: 1px solid black;
+    background-color: #111111;
   	list-style-type: none;
   	margin: 0;
   	padding: 0;
@@ -41,73 +47,144 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-  	background-color: #111;
+  	background-color: #135a87
 }
 
 footer{
-  	position: relative;
+    position: fixed;
     bottom: 0;
-  	width: 100%;
-  	height: 40px;
-  	padding: 0;
-    background-color: #333;
-    color: #eeeeee;
-    line-height: 40px;
+    width: 100%;
+    height: 2.8rem;
+
+    border-top: 1px black solid;
+    background-color: #111111;
+    color: white;
+    font-size: 16px;
+    opacity: 0.9;
 }
 
 footer p{
     margin-left: 10px;
 }
 
+
 /* ===== GAME LIST BEGINNING ===== */
 
-#gamelist{
+#game-list{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    margin-bottom: 50px;
 }
 
-#gamelist element{
+#game-list element{
     width: 800px;
     height: 300px;
     margin: 15px 15px;
     border: 2px white solid;
     overflow: hidden;
+    background-color: #111111;
+    opacity: 0.9;
 }
 
-#gamelist element img{
+#game-list element img{
     height: 300px;
-    width: 250px;
+    width: 220px;
+    border: 1px white solid;
 }
 
 .element_img{
-    border: 1px white solid;
-	  width: 250px;
-	  height: 300px;
     float:left;
 }
 
 .element_desc{
-	  margin-left: 40px;
+	margin-left: 40px;
     float: left;
   	color:white;
 }
 
+#game-list-switch{
+	margin: 0 auto;
+	font-size: 25px;
+	text-align: center;
+}
+
+#game-list-switch a{
+    width: 300px;
+    display: inline-block;
+    vertical-align: middle;
+	padding: 20px 20px;
+	text-decoration: none;
+	color: white;
+	border: 1px solid white;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	background-color: #111111;
+	opacity: 0.9;
+}
+
+#game-list-switch a:hover{
+    background-color: #135a87
+}
+
 /* ===== GAME LIST END ===== */
+/* ===== GAME LIST - ADMIN BEGINNING ===== */
+
+#game-list-admin{
+    justify-content: center;
+    color:white;
+    width: 1200px;
+    background-color: #111111;
+    margin:0 auto;
+    opacity: 0.9;
+}
+
+#game-list-admin ul{
+    list-style-type: none;
+    padding-inline-start: 0px;
+}
+
+#game-list-admin ul li{
+	border-bottom: 1px solid black;
+	border-top: 1px solid black;
+	padding: 14px 0px;
+	vertical-align: middle;
+
+}
+
+#game-list-admin ul li span{
+    margin-left: 30px;
+    display: inline-block;
+    overflow-wrap: break-word;
+    vertical-align: middle;
+}
+
+
+#game-list-admin ul a{
+  	color: #3391cc;
+  	text-decoration: none;
+}
+
+#game-list-admin ul a:hover {
+  	color:red;
+}
+
+
+/* ===== GAME LIST - ADMIN END ===== */
 /* ===== LOGIN PAGE BEGINNING ===== */
 
 #login_page{
-	  font-size: 22px;
-	  color:white;
-	  min-height:900px;
+	font-size: 22px;
+	color:white;
+	min-height:900px;
     text-align: center;
 }
 
 #login_page form{
     position: relative;
-	  text-align: center;
-	  width: 100%;
+	text-align: center;
+	width: 100%;
 }
 
 #login_page_button{
@@ -167,8 +244,8 @@ footer p{
 
 #save_page form{
     position: relative;
-	  text-align: center;
-	  width: 100%;
+	text-align: center;
+	width: 100%;
     top: 15px;
 }
 
@@ -220,8 +297,9 @@ footer p{
     padding: 15px 25px;
     position: relative;
     color: white;
-    background-color:#333;
+    background-color:#111111;
     border: 2px white solid;
+    opacity: 0.9;
 }
 
 
@@ -232,8 +310,34 @@ footer p{
     width: 300px;
 }
 
-
+#save_page #date{
+    font-family: Arial, Helvetica, sans-serif;
+}
 /* ===== ADD NEW / SAVE PAGE END */
+/* ===== FRONT PAGE BEGINNING */
+
+#front_page{
+	font-size: 22px;
+	color:white;
+
+	width: 1000px;
+    text-align: center;
+    background-color: #111111;
+    opacity: 0.9;
+    margin:0 auto;
+    margin-bottom: 80px;
+    border: 1px solid black;
+}
+
+
+
+
+
+
+
+
+
+/* ===== FRONT PAGE end */
 main{
 
 }

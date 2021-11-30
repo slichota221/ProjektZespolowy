@@ -2,8 +2,8 @@
 <<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Save Game</title>
-    <meta name="Save Game" content="Save Game">
+    <title>Edit Game</title>
+    <meta name="Edit Game" content="Edit Game">
     <meta name="author" content="Szymon Lichota, Szymon Porębski, Damian Pawłowski">
     <link th:href="@{/styles/css/styles.css}" rel="stylesheet" />
 </head>
@@ -24,9 +24,11 @@
 </nav>
 
 <div id="save_page">
-    <h2>Add a new game</h2>
+    <h2>Edit game</h2>
 
-    <form method="post" th:action="@{/saveGame}" th:object="${newGame}">
+    <form method="post" th:action="@{/editGame}" th:object="${editedGame}">
+
+        <input type="hidden" th:field="*{ID}"/><br>
 
         <div class="save_page_row">
             <label for="name">Game name: </label>
@@ -45,7 +47,7 @@
 
         <div id="save_page_row_desc">
             <label for="description">Description: </label>
-            <textarea  style="resize: none" id="description" placeholder="Enter description" cols="40" rows="10" required type="text" th:field="*{description}"/></textarea><br>
+            <textarea id="description" placeholder="Enter description" cols="40" rows="10" required type="text" th:field="*{description}"/></textarea><br>
         </div>
 
         <div class="save_page_row">

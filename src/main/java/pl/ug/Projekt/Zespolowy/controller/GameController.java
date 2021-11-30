@@ -30,7 +30,11 @@ public class GameController {
         return "game-list";
     }
 
-
+    @GetMapping("/games-admin")
+    String getGameAdmin(Model model){
+        model.addAttribute("allGames", gameRepository.findAll());
+        return "game-list-admin";
+    }
 
     @GetMapping(value = "/saveGame")
     public String addGame(ModelMap model) {
@@ -40,12 +44,33 @@ public class GameController {
         return "save-game";
     }
 
-
     @PostMapping("/saveGame")
     public String saveGame(@ModelAttribute("saveGame") Game game, ModelMap model){
         gameRepository.save(game);
-        model.addAttribute("newGame", gameRepository.findAll());
-        return "index";
+        model.addAttribute("allGames", gameRepository.findAll());
+        return "redirect:/games-admin/";
+    }
+
+    @GetMapping(value = "/editGame/{id}")
+    public String editGame(@PathVariable("id") long id, ModelMap model) {
+        model.addAttribute("editedGame", gameRepository.getById(id));
+        model.addAttribute("genres", genreRepository.findAll());
+        model.addAttribute("publishers", publisherRepository.findAll());
+        return "edit-game";
+    }
+
+    @PostMapping("/editGame")
+    public String editGame(@ModelAttribute("editedGame") Game game, ModelMap model){
+        gameRepository.save(game);
+        model.addAttribute("allGames", gameRepository.findAll());
+        return "redirect:/games-admin/";
+    }
+
+    @GetMapping("/deleteGame/{id}")
+    public String deleteGame(@PathVariable("id") long id, ModelMap model) {
+        gameRepository.deleteById(id);
+        model.addAttribute("allGames", gameRepository.findAll());
+        return "redirect:/games-admin/";
     }
 
 }

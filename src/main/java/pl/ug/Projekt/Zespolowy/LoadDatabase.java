@@ -37,7 +37,9 @@ public class LoadDatabase {
     CommandLineRunner addGame(GameRepository gameRepository){
         return args ->{
             log.info("Preloading" + gameRepository.save(new Game("Witcher", LocalDate.of(2007, 10, 26),
-                    "You kill monsters", "", new Genre("test"), new Publisher("test"))));
+                    "You kill monsters", "/covers/cover_witcher1.jpg", new Genre("test"), new Publisher("test"))));
+            log.info("Preloading" + gameRepository.save(new Game("Witcher 3", LocalDate.of(2015, 5, 19),
+                    "You kill more monsters", "/covers/cover_witcher3.jpg", new Genre("test"), new Publisher("test"))));
         };
     }
     /*
