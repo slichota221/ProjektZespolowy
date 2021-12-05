@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta charset="utf-8">
+		<title>Genre list - admin</title>
+		<meta name="Genre list - admin" content="List of all Genres with edit and delete options">
+		<meta name="author" content="Szymon Lichota, Szymon Porębski, Damian Pawłowski">
+		<link th:href="@{/styles/css/styles.css}" rel="stylesheet" />
+	</head>
+
+	<body>
+		<div id="page-container">
+
+			<nav>
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li><a href="/new-releases">New Releases</a></li>
+					<li><a href="/games">Games</a></li>
+					<li><a href="/web/genres">Genres</a></li>
+					<li><a href="/web/publishers">Publishers</a></li>
+					<li><a href="">Ranking</a></li>
+					<li sec:authorize="isAnonymous() "style="float:right"><a class="active" href="/auth/login">Log in</a></li>
+					<li sec:authorize="isAuthenticated() "style="float:right"><a class="active" href="/auth/logout">Log out</a></li>
+					<li style="float:right"><a class="active" href="">Profile</a></li>
+					<li style="float:right"><a class="active" href="">My Reviews</a></li>
+				</ul>
+			</nav>
+
+			<div id="game-list-switch" >
+				<a href="/web/genres">Switch to normal view</a>
+			</div>
+
+			<div id="game-list-admin">
+				<ul>
+					<li>
+						<span style="width:80px">ID</span>
+						<span style="width:800px">Name</span>
+						<span style="width:130px"><a href="/web/saveGenre">Add a new genre</a></span>
+					</li>
+					<li th:each="genre: ${allGenres}">
+						<span style="width:80px" th:text="${genre.ID}"></span>
+						<span style="width:800px" th:text="${genre.name}"></span>
+
+						<span style="width:65px"><a th:href="@{/web/editGenre/{id}(id=${genre.ID})}">Edit</a></span>
+						<span style="width:65px"><a th:href="@{/web/deleteGenre/{id}(id=${genre.ID})}">Delete</a></span>
+
+					</li>
+				</ul>
+			</div>
+
+			<footer>
+				<p>Szymon Lichota, Szymon Porębski & Damian Pawłowski @2021</p>
+			</footer>
+
+		</div>
+	</body>
+
+</html>

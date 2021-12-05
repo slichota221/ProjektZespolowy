@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Genre</title>
+    <meta name="Edit Genre" content="Edit Genre">
+    <meta name="author" content="Szymon Lichota, Szymon Porębski, Damian Pawłowski">
+    <link th:href="@{/styles/css/styles.css}" rel="stylesheet" />
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/new-releases">New Releases</a></li>
+        <li><a href="/games">Games</a></li>
+        <li><a href="/web/genres">Genres</a></li>
+        <li><a href="/web/publishers">Publishers</a></li>
+        <li><a href="">Ranking</a></li>
+        <li sec:authorize="isAnonymous() "style="float:right"><a class="active" href="/auth/login">Log in</a></li>
+        <li sec:authorize="isAuthenticated() "style="float:right"><a class="active" href="/auth/logout">Log out</a></li>
+        <li style="float:right"><a class="active" href="">Profile</a></li>
+        <li style="float:right"><a class="active" href="">My Reviews</a></li>
+    </ul>
+</nav>
+
+<div id="save_page">
+    <h2>Edit game</h2>
+
+    <form method="post" th:action="@{/web/editGenre}" th:object="${editedGenre}">
+
+        <input type="hidden" th:field="*{ID}"/><br>
+
+        <div class="save_page_row">
+            <label for="name">Game name: </label>
+            <input id="name" placeholder="Enter name" required type="text" th:field="*{name}"/><br>
+        </div>
+
+        <input id="save_page_submit" type="submit" value="Submit">
+    </form>
+</div>
+
+<footer>
+    <p>Szymon Lichota, Szymon Porębski & Damian Pawłowski @2021</p>
+</footer>
+</body>
+</html>
