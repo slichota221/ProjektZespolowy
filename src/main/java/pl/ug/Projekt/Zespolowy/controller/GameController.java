@@ -45,9 +45,9 @@ public class GameController {
     }
 
     @PostMapping("/saveGame")
-    public String saveGame(@ModelAttribute("saveGame") Game game, ModelMap model){
+    public String saveGame(@ModelAttribute("saveGame") Game game){
         gameRepository.save(game);
-        model.addAttribute("allGames", gameRepository.findAll());
+
         return "redirect:/games-admin/";
     }
 
@@ -60,16 +60,16 @@ public class GameController {
     }
 
     @PostMapping("/editGame")
-    public String editGame(@ModelAttribute("editedGame") Game game, ModelMap model){
+    public String editGame(@ModelAttribute("editedGame") Game game){
         gameRepository.save(game);
-        model.addAttribute("allGames", gameRepository.findAll());
+
         return "redirect:/games-admin/";
     }
 
     @GetMapping("/deleteGame/{id}")
-    public String deleteGame(@PathVariable("id") long id, ModelMap model) {
+    public String deleteGame(@PathVariable("id") long id) {
         gameRepository.deleteById(id);
-        model.addAttribute("allGames", gameRepository.findAll());
+
         return "redirect:/games-admin/";
     }
 

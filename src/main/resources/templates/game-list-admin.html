@@ -18,8 +18,8 @@
 					<li><a href="/">Home</a></li>
 					<li><a href="/new-releases">New Releases</a></li>
 					<li><a href="/games">Games</a></li>
-					<li><a href="">Genres</a></li>
-					<li><a href="">Publishers</a></li>
+					<li><a href="/web/genres">Genres</a></li>
+					<li><a href="/web/publishers">Publishers</a></li>
 					<li><a href="">Ranking</a></li>
 					<li sec:authorize="isAnonymous() "style="float:right"><a class="active" href="/auth/login">Log in</a></li>
 					<li sec:authorize="isAuthenticated() "style="float:right"><a class="active" href="/auth/logout">Log out</a></li>
@@ -27,6 +27,10 @@
 					<li style="float:right"><a class="active" href="">My Reviews</a></li>
 				</ul>
 			</nav>
+
+			<div id="game-list-switch" >
+				<a href="/games">Switch to normal view</a>
+			</div>
 
 			<div id="game-list-admin">
 				<ul>

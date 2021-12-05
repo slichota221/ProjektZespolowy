@@ -13,8 +13,8 @@
         <li><a href="/">Home</a></li>
         <li><a href="/new-releases">New Releases</a></li>
         <li><a href="/games">Games</a></li>
-        <li><a href="">Genres</a></li>
-        <li><a href="">Publishers</a></li>
+        <li><a href="/web/genres">Genres</a></li>
+        <li><a href="/web/publishers">Publishers</a></li>
         <li><a href="">Ranking</a></li>
         <li sec:authorize="isAnonymous() "style="float:right"><a class="active" href="/auth/login">Log in</a></li>
         <li sec:authorize="isAuthenticated() "style="float:right"><a class="active" href="/auth/logout">Log out</a></li>
@@ -25,7 +25,7 @@
 
     <div id="save_page">
         <h2>Add a new genre</h2>
-        <form method="post" th:action="@{/saveGenre/}" th:object="${Genre}">
+        <form method="post" th:action="@{/web/saveGenre/}" th:object="${Genre}">
             <div class="save_page_row">
                 <label for="name">Genre Name: </label>
                 <input id="name" placeholder="Enter genre name" required type="text" th:field="*{name}"/><br>
