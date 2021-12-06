@@ -26,7 +26,7 @@
 <div id="save_page">
     <h2>Add a new game</h2>
 
-    <form method="post" th:action="@{/saveGame}" th:object="${newGame}">
+    <form method="post" enctype="multipart/form-data" th:action="@{/saveGame}" th:object="${newGame}">
 
         <div class="save_page_row">
             <label for="name">Game name: </label>
@@ -40,7 +40,7 @@
 
         <div class="save_page_row">
             <label for="pathCover">Path to cover: </label>
-            <input id="pathCover" placeholder="Enter path to cover" required type="text" th:field="*{pathCover}"/><br>
+            <input type="file" name="image" accept="image/png, image/jpeg" /><br>
         </div>
 
         <div id="save_page_row_desc">

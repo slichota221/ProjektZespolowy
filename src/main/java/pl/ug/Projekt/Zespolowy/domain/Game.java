@@ -4,7 +4,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 
 @Entity
@@ -27,6 +30,10 @@ public class Game {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "publisher_id", referencedColumnName = "id")
     private Publisher publisher;
+
+
+   // @ManyToMany()
+    //private List<Console> consoles = new ArrayList<>();
 
     public Game() {
 
@@ -100,6 +107,17 @@ public class Game {
     public void setPublisher(Publisher publisher) {
         this.publisher = publisher;
     }
+
+    /*
+    public List<Console> getConsoles() {
+        return consoles;
+    }
+
+    public void setConsoles(List<Console> consoles) {
+        this.consoles = consoles;
+    }
+
+     */
 
     @Override
     public int hashCode() {

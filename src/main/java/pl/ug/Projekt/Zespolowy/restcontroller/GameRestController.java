@@ -4,6 +4,8 @@ import org.springframework.web.bind.annotation.*;
 import pl.ug.Projekt.Zespolowy.domain.Game;
 import pl.ug.Projekt.Zespolowy.repository.GameRepository;
 
+import java.util.List;
+
 @RestController
 
 public class GameRestController {
@@ -12,6 +14,12 @@ public class GameRestController {
     public GameRestController(GameRepository repository) {
         this.repository = repository;
     }
+
+    @GetMapping("/game")
+    List<Game> getAllGames(){
+        return repository.findAll();
+    }
+
     @DeleteMapping("/game/{id}")
     void deleteGame(@PathVariable Long id){
         repository.deleteById(id);

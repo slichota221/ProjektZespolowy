@@ -2,22 +2,26 @@ package pl.ug.Projekt.Zespolowy;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import pl.ug.Projekt.Zespolowy.domain.Game;
+import pl.ug.Projekt.Zespolowy.domain.Console;
 import pl.ug.Projekt.Zespolowy.domain.Genre;
 import pl.ug.Projekt.Zespolowy.domain.Publisher;
+import pl.ug.Projekt.Zespolowy.repository.ConsoleRepository;
 import pl.ug.Projekt.Zespolowy.repository.GameRepository;
 import pl.ug.Projekt.Zespolowy.repository.GenreRepository;
 import pl.ug.Projekt.Zespolowy.repository.PublisherRepository;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 @Configuration
 public class LoadDatabase {
 
     private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
+
 
     @Bean
     CommandLineRunner initDatabase(GenreRepository repository){
@@ -33,6 +37,16 @@ public class LoadDatabase {
             log.info("Preloading " + publisherRepository.save(new Publisher("Konami")));
         };
     }
+
+    @Bean
+    CommandLineRunner addConsole(ConsoleRepository consoleRepository){
+        return args ->{
+            log.info("Preloading " + consoleRepository.save(new Console("Playstation 5", LocalDate.of(2000, 3, 10))));
+            log.info("Preloading " + consoleRepository.save(new Console("Xbox Series", LocalDate.of(2000, 3, 10))));
+            log.info("Preloading " + consoleRepository.save(new Console("Nintendo Switch", LocalDate.of(2000, 3, 10))));
+        };
+    }
+    /*
     @Bean
     CommandLineRunner addGame(GameRepository gameRepository){
         return args ->{
@@ -42,6 +56,8 @@ public class LoadDatabase {
                     "You kill more monsters", "/covers/cover_witcher3.jpg", new Genre("test"), new Publisher("test"))));
         };
     }
+
+     */
     /*
         @Bean
     CommandLineRunner initDatabaseGame(GameRepository gameRepository){
