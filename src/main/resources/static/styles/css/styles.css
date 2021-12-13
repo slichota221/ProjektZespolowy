@@ -300,8 +300,12 @@ footer p{
     background-color:#111111;
     border: 2px white solid;
     opacity: 0.9;
+    cursor: pointer;
 }
 
+#save_page_submit:hover{
+    background-color: #3391cc;
+}
 
 .save_page_select{
     font-size: 22px;

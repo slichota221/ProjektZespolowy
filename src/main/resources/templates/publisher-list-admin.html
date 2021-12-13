@@ -29,26 +29,22 @@
 			</nav>
 
 			<div id="game-list-switch" >
-				<a href="/games">Switch to normal view</a>
+				<a href="/web/publishers">Switch to normal view</a>
 			</div>
 
 			<div id="game-list-admin">
 				<ul>
 					<li>
 						<span style="width:80px">ID</span>
-						<span style="width:300px">Name</span>
-						<span style="width:200px">Publisher</span>
-						<span style="width:250px">Released</span>
-						<span style="width:130px"><a href="/saveGame">Add a new game</a></span>
+						<span style="width:800px">Name</span>
+						<span style="width:200px"><a href="/web/savePublisher">Add a new publisher</a></span>
 					</li>
-					<li th:each="game: ${allGames}">
-						<span style="width:80px" th:text="${game.ID}"></span>
-						<span style="width:300px" th:text="${game.nameGame}"></span>
-						<span style="width:200px" th:text="${game.publisher.name}"></span>
-						<span style="width:250px" th:text="${game.dateRelease}"></span>
+					<li th:each="publisher: ${allPublishers}">
+						<span style="width:80px" th:text="${publisher.ID}"></span>
+						<span style="width:800px" th:text="${publisher.name}"></span>
 
-						<span style="width:65px"><a th:href="@{/editGame/{id}(id=${game.ID})}">Edit</a></span>
-						<span style="width:65px"><a th:href="@{/deleteGame/{id}(id=${game.ID})}">Delete</a></span>
+						<span style="width:65px"><a th:href="@{/editPublisher/{id}(id=${publisher.ID})}">Edit</a></span>
+						<span style="width:65px"><a th:href="@{/deletePublisher/{id}(id=${publisher.ID})}">Delete</a></span>
 
 					</li>
 				</ul>

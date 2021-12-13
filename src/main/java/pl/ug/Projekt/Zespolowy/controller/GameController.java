@@ -52,7 +52,6 @@ public class GameController {
         model.addAttribute("newGame", new Game());
         model.addAttribute("genres", genreRepository.findAll());
         model.addAttribute("publishers", publisherRepository.findAll());
-        model.addAttribute("listConsoles", consoleRepository.findAll());
         return "save-game";
     }
 

@@ -4,8 +4,8 @@
 
 	<head>
 		<meta charset="utf-8">
-		<title>Game list - admin</title>
-		<meta name="Game list - admin" content="List of all games with edit and delete options">
+		<title>Genre list - admin</title>
+		<meta name="Genre list - admin" content="List of all Genres with edit and delete options">
 		<meta name="author" content="Szymon Lichota, Szymon Porębski, Damian Pawłowski">
 		<link th:href="@{/styles/css/styles.css}" rel="stylesheet" />
 	</head>
@@ -29,26 +29,22 @@
 			</nav>
 
 			<div id="game-list-switch" >
-				<a href="/games">Switch to normal view</a>
+				<a href="/web/genres">Switch to normal view</a>
 			</div>
 
 			<div id="game-list-admin">
 				<ul>
 					<li>
 						<span style="width:80px">ID</span>
-						<span style="width:300px">Name</span>
-						<span style="width:200px">Publisher</span>
-						<span style="width:250px">Released</span>
-						<span style="width:130px"><a href="/saveGame">Add a new game</a></span>
+						<span style="width:800px">Name</span>
+						<span style="width:130px"><a href="/web/saveGenre">Add a new genre</a></span>
 					</li>
-					<li th:each="game: ${allGames}">
-						<span style="width:80px" th:text="${game.ID}"></span>
-						<span style="width:300px" th:text="${game.nameGame}"></span>
-						<span style="width:200px" th:text="${game.publisher.name}"></span>
-						<span style="width:250px" th:text="${game.dateRelease}"></span>
+					<li th:each="genre: ${allGenres}">
+						<span style="width:80px" th:text="${genre.ID}"></span>
+						<span style="width:800px" th:text="${genre.name}"></span>
 
-						<span style="width:65px"><a th:href="@{/editGame/{id}(id=${game.ID})}">Edit</a></span>
-						<span style="width:65px"><a th:href="@{/deleteGame/{id}(id=${game.ID})}">Delete</a></span>
+						<span style="width:65px"><a th:href="@{/web/editGenre/{id}(id=${genre.ID})}">Edit</a></span>
+						<span style="width:65px"><a th:href="@{/web/deleteGenre/{id}(id=${genre.ID})}">Delete</a></span>
 
 					</li>
 				</ul>
