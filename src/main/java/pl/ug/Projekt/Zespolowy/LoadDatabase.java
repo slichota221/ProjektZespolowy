@@ -5,14 +5,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import pl.ug.Projekt.Zespolowy.domain.Game;
-import pl.ug.Projekt.Zespolowy.domain.Genre;
-import pl.ug.Projekt.Zespolowy.domain.Publisher;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import pl.ug.Projekt.Zespolowy.domain.*;
 import pl.ug.Projekt.Zespolowy.repository.GameRepository;
 import pl.ug.Projekt.Zespolowy.repository.GenreRepository;
 import pl.ug.Projekt.Zespolowy.repository.PublisherRepository;
+import pl.ug.Projekt.Zespolowy.repository.UserRepository;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Configuration
 public class LoadDatabase {
@@ -27,6 +28,15 @@ public class LoadDatabase {
 
         };
     }
+
+    @Bean
+    CommandLineRunner initAdmin(UserRepository repository){
+        return args ->{
+            log.info("Preloading " + repository.save(new User("admin", new BCryptPasswordEncoder().encode("admin"), "admin", LocalDateTime.now(), Role.ADMIN)));
+
+        };
+    }
+
     @Bean
     CommandLineRunner addPublisher(PublisherRepository publisherRepository){
         return args ->{
