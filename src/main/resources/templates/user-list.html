@@ -3,8 +3,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="utf-8">
-		<title>Game list</title>
-		<meta name="Game list" content="List of all games">
+		<title>User list</title>
+		<meta name="User list" content="List of all users">
 		<meta name="author" content="Szymon Lichota, Szymon Porębski, Damian Pawłowski">
 		<link th:href="@{/styles/css/styles.css}" rel="stylesheet" />
 	</head>
@@ -25,19 +25,16 @@
 			</ul>
 		</nav>
 
-		<div id="game-list-switch" >
-			<a href="/web/publishers-admin">Switch to admin view</a>
-		</div>
-
 		<div id="game-list-admin">
 			<ul>
 				<li>
 					<span style="width:80px">ID</span>
-					<span style="width:800px">Name</span>
+					<span style="width:800px">Username</span>
 				</li>
-				<li th:each="publisher: ${allPublishers}">
-					<span style="width:80px" th:text="${publisher.ID}"></span>
-					<span style="width:800px" th:text="${publisher.name}"></span>
+				<li th:each="user: ${allUsers}">
+					<span style="width:80px" th:text="${user.id}"></span>
+					<span style="width:900px" th:text="${user.username}"></span>
+					<span style="width:100px"><a th:href="@{/web/user/{id}(id=${user.id})}">View Profile</a></span>
 				</li>
 			</ul>
 		</div>
