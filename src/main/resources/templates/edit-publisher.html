@@ -2,8 +2,8 @@
 <<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Save Genre</title>
-    <meta name="Save Genre" content="Save Genre">
+    <title>Edit Publisher</title>
+    <meta name="Edit Publisher" content="Edit Publisher">
     <meta name="author" content="Szymon Lichota, Szymon Porębski, Damian Pawłowski">
     <link th:href="@{/styles/css/styles.css}" rel="stylesheet" />
 </head>
@@ -23,19 +23,24 @@
     </ul>
 </nav>
 
-    <div id="save_page">
-        <h2>Add a new genre</h2>
-        <form method="post" th:action="@{/web/saveGenre/}" th:object="${Genre}">
-            <div class="save_page_row">
-                <label for="name">Genre Name: </label>
-                <input id="name" placeholder="Enter genre name" required type="text" th:field="*{name}"/><br>
-            </div>
-            <input id="save_page_submit" type="submit" value="Create Genre">
-        </form>
-    </div>
+<div id="save_page">
+    <h2>Edit game</h2>
 
-    <footer>
-        <p>Szymon Lichota, Szymon Porębski & Damian Pawłowski @2021</p>
-    </footer>
+    <form method="post" th:action="@{/web/editPublisher}" th:object="${editedPublisher}">
+
+        <input type="hidden" th:field="*{ID}"/><br>
+
+        <div class="save_page_row">
+            <label for="name">Publisher name: </label>
+            <input id="name" placeholder="Enter name" required type="text" th:field="*{name}"/><br>
+        </div>
+
+        <input id="save_page_submit" type="submit" value="Submit">
+    </form>
+</div>
+
+<footer>
+    <p>Szymon Lichota, Szymon Porębski & Damian Pawłowski @2021</p>
+</footer>
 </body>
 </html>
