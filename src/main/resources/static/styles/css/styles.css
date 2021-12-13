@@ -416,7 +416,18 @@ footer p{
 }
 
 
-/* ===== USER PROFILE END */
+/* ===== USER PROFILE END ===== */
+/* ===== ADMIN STUFF BEGINNING ===== */
+
+.admin_link{
+    color:#bd3026;
+}
+
+.admin_link:hover{
+    color:white;
+    background-color:#bd3026;
+}
+/* ===== ADMIN STUFF END ===== */
 main{
 
 }
