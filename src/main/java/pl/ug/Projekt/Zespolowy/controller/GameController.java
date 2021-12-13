@@ -1,5 +1,6 @@
 package pl.ug.Projekt.Zespolowy.controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -41,12 +42,14 @@ public class GameController {
         return "game-list";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/games-admin")
     String getGameAdmin(Model model){
         model.addAttribute("allGames", gameRepository.findAll());
         return "game-list-admin";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping(value = "/saveGame")
     public String addGame(ModelMap model) {
         model.addAttribute("newGame", new Game());
@@ -55,6 +58,7 @@ public class GameController {
         return "save-game";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/saveGame")
     public String saveGame(@ModelAttribute("saveGame") Game game, ModelMap model, @RequestParam("image") MultipartFile multipartFile) throws IOException {
         String filename = StringUtils.cleanPath(multipartFile.getOriginalFilename());
@@ -67,6 +71,7 @@ public class GameController {
         return "redirect:/games-admin/";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping(value = "/editGame/{id}")
     public String editGame(@PathVariable("id") long id, ModelMap model) {
         model.addAttribute("editedGame", gameRepository.getById(id));
@@ -75,6 +80,7 @@ public class GameController {
         return "edit-game";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/editGame")
     public String editGame(@ModelAttribute("editedGame") Game game, ModelMap model){
         gameRepository.save(game);
@@ -82,6 +88,7 @@ public class GameController {
         return "redirect:/games-admin/";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/deleteGame/{id}")
     public String deleteGame(@PathVariable("id") long id, ModelMap model) {
         gameRepository.deleteById(id);

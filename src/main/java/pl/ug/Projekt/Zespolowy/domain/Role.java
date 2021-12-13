@@ -1,8 +1,8 @@
 package pl.ug.Projekt.Zespolowy.domain;
 
 public enum Role {
-    USER("USER"),
-    ADMIN("ADMIN");
+    USER("ROLE_USER"),
+    ADMIN("ROLE_ADMIN");
 
     private final String name;
 
