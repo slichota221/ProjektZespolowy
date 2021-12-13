@@ -25,6 +25,16 @@ public class User {
 
     private Role role;
 
+    public User() {
+    }
+
+    public User(String username, String encodedPassword, String email, LocalDateTime registrationDate, Role role) {
+        this.username = username;
+        this.encodedPassword = encodedPassword;
+        this.email = email;
+        this.registrationDate = registrationDate;
+        this.role = role;
+    }
 
     public Long getId() {
         return id;
