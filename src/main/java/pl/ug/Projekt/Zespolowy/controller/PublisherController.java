@@ -60,14 +60,14 @@ public class PublisherController {
     public String editGame(@ModelAttribute("editedGame") Publisher publisher){
         publisherRepository.save(publisher);
 
-        return "redirect:/web/genres-admin";
+        return "redirect:/web/publishers-admin";
     }
 
     @GetMapping("/web/deletePublisher/{id}")
     public String deleteGame(@PathVariable("id") long id) {
         publisherRepository.deleteById(id);
 
-        return "redirect:/web/genres-admin";
+        return "redirect:/web/publishers-admin";
     }
 
 }

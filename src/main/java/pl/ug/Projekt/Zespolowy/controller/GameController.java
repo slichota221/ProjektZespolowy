@@ -78,7 +78,7 @@ public class GameController {
     @PostMapping("/editGame")
     public String editGame(@ModelAttribute("editedGame") Game game, ModelMap model){
         gameRepository.save(game);
-        model.addAttribute("allGames", gameRepository.findAll());
+        //model.addAttribute("allGames", gameRepository.findAll());
         return "redirect:/games-admin/";
     }
 

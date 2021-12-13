@@ -25,7 +25,7 @@
 
     <div id="save_page">
         <h2>Add a new publisher</h2>
-        <form method="post" th:action="@{/savePublisher/}" th:object="${newPublisher}">
+        <form method="post" th:action="@{/web/savePublisher}" th:object="${newPublisher}">
             <div class="save_page_row">
                 <label for="name">Publisher Name: </label>
                 <input id="name" placeholder="Enter publisher name" required type="text" th:field="*{name}"/><br>
