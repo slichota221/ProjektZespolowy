@@ -18,10 +18,12 @@
 			<li><a href="/web/genres">Genres</a></li>
 			<li><a href="/web/publishers">Publishers</a></li>
 			<li><a href="">Ranking</a></li>
-			<li sec:authorize="isAnonymous() "style="float:right"><a class="active" href="/auth/login">Log in</a></li>
-			<li sec:authorize="isAuthenticated() "style="float:right"><a class="active" href="/auth/logout">Log out</a></li>
-			<li style="float:right"><a class="active" href="">Profile</a></li>
-			<li style="float:right"><a class="active" href="">My Reviews</a></li>
+			<li sec:authorize="isAuthenticated()"><a href="/web/users" class="admin_link">Users</a></li>
+			
+			<li sec:authorize="isAnonymous()" style="float:right"><a class="active" href="/auth/login">Log in</a></li>
+			<li sec:authorize="isAuthenticated()" style="float:right"><a class="active" href="/auth/logout">Log out</a></li>
+			<li sec:authorize="isAuthenticated()" style="float:right"><a class="active" href="/web/user">Profile</a></li>
+			<li sec:authorize="isAuthenticated()" style="float:right"><a class="active" href="">My Reviews</a></li>
 		</ul>
 	</nav>
 
@@ -32,15 +34,33 @@
 		<div id="game-list">
 			<element th:each="game: ${allGames}">
 
-				<div class="element_img">
-					<img th:src="${game.pathCover}" alt="Game Cover" >
+				<div style="float:left">
+					<div class="element_img">
+						<img th:src="${game.pathCover}" alt="Game Cover" >
+					</div>
+
+					<div class="element_desc">
+						<h1 th:text="${game.nameGame}"></h1>
+						<h2 th:text="${game.genre.name}"></h2>
+						<h3 th:text="${game.dateRelease}"></h3>
+						<h3 th:text="${game.publisher.name}"></h3>
+					</div>
+
+					<div class="game_list_more_button">
+						<a th:href="@{/game/{id}(id=${game.ID})}">More ...</a>
+					</div>
+
+				</div>
+				<div class="game_list_rating">
+					<div class="game_list_stars"><span style="color:#d4af37">★★★★</span>★</div>
+					<span style="color:#d4af37">9.5</span><br><br>
+					<span style="color:white; margin-bottom:115px; display:block;"><span style="color:#d4af37">10000</span> Votes</span>
+
+					<div class="game_list_more_button">
+						<a href="">Add Review</a>
+					</div>
 				</div>
 
-				<div class="element_desc">
-					<h1 th:text="${game.nameGame}"></h1>
-					<h2 th:text="${game.dateRelease}"></h2>
-					<p th:text="${game.description}"></p>
-				</div>
 
 			</element>
 		</div>

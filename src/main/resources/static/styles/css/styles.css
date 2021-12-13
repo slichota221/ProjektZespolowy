@@ -13,6 +13,8 @@ html, body{
 }
 
 nav{
+	position: relative;
+	z-index: 999;
   	height: 41px;
     text-align: center;
     padding: 5px 0px;
@@ -102,6 +104,8 @@ footer p{
 	margin-left: 40px;
     float: left;
   	color:white;
+  	margin-bottom: 30px;
+  	width: 300px;
 }
 
 #game-list-switch{
@@ -125,9 +129,34 @@ footer p{
 }
 
 #game-list-switch a:hover{
-    background-color: #135a87
+    background-color: #135a87;
 }
 
+.game_list_more_button a{
+    margin-left: 40px;
+    color: white;
+    text-decoration: none;
+    border: 1px solid white;
+    padding: 5px 15px;
+}
+
+.game_list_more_button a:hover{
+    background-color: #135a87;
+}
+
+.game_list_rating{
+    margin-left: 50px;
+    float: left;
+    margin-top: 10px;
+    text-align: right;
+}
+
+.game_list_stars{
+    font-size: 40px;
+    display: block;
+    margin-bottom: 10px;
+    margin-right: -5px;
+}
 /* ===== GAME LIST END ===== */
 /* ===== GAME LIST - ADMIN BEGINNING ===== */
 
@@ -333,15 +362,99 @@ footer p{
     border: 1px solid black;
 }
 
-
-
-
-
-
-
-
-
 /* ===== FRONT PAGE end */
+/* ===== USER PROFILE BEGINNING */
+
+#user_profile{
+	font-size: 22px;
+	color:white;
+
+	width: 1000px;
+    text-align: center;
+    background-color: #111111;
+    opacity: 0.9;
+    margin: 0 auto;
+    margin-bottom: 80px;
+    border: 1px solid black;
+	position: relative;
+	z-index: 0;
+}
+
+
+#user_profile_pic{
+	margin-top: 20px;
+	border-bottom: 2px solid black;
+	padding-bottom: 15px;
+	text-align: left;
+	opacity: 0.9;
+}
+
+#user_profile_pic img{
+	position: relative;
+	margin-left: 20px;
+	z-index: 3;
+}
+
+#user_profile_pic element{
+	position: relative;
+	top: -12px;
+	margin-left: 20px;
+}
+
+#user_banner{
+	background-color: #2970e3;
+	width: 1000px;
+	height: 60px;
+	position: absolute;
+	z-index: 2;
+	margin-top: -20px;
+}
+
+#user_details{
+	margin-top: 20px;
+    text-align: left;
+	width: 1000px;
+	border-bottom: 2px solid black;
+}
+
+#user_details span{
+	width: 900px;
+    height: 40px;
+	margin-left: 20px;
+    opacity: 0.9;
+    display: inline-block;
+	vertical-align: middle;
+	color: #2970e3;
+}
+
+#user_details element{
+	width: 900px;
+    height: 40px;
+	margin-left: 20px;
+    opacity: 0.9;
+    display: inline-block;
+    vertical-align: middle;
+	color: white;
+}
+
+#user_profile main{
+	margin-top: 30px;
+	padding-bottom: 30px;
+}
+
+
+/* ===== USER PROFILE END ===== */
+/* ===== ADMIN STUFF BEGINNING ===== */
+
+.admin_link{
+    color:#bd3026;
+}
+
+.admin_link:hover{
+    color:white;
+    background-color:#bd3026;
+}
+/* ===== ADMIN STUFF END ===== */
 main{
 
 }
