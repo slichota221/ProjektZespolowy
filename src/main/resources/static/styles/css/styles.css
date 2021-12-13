@@ -104,6 +104,8 @@ footer p{
 	margin-left: 40px;
     float: left;
   	color:white;
+  	margin-bottom: 30px;
+  	width: 300px;
 }
 
 #game-list-switch{
@@ -127,9 +129,34 @@ footer p{
 }
 
 #game-list-switch a:hover{
-    background-color: #135a87
+    background-color: #135a87;
 }
 
+.game_list_more_button a{
+    margin-left: 40px;
+    color: white;
+    text-decoration: none;
+    border: 1px solid white;
+    padding: 5px 15px;
+}
+
+.game_list_more_button a:hover{
+    background-color: #135a87;
+}
+
+.game_list_rating{
+    margin-left: 50px;
+    float: left;
+    margin-top: 10px;
+    text-align: right;
+}
+
+.game_list_stars{
+    font-size: 40px;
+    display: block;
+    margin-bottom: 10px;
+    margin-right: -5px;
+}
 /* ===== GAME LIST END ===== */
 /* ===== GAME LIST - ADMIN BEGINNING ===== */
 
