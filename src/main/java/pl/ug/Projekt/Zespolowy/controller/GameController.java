@@ -7,17 +7,21 @@ import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import pl.ug.Projekt.Zespolowy.domain.Console;
 import pl.ug.Projekt.Zespolowy.domain.Game;
-import pl.ug.Projekt.Zespolowy.domain.Publisher;
+import pl.ug.Projekt.Zespolowy.domain.GameDTO;
 import pl.ug.Projekt.Zespolowy.repository.ConsoleRepository;
 import pl.ug.Projekt.Zespolowy.repository.GameRepository;
 import pl.ug.Projekt.Zespolowy.repository.GenreRepository;
 import pl.ug.Projekt.Zespolowy.repository.PublisherRepository;
+import pl.ug.Projekt.Zespolowy.service.RatingService;
 import pl.ug.Projekt.Zespolowy.utility.FileUploadUtil;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.security.Principal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -27,19 +31,41 @@ public class GameController {
     private final GenreRepository genreRepository;
     private final PublisherRepository publisherRepository;
     private final ConsoleRepository consoleRepository;
+    private final RatingService ratingService;
 
     GameController(GameRepository repository, GenreRepository genreRepository, PublisherRepository publisherRepository,
-                   ConsoleRepository consoleRepository){
+                   ConsoleRepository consoleRepository, RatingService ratingService){
         this.gameRepository = repository;
         this.genreRepository = genreRepository;
         this.publisherRepository = publisherRepository;
         this.consoleRepository = consoleRepository;
+        this.ratingService = ratingService;
     }
 
     @GetMapping("/games")
-    String getGame(Model model){
-        model.addAttribute("allGames", gameRepository.findAll());
+    String getGame(Model model, Principal principal){
+
+        String username = principal == null ? null : principal.getName();
+
+        List<GameDTO> gameDTOS = gameRepository.findAll()
+                .stream()
+                .map(game -> mapToDto(game, username))
+                .collect(Collectors.toList());
+        
+        model.addAttribute("allGames", gameDTOS);
         return "game-list";
+    }
+
+    @GetMapping("/game/{id}")
+    String getGame(@PathVariable Long id, Model model, Principal principal){
+
+        String username = principal == null ? null : principal.getName();
+
+        model.addAttribute("game", mapToDto(gameRepository.getById(id), username));
+        model.addAttribute("isRated", ratingService.isUserRatedGame(id, username));
+        model.addAttribute("ratings", ratingService.findRatingsByGameId(id));
+
+        return "game";
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -94,6 +120,24 @@ public class GameController {
         gameRepository.deleteById(id);
         model.addAttribute("allGames", gameRepository.findAll());
         return "redirect:/games-admin/";
+    }
+
+    private GameDTO mapToDto(Game game, String username) {
+        GameDTO gameDTO = new GameDTO();
+        BigDecimal averageValue = new BigDecimal(ratingService.getAverageValue(game.getId())).setScale(1, RoundingMode.HALF_EVEN);
+
+        gameDTO.setId(game.getId());
+        gameDTO.setNameGame(game.getNameGame());
+        gameDTO.setPathCover(game.getPathCover());
+        gameDTO.setDescription(game.getDescription());
+        gameDTO.setGenre(game.getGenre());
+        gameDTO.setPublisher(game.getPublisher());
+        gameDTO.setDateRelease(game.getDateRelease());
+        gameDTO.setAverageValue(averageValue.doubleValue());
+        gameDTO.setVotes(ratingService.getNumberOfVotes(game.getId()));
+        gameDTO.setIsRated(ratingService.isUserRatedGame(game.getId(), username));
+
+        return gameDTO;
     }
 
 }

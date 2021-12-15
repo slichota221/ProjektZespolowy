@@ -44,13 +44,13 @@
 						<span style="width:130px"><a href="/saveGame">Add a new game</a></span>
 					</li>
 					<li th:each="game: ${allGames}">
-						<span style="width:80px" th:text="${game.ID}"></span>
+						<span style="width:80px" th:text="${game.id}"></span>
 						<span style="width:300px" th:text="${game.nameGame}"></span>
 						<span style="width:200px" th:text="${game.publisher.name}"></span>
 						<span style="width:250px" th:text="${game.dateRelease}"></span>
 
-						<span style="width:65px"><a th:href="@{/editGame/{id}(id=${game.ID})}">Edit</a></span>
-						<span style="width:65px"><a th:href="@{/deleteGame/{id}(id=${game.ID})}">Delete</a></span>
+						<span style="width:65px"><a th:href="@{/editGame/{id}(id=${game.id})}">Edit</a></span>
+						<span style="width:65px"><a th:href="@{/deleteGame/{id}(id=${game.id})}">Delete</a></span>
 
 					</li>
 				</ul>

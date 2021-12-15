@@ -15,10 +15,10 @@ public class GameRestController {
         this.repository = repository;
     }
 
-    @GetMapping("/game")
-    List<Game> getAllGames(){
-        return repository.findAll();
-    }
+//    @GetMapping("/game")
+//    List<Game> getAllGames(){
+//        return repository.findAll();
+//    }
 
     @DeleteMapping("/game/{id}")
     void deleteGame(@PathVariable Long id){
@@ -34,7 +34,7 @@ public class GameRestController {
                     return repository.save(employee);
                 })
                 .orElseGet(() -> {
-                    newGame.setID(id);
+                    newGame.setId(id);
                     return repository.save(newGame);
                 });
     }

@@ -23,4 +23,8 @@ public class GameService {
         Sort sort = Sort.by(Sort.Direction.DESC, "dateRelease");
         return gameRepository.findByDateReleaseGreaterThanEqual(LocalDate.now().minusDays(7), sort);
     }
+
+    public Game getById(Long id) {
+        return gameRepository.getById(id);
+    }
 }
