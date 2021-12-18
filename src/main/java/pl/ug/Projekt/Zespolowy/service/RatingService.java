@@ -23,6 +23,10 @@ public class RatingService {
         return ratingRepository.findAllByGameIdOrderByPublicationDateDesc(gameId);
     }
 
+    public List<Rating> findAll(){
+        return ratingRepository.findAll();
+    }
+
     public boolean isUserRatedGame(Long gameId, String username) {
         return ratingRepository.findRatingByGameIdAndUserUsername(gameId, username) != null;
     }

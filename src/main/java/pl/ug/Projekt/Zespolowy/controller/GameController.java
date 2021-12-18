@@ -1,5 +1,6 @@
 package pl.ug.Projekt.Zespolowy.controller;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -66,6 +67,20 @@ public class GameController {
         model.addAttribute("ratings", ratingService.findRatingsByGameId(id));
 
         return "game";
+    }
+    @GetMapping("/games/sorted")
+    String getGameSorted(Model model, Principal principal){
+
+        String username = principal == null ? null : principal.getName();
+
+        List<GameDTO> gameDTOS = gameRepository.findAll()
+                .stream()
+                .map(game -> mapToDto(game, username))
+                .sorted((o1, o2) -> o2.getAverageValue().compareTo(o1.getAverageValue()))
+                .collect(Collectors.toList());
+
+        model.addAttribute("allGames", gameDTOS);
+        return "game-list";
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
