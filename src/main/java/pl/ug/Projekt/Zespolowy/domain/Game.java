@@ -4,17 +4,17 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 
 @Entity
 @Table(name="game_table")
 public class Game {
 
-    private @Id @GeneratedValue @Column(name="id") long ID;
+    @Id
+    @GeneratedValue
+    @Column(name="id")
+    private Long id;
 
     private String nameGame;
 
@@ -52,12 +52,12 @@ public class Game {
         this.publisher = publisher;
     }
 
-    public long getID() {
-        return ID;
+    public Long getId() {
+        return id;
     }
 
-    public void setID(long ID) {
-        this.ID = ID;
+    public void setId(Long ID) {
+        this.id = ID;
     }
 
     public String getNameGame() {
@@ -121,11 +121,11 @@ public class Game {
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.ID);
+        return Objects.hash(this.id);
     }
 
     @Override
     public String toString() {
-        return "Game{" + "id=" + this.ID + ", name='" + this.nameGame + '}';
+        return "Game{" + "id=" + this.id + ", name='" + this.nameGame + '}';
     }
 }

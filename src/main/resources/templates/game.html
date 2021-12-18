@@ -31,9 +31,10 @@
 			<a href="/games-admin">Switch to admin view</a>
 		</div>
 
-		<div id="game-list">
-			<element th:each="game: ${allGames}">
 
+
+	<div id="game-list">
+		<element>
 				<div style="float:left">
 					<div class="element_img">
 						<img th:src="${game.pathCover}" alt="Game Cover" >
@@ -46,9 +47,6 @@
 						<h3 th:text="${game.publisher.name}"></h3>
 					</div>
 
-					<div class="game_list_more_button">
-						<a th:href="@{/game/{id}(id=${game.id})}">More ...</a>
-					</div>
 
 				</div>
 				<div class="game_list_rating">
@@ -56,17 +54,30 @@
 					<span style="color:#d4af37" th:text="${game.averageValue}"></span><br><br>
 					<span style="color:white; margin-bottom:115px; display:block;"><span style="color:#d4af37" th:text="${game.votes}"></span></span>
 
-					<div class="game_list_more_button" th:if="${!game.isRated}">
+					<div class="game_list_more_button" th:if="${!isRated}">
 						<a th:href="@{/rating/create/{id}(id=${game.id})}">Add Review</a>
 					</div>
-					<div class="game_list_more_button" th:if="${game.isRated}">
+					<div class="game_list_more_button" th:if="${isRated}">
 						<a th:href="@{/rating/edit/{id}(id=${game.id})}">Edit Review</a>
 					</div>
 				</div>
 
+		</element>
+	</div>
 
-			</element>
-		</div>
+	<div id="ratings">
+		<element th:each="rating: ${ratings}">
+
+			<div class="element_desc">
+				<h1 th:text="${rating.user.username}"></h1>
+				<h2 th:text="${rating.value}"></h2>
+				<h3 th:text="${rating.comment}"></h3>
+				<h3 th:text="${rating.publicationDate}"></h3>
+			</div>
+
+
+		</element>
+	</div>
 
 		<footer>
 			<p>Szymon Lichota, Szymon Porębski & Damian Pawłowski @2021</p>

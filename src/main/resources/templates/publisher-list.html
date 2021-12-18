@@ -16,12 +16,14 @@
 				<li><a href="/new-releases">New Releases</a></li>
 				<li><a href="/games">Games</a></li>
 				<li><a href="/web/genres">Genres</a></li>
-				<li><a href="">Publishers</a></li>
+				<li><a href="/web/publishers">Publishers</a></li>
 				<li><a href="">Ranking</a></li>
-				<li sec:authorize="isAnonymous() "style="float:right"><a class="active" href="/auth/login">Log in</a></li>
-				<li sec:authorize="isAuthenticated() "style="float:right"><a class="active" href="/auth/logout">Log out</a></li>
-				<li style="float:right"><a class="active" href="">Profile</a></li>
-				<li style="float:right"><a class="active" href="">My Reviews</a></li>
+				<li sec:authorize="isAuthenticated()"><a href="/web/users" class="admin_link">Users</a></li>
+
+				<li sec:authorize="isAnonymous()" style="float:right"><a class="active" href="/auth/login">Log in</a></li>
+				<li sec:authorize="isAuthenticated()" style="float:right"><a class="active" href="/auth/logout">Log out</a></li>
+				<li sec:authorize="isAuthenticated()" style="float:right"><a class="active" href="/web/user">Profile</a></li>
+				<li sec:authorize="isAuthenticated()" style="float:right"><a class="active" href="">My Reviews</a></li>
 			</ul>
 		</nav>
 

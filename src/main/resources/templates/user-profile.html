@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <meta charset="UTF-8">
+        <title>Profile</title>
+        <meta name="User Profile" content="User Profile">
+        <meta name="author" content="Szymon Lichota, Szymon Porębski, Damian Pawłowski">
+        <link th:href="@{/styles/css/styles.css}" rel="stylesheet" />
+    </head>
+    <body>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/new-releases">New Releases</a></li>
+                <li><a href="/games">Games</a></li>
+                <li><a href="/web/genres">Genres</a></li>
+                <li><a href="/web/publishers">Publishers</a></li>
+                <li><a href="">Ranking</a></li>
+                <li sec:authorize="isAuthenticated()"><a href="/web/users" class="admin_link">Users</a></li>
+
+                <li sec:authorize="isAnonymous()" style="float:right"><a class="active" href="/auth/login">Log in</a></li>
+                <li sec:authorize="isAuthenticated()" style="float:right"><a class="active" href="/auth/logout">Log out</a></li>
+                <li sec:authorize="isAuthenticated()" style="float:right"><a class="active" href="/web/user">Profile</a></li>
+                <li sec:authorize="isAuthenticated()" style="float:right"><a class="active" href="">My Reviews</a></li>
+            </ul>
+        </nav>
+
+        <div id="user_profile" th:object="${viewedUser}">
+
+            <div id="user_profile_pic">
+                <div id="user_banner"></div>
+                <img th:src="@{/images/profilePic.png}" alt="Profile Picture" width="100" height="100" style="border: 1px solid black;">
+                <element th:text="${viewedUser.username}"></element>
+            </div>
+
+            <div id="user_details">
+                <span>Email</span>
+                <element th:text="${viewedUser.email}"></element>
+                <span>Role</span>
+                <element th:text="${viewedUser.role}"></element>
+            </div>
+
+            <main>
+                Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum<br>
+                Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum<br>
+                Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum<br>
+                Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum<br>
+                Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum<br>
+                Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum<br>
+                Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum<br>
+                Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum<br>
+                Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum<br>
+                Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum<br>
+                Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum<br>
+                Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum<br>
+                Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum<br>
+                Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum<br>
+                Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum<br>
+                Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum<br>
+                Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum<br>
+            </main>
+        </div>
+        <footer>
+            <p>Szymon Lichota, Szymon Porębski & Damian Pawłowski @2021</p>
+        </footer>
+
+    </body>
+</html>
