@@ -1,7 +1,8 @@
 html, body{
     margin: 0;
     padding: 0;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../../background/skyrim.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("/background/skyrim.jpg");
+
     background-repeat: no-repeat;
     background-attachment: fixed;
     font-family: Arial, Helvetica, sans-serif;
@@ -19,8 +20,7 @@ nav{
     text-align: center;
     padding: 5px 0px;
     margin-bottom: 15px;
-    opacity: 0.9;
-
+	font-size: 18px;
 }
 
 nav ul {
@@ -28,8 +28,8 @@ nav ul {
   	position: fixed;
   	top: 0;
   	width: 100%;
-  	border-bottom: 1px solid black;
-    background-color: #111111;
+    background-color: #050505;
+	opacity: 0.9;
   	list-style-type: none;
   	margin: 0;
   	padding: 0;
@@ -52,14 +52,14 @@ nav ul li a:hover {
   	background-color: #135a87
 }
 
+
 footer{
     position: fixed;
     bottom: 0;
     width: 100%;
     height: 2.8rem;
 
-    border-top: 1px black solid;
-    background-color: #111111;
+    background-color: #050505;
     color: white;
     font-size: 16px;
     opacity: 0.9;
@@ -455,6 +455,180 @@ footer p{
     background-color:#bd3026;
 }
 /* ===== ADMIN STUFF END ===== */
+/* ===== GAME PAGE BEGINNING ===== */
+
+
+#game_desc_page{
+	color: white;
+	width: 920px;
+    margin: 0 auto;
+	position: relative;
+	z-index: 0;
+	font-size: 22px;
+}
+
+#game_desc_page div{
+	float: left;
+}
+
+#stars_game_desc{
+	display: inline-block;
+    overflow-wrap: break-word;
+    vertical-align: middle;
+	line-height: 1;
+	font-size: 35px;
+}
+
+.stars_golden{
+	color: #d4af37;
+}
+
+#game_desc_page div element{
+	display: inline-block;
+	line-height: 1;
+	font-size: 25px;
+	margin-top: 5px;
+    overflow-wrap: break-word;
+    vertical-align: middle;
+}
+
+.game_desc_rate_button{
+	margin-top: 5px;
+	font-size: 22px;
+    padding: 15px 25px;
+    position: relative;
+    color: white;
+	border-radius: 15px;
+    border: 2px #d4af37 solid;
+    opacity: 0.9;
+    cursor: pointer;
+	text-decoration: none;
+	display: inline-block;
+}
+
+.game_desc_rate_button:hover{
+    background-color: #d4af37;
+}
+
+#game_page_publisher{
+	display: inline-block;
+    overflow-wrap: break-word;
+    vertical-align: middle;
+	line-height: 1.4;
+	margin-top: 15px;
+	position:absolute;
+	left:0;
+	bottom:0;
+	width: 320px;
+}
+
+
+#game_desc_left_side{
+	text-align:left;
+	width:300px;
+	height:456px;
+	margin-left:30px;
+	position:relative;
+}
+
+#game_desc_right_side{
+	text-align:right;
+	width:260px;
+	height:456px;
+	margin-left:30px;
+}
+
+#game_desc_description{
+	padding-bottom:25px;
+	margin-top:20px;
+	line-height: 1.6;
+	padding:10px;
+	background-color:black;
+	opacity: 0.6;
+	border: 2px solid #999999;
+	text-shadow: 1px 1px 1px black;
+	color:white;
+	margin-bottom: 30px;
+	width: 896px;
+}
+
+#game_desc_publisher_logo{
+	margin-top:100px;
+	height:260px;
+	width:100%;
+	position:relative;
+}
+
+#game_desc_publisher_logo img{
+	max-height:250px;
+	max-width: 100%;
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+}
+
+#game_page_ratings{
+	width: 920px;
+	margin: 0 auto;
+	display: flex;
+	flex-flow: row wrap;
+	color: white;
+	margin-bottom: 45px;
+}
+
+#game_page_ratings div{
+	float: left;
+}
+
+.single_review_left{
+	margin: 10px;
+	width:550px;
+	height:106px;
+	text-align:left
+}
+
+.single_review_right{
+	margin: 10px;
+	width:220px;
+	height:106px;
+	text-align:right
+}
+
+.single_review_comment{
+	margin: 12px;
+	width:860px;
+	padding:15px;
+	border: 1px solid gray;
+	margin-top:-10px;
+}
+
+
+.single_review{
+	width: 100%;
+	background-color:black;
+	opacity: 0.8;
+	border: 2px gray solid;
+	margin-bottom: 35px;
+}
+
+.single_review span{
+	opacity: 1;
+	display: inline-block;
+    overflow-wrap: break-word;
+    vertical-align: middle;
+	line-height: 1.4;
+	font-size: 22px;
+	margin-bottom: 10px;
+	margin-top: 5px;
+}
+
+.game_page_user_pic{
+	border: 1px gray solid;
+}
+
+/* ===== GAME PAGE END ===== */
+
+
 main{
 
 }
