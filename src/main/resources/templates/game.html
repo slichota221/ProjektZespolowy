@@ -73,8 +73,10 @@
 			<div id="game_desc_right_side">
 
 				<!-- rate button -->
-				<a class="game_desc_rate_button" th:if="${!game.isRated}" th:href="@{/rating/create/{id}(id=${game.id})}">Add Review</a><br>
-				<a class="game_desc_rate_button" th:if="${game.isRated}" th:href="@{/rating/edit/{id}(id=${game.id})}">Edit Review</a><br>
+				<a class="game_desc_rate_button" th:if="${!game.isRated}" th:href="@{/rating/create/{id}(id=${game.id})}">Add Review</a>
+				<br th:if="${!game.isRated}">
+				<a class="game_desc_rate_button" th:if="${game.isRated}" th:href="@{/rating/edit/{id}(id=${game.id})}">Edit Review</a>
+				<br th:if="${game.isRated}">
 
 				<!-- publisher logo -->
 				<div id="game_desc_publisher_logo">
