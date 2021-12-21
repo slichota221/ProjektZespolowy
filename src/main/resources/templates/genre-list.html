@@ -26,9 +26,10 @@
 		</ul>
 	</nav>
 
-		<div id="game-list-switch" >
+		<div id="game-list-switch" sec:authorize="hasRole('ROLE_ADMIN')" >
 			<a href="/genres/admin">Switch to admin view</a>
 		</div>
+
 
 		<div id="game-list-admin">
 			<ul>
