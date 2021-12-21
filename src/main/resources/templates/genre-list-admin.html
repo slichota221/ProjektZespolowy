@@ -18,11 +18,10 @@
 					<li><a href="/">Home</a></li>
 					<li><a href="/new-releases">New Releases</a></li>
 					<li><a href="/games">Games</a></li>
-					<li><a href="/web/genres">Genres</a></li>
-					<li><a href="/web/publishers">Publishers</a></li>
-					<li><a href="">Ranking</a></li>
+					<li><a href="/genres">Genres</a></li>
+					<li><a href="/publishers">Publishers</a></li>
+					<li><a href="/games/sorted">Ranking</a></li>
 					<li sec:authorize="isAuthenticated()"><a href="/web/users" class="admin_link">Users</a></li>
-
 					<li sec:authorize="isAnonymous()" style="float:right"><a class="active" href="/auth/login">Log in</a></li>
 					<li sec:authorize="isAuthenticated()" style="float:right"><a class="active" href="/auth/logout">Log out</a></li>
 					<li sec:authorize="isAuthenticated()" style="float:right"><a class="active" href="/web/user">Profile</a></li>
@@ -31,7 +30,7 @@
 			</nav>
 
 			<div id="game-list-switch" >
-				<a href="/web/genres">Switch to normal view</a>
+				<a href="/genres/">Switch to normal view</a>
 			</div>
 
 			<div id="game-list-admin">
@@ -39,14 +38,14 @@
 					<li>
 						<span style="width:80px">ID</span>
 						<span style="width:800px">Name</span>
-						<span style="width:130px"><a href="/web/saveGenre">Add a new genre</a></span>
+						<span style="width:130px"><a href="/genre/save">Add a new genre</a></span>
 					</li>
 					<li th:each="genre: ${allGenres}">
 						<span style="width:80px" th:text="${genre.ID}"></span>
 						<span style="width:800px" th:text="${genre.name}"></span>
 
-						<span style="width:65px"><a th:href="@{/web/editGenre/{id}(id=${genre.ID})}">Edit</a></span>
-						<span style="width:65px"><a th:href="@{/web/deleteGenre/{id}(id=${genre.ID})}">Delete</a></span>
+						<span style="width:65px"><a th:href="@{/genre/edit/{id}(id=${genre.ID})}">Edit</a></span>
+						<span style="width:65px"><a th:href="@{/genre/delete/{id}(id=${genre.ID})}">Delete</a></span>
 
 					</li>
 				</ul>

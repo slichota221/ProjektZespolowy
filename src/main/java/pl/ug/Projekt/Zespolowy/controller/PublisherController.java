@@ -21,53 +21,53 @@ public class PublisherController {
         this.publisherRepository = publisherRepository;
     }
 
-    @GetMapping("/web/publishers")
-    String getGenres(Model model){
+    @GetMapping("/publishers")
+    String getPublishers(Model model){
         model.addAttribute("allPublishers", publisherRepository.findAll());
 
         return "publisher-list";
     }
 
-    @GetMapping("/web/publishers-admin")
-    String getGameAdmin(Model model){
+    @GetMapping("/publishers/admin")
+    String getPublisherAdmin(Model model){
         model.addAttribute("allPublishers", publisherRepository.findAll());
 
         return "publisher-list-admin";
     }
 
-    @GetMapping("/web/savePublisher")
+    @GetMapping("/publisher/save")
     public String addPublisher(Model model){
         model.addAttribute("newPublisher", new Publisher());
 
         return "save-publisher";
     }
 
-    @PostMapping("/web/savePublisher")
+    @PostMapping("/publisher/save")
     public String savePublisher(@ModelAttribute("newPublisher") Publisher publisher){
         publisherRepository.save(publisher);
 
-        return "redirect:/web/publishers-admin";
+        return "redirect:/publishers/admin";
     }
 
-    @GetMapping(value = "/web/editPublisher/{id}")
-    public String editGame(@PathVariable("id") long id, ModelMap model) {
+    @GetMapping(value = "/publisher/edit/{id}")
+    public String editPublisher(@PathVariable("id") long id, ModelMap model) {
         model.addAttribute("editedPublisher", publisherRepository.getById(id));
 
-        return "edit-genre";
+        return "edit-publisher";
     }
 
-    @PostMapping("/web/editPublisher")
-    public String editGame(@ModelAttribute("editedGame") Publisher publisher){
+    @PostMapping("/publisher/edit")
+    public String editPublisher(@ModelAttribute("editedGame") Publisher publisher){
         publisherRepository.save(publisher);
 
-        return "redirect:/web/publishers-admin";
+        return "redirect:/publishers/admin";
     }
 
-    @GetMapping("/web/deletePublisher/{id}")
-    public String deleteGame(@PathVariable("id") long id) {
+    @GetMapping("/publisher/delete/{id}")
+    public String deletePublisher(@PathVariable("id") long id) {
         publisherRepository.deleteById(id);
 
-        return "redirect:/web/publishers-admin";
+        return "redirect:/publishers/admin";
     }
 
 }

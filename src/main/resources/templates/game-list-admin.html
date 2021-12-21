@@ -18,11 +18,10 @@
 					<li><a href="/">Home</a></li>
 					<li><a href="/new-releases">New Releases</a></li>
 					<li><a href="/games">Games</a></li>
-					<li><a href="/web/genres">Genres</a></li>
-					<li><a href="/web/publishers">Publishers</a></li>
-					<li><a href="">Ranking</a></li>
+					<li><a href="/genres">Genres</a></li>
+					<li><a href="/publishers">Publishers</a></li>
+					<li><a href="/games/sorted">Ranking</a></li>
 					<li sec:authorize="isAuthenticated()"><a href="/web/users" class="admin_link">Users</a></li>
-
 					<li sec:authorize="isAnonymous()" style="float:right"><a class="active" href="/auth/login">Log in</a></li>
 					<li sec:authorize="isAuthenticated()" style="float:right"><a class="active" href="/auth/logout">Log out</a></li>
 					<li sec:authorize="isAuthenticated()" style="float:right"><a class="active" href="/web/user">Profile</a></li>
@@ -41,7 +40,7 @@
 						<span style="width:300px">Name</span>
 						<span style="width:200px">Publisher</span>
 						<span style="width:250px">Released</span>
-						<span style="width:130px"><a href="/saveGame">Add a new game</a></span>
+						<span style="width:130px"><a href="/game/save">Add a new game</a></span>
 					</li>
 					<li th:each="game: ${allGames}">
 						<span style="width:80px" th:text="${game.id}"></span>
@@ -49,8 +48,8 @@
 						<span style="width:200px" th:text="${game.publisher.name}"></span>
 						<span style="width:250px" th:text="${game.dateRelease}"></span>
 
-						<span style="width:65px"><a th:href="@{/editGame/{id}(id=${game.id})}">Edit</a></span>
-						<span style="width:65px"><a th:href="@{/deleteGame/{id}(id=${game.id})}">Delete</a></span>
+						<span style="width:65px"><a th:href="@{/game/edit/{id}(id=${game.id})}">Edit</a></span>
+						<span style="width:65px"><a th:href="@{/game/delete/{id}(id=${game.id})}">Delete</a></span>
 
 					</li>
 				</ul>

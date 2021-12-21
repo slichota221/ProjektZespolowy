@@ -19,49 +19,49 @@ public class GenreController {
         this.repository = repository;
     }
 
-    @GetMapping("/web/genres")
+    @GetMapping("/genres")
     String getGenres(Model model){
         model.addAttribute("allGenres", repository.findAll());
         return "genre-list";
     }
 
-    @GetMapping("/web/genres-admin")
+    @GetMapping("/genres/admin")
     String getGameAdmin(Model model){
         model.addAttribute("allGenres", repository.findAll());
         return "genre-list-admin";
     }
 
-    @GetMapping(value = "/web/saveGenre")
+    @GetMapping(value = "/genre/save")
     public String genreForm(Model model) {
         model.addAttribute("Genre", new Genre());
 
         return "save-genre";
     }
-    @PostMapping(value = "/web/saveGenre")
+    @PostMapping(value = "/genre/save")
     public String createUser(Model model, @ModelAttribute Genre genre) {
         repository.save(genre);
 
-        return "redirect:/web/genres-admin";
+        return "redirect:/genres/admin";
     }
 
-    @GetMapping(value = "/web/editGenre/{id}")
+    @GetMapping(value = "/genre/edit/{id}")
     public String editGame(@PathVariable("id") long id, ModelMap model) {
         model.addAttribute("editedGenre", repository.getById(id));
 
         return "edit-genre";
     }
 
-    @PostMapping("/web/editGenre")
+    @PostMapping("/genre/edit")
     public String editGame(@ModelAttribute("editedGame") Genre genre){
         repository.save(genre);
 
-        return "redirect:/web/genres-admin";
+        return "redirect:/genres/admin";
     }
 
-    @GetMapping("/web/deleteGenre/{id}")
+    @GetMapping("/genre/delete/{id}")
     public String deleteGame(@PathVariable("id") long id) {
         repository.deleteById(id);
 
-        return "redirect:/web/genres-admin";
+        return "redirect:/genres/admin";
     }
 }
