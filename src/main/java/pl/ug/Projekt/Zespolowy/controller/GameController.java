@@ -84,14 +84,14 @@ public class GameController {
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping("/games-admin")
+    @GetMapping("/games/admin")
     String getGameAdmin(Model model){
         model.addAttribute("allGames", gameRepository.findAll());
         return "game-list-admin";
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping(value = "/saveGame")
+    @GetMapping(value = "/game/save")
     public String addGame(ModelMap model) {
         model.addAttribute("newGame", new Game());
         model.addAttribute("genres", genreRepository.findAll());
@@ -100,7 +100,7 @@ public class GameController {
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PostMapping("/saveGame")
+    @PostMapping("/game/save")
     public String saveGame(@ModelAttribute("saveGame") Game game, ModelMap model, @RequestParam("image") MultipartFile multipartFile) throws IOException {
         String filename = StringUtils.cleanPath(multipartFile.getOriginalFilename());
         game.setPathCover("/covers/"+filename);
@@ -109,11 +109,11 @@ public class GameController {
         gameRepository.save(game);
 
         model.addAttribute("allGames", gameRepository.findAll());
-        return "redirect:/games-admin/";
+        return "redirect:/games/admin/";
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping(value = "/editGame/{id}")
+    @GetMapping(value = "/game/edit/{id}")
     public String editGame(@PathVariable("id") long id, ModelMap model) {
         model.addAttribute("editedGame", gameRepository.getById(id));
         model.addAttribute("genres", genreRepository.findAll());
@@ -122,19 +122,19 @@ public class GameController {
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PostMapping("/editGame")
+    @PostMapping("/game/edit")
     public String editGame(@ModelAttribute("editedGame") Game game, ModelMap model){
         gameRepository.save(game);
         //model.addAttribute("allGames", gameRepository.findAll());
-        return "redirect:/games-admin/";
+        return "redirect:/games/admin/";
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping("/deleteGame/{id}")
+    @GetMapping("/game/delete/{id}")
     public String deleteGame(@PathVariable("id") long id, ModelMap model) {
         gameRepository.deleteById(id);
         model.addAttribute("allGames", gameRepository.findAll());
-        return "redirect:/games-admin/";
+        return "redirect:/games/admin/";
     }
 
     private GameDTO mapToDto(Game game, String username) {

@@ -21,23 +21,23 @@ public class GenreRestController {
     }
 
 
-    @GetMapping("/genres")
+    @GetMapping("/api/genres")
     List<Genre> all(){
         return repository.findAll();
     }
 
-    @PostMapping("/genres")
+    @PostMapping("/api/genres")
     Genre newGenre(@RequestBody Genre newGenre){
         return repository.save(newGenre);
     }
 
-    @GetMapping("/genre/{id}")
+    @GetMapping("/api/genre/{id}")
     Genre one(@PathVariable Long id){
         return repository.findById(id)
                 .orElseThrow(() -> new GenreNotFoundException(id));
     }
 
-    @PutMapping("/genre/{id}")
+    @PutMapping("/api/genre/{id}")
     Genre replaceGenre(@RequestBody Genre newGenre, @PathVariable Long id){
 
         return repository.findById(id)
@@ -50,7 +50,7 @@ public class GenreRestController {
                     return repository.save(newGenre);
                 });
     }
-    @DeleteMapping("/genre/{id}")
+    @DeleteMapping("/api/genre/{id}")
     void deleteEmployee(@PathVariable Long id){
         repository.deleteById(id);
     }
