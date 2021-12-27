@@ -68,6 +68,8 @@ public class GameController {
 
         return "game";
     }
+
+
     @GetMapping("/games/sorted")
     String getGameSorted(Model model, Principal principal){
 
@@ -80,18 +82,44 @@ public class GameController {
                 .collect(Collectors.toList());
 
         model.addAttribute("allGames", gameDTOS);
-        return "game-list";
+        return "ranking-list";
+    }
+
+    @GetMapping("/games/sorted/chose")
+    String getGameSortedMode(Model model, Principal principal, @RequestParam("mode") String mode){
+        String username = principal == null ? null : principal.getName();
+        if(mode.equals("Descending")){
+            List<GameDTO> gameDTOS = gameRepository.findAll()
+                    .stream()
+                    .map(game -> mapToDto(game, username))
+                    .sorted((o1, o2) -> o2.getAverageValue().compareTo(o1.getAverageValue()))
+                    .collect(Collectors.toList());
+
+            model.addAttribute("allGames", gameDTOS);
+        }
+        else if(mode.equals("Ascending")){
+            List<GameDTO> gameDTOS = gameRepository.findAll()
+                    .stream()
+                    .map(game -> mapToDto(game, username))
+                    .sorted((o1, o2) -> o1.getAverageValue().compareTo(o2.getAverageValue()))
+                    .collect(Collectors.toList());
+
+            model.addAttribute("allGames", gameDTOS);
+        }
+
+        return "ranking-list";
+
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping("/games-admin")
+    @GetMapping("/games/admin")
     String getGameAdmin(Model model){
         model.addAttribute("allGames", gameRepository.findAll());
         return "game-list-admin";
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping(value = "/saveGame")
+    @GetMapping(value = "/game/save")
     public String addGame(ModelMap model) {
         model.addAttribute("newGame", new Game());
         model.addAttribute("genres", genreRepository.findAll());
@@ -100,7 +128,7 @@ public class GameController {
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PostMapping("/saveGame")
+    @PostMapping("/game/save")
     public String saveGame(@ModelAttribute("saveGame") Game game, ModelMap model, @RequestParam("image") MultipartFile multipartFile) throws IOException {
         String filename = StringUtils.cleanPath(multipartFile.getOriginalFilename());
         game.setPathCover("/covers/"+filename);
@@ -109,11 +137,11 @@ public class GameController {
         gameRepository.save(game);
 
         model.addAttribute("allGames", gameRepository.findAll());
-        return "redirect:/games-admin/";
+        return "redirect:/games/admin/";
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping(value = "/editGame/{id}")
+    @GetMapping(value = "/game/edit/{id}")
     public String editGame(@PathVariable("id") long id, ModelMap model) {
         model.addAttribute("editedGame", gameRepository.getById(id));
         model.addAttribute("genres", genreRepository.findAll());
@@ -122,19 +150,19 @@ public class GameController {
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PostMapping("/editGame")
+    @PostMapping("/game/edit")
     public String editGame(@ModelAttribute("editedGame") Game game, ModelMap model){
         gameRepository.save(game);
         //model.addAttribute("allGames", gameRepository.findAll());
-        return "redirect:/games-admin/";
+        return "redirect:/games/admin/";
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping("/deleteGame/{id}")
+    @GetMapping("/game/delete/{id}")
     public String deleteGame(@PathVariable("id") long id, ModelMap model) {
         gameRepository.deleteById(id);
         model.addAttribute("allGames", gameRepository.findAll());
-        return "redirect:/games-admin/";
+        return "redirect:/games/admin/";
     }
 
     private GameDTO mapToDto(Game game, String username) {

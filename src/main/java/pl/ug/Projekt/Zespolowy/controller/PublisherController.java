@@ -4,13 +4,15 @@ package pl.ug.Projekt.Zespolowy.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import pl.ug.Projekt.Zespolowy.domain.Genre;
 import pl.ug.Projekt.Zespolowy.domain.Publisher;
 import pl.ug.Projekt.Zespolowy.repository.PublisherRepository;
+import pl.ug.Projekt.Zespolowy.utility.FileUploadUtil;
+
+import java.io.IOException;
 
 @Controller
 public class PublisherController {
@@ -21,53 +23,59 @@ public class PublisherController {
         this.publisherRepository = publisherRepository;
     }
 
-    @GetMapping("/web/publishers")
-    String getGenres(Model model){
+    @GetMapping("/publishers")
+    String getPublishers(Model model){
         model.addAttribute("allPublishers", publisherRepository.findAll());
 
         return "publisher-list";
     }
 
-    @GetMapping("/web/publishers-admin")
-    String getGameAdmin(Model model){
+    @GetMapping("/publishers/admin")
+    String getPublisherAdmin(Model model){
         model.addAttribute("allPublishers", publisherRepository.findAll());
 
         return "publisher-list-admin";
     }
 
-    @GetMapping("/web/savePublisher")
+    @GetMapping("/publisher/save")
     public String addPublisher(Model model){
         model.addAttribute("newPublisher", new Publisher());
 
         return "save-publisher";
     }
 
-    @PostMapping("/web/savePublisher")
-    public String savePublisher(@ModelAttribute("newPublisher") Publisher publisher){
+    @PostMapping("/publisher/save")
+    public String savePublisher(@ModelAttribute("newPublisher") Publisher publisher, @RequestParam("image") MultipartFile multipartFile) throws IOException {
+
+        String filename = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+        publisher.setPathCover("/publishers/"+filename);
+        String uploadDir = "src/main/resources/static/publishers";
+        FileUploadUtil.saveFile(uploadDir, filename, multipartFile);
         publisherRepository.save(publisher);
 
-        return "redirect:/web/publishers-admin";
+        //model.addAttribute("allGames", gameRepository.findAll());
+        return "redirect:/publishers/admin";
     }
 
-    @GetMapping(value = "/web/editPublisher/{id}")
-    public String editGame(@PathVariable("id") long id, ModelMap model) {
+    @GetMapping(value = "/publisher/edit/{id}")
+    public String editPublisher(@PathVariable("id") long id, ModelMap model) {
         model.addAttribute("editedPublisher", publisherRepository.getById(id));
 
-        return "edit-genre";
+        return "edit-publisher";
     }
 
-    @PostMapping("/web/editPublisher")
-    public String editGame(@ModelAttribute("editedGame") Publisher publisher){
+    @PostMapping("/publisher/edit")
+    public String editPublisher(@ModelAttribute("editedGame") Publisher publisher){
         publisherRepository.save(publisher);
 
-        return "redirect:/web/publishers-admin";
+        return "redirect:/publishers/admin";
     }
 
-    @GetMapping("/web/deletePublisher/{id}")
-    public String deleteGame(@PathVariable("id") long id) {
+    @GetMapping("/publisher/delete/{id}")
+    public String deletePublisher(@PathVariable("id") long id) {
         publisherRepository.deleteById(id);
 
-        return "redirect:/web/publishers-admin";
+        return "redirect:/publishers/admin";
     }
 
 }

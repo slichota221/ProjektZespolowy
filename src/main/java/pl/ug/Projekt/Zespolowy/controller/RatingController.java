@@ -32,7 +32,7 @@ public class RatingController {
     }
 
     @PreAuthorize("hasRole('ROLE_USER')")
-    @GetMapping("/create/{gameId}")
+    @GetMapping("/save/{gameId}")
     String getCreateRatingForm(@PathVariable Long gameId, Model model){
 
         Rating rating = new Rating();

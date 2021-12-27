@@ -20,12 +20,12 @@ public class GameRestController {
 //        return repository.findAll();
 //    }
 
-    @DeleteMapping("/game/{id}")
+    @DeleteMapping("/api/game/{id}")
     void deleteGame(@PathVariable Long id){
         repository.deleteById(id);
     }
 
-    @PutMapping("/game/{id}")
+    @PutMapping("/api/game/{id}")
     Game replaceGame(@RequestBody Game newGame, @PathVariable Long id){
 
         return repository.findById(id)

@@ -3,10 +3,14 @@ package pl.ug.Projekt.Zespolowy.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import pl.ug.Projekt.Zespolowy.domain.Genre;
 import pl.ug.Projekt.Zespolowy.repository.GenreRepository;
+import pl.ug.Projekt.Zespolowy.utility.FileUploadUtil;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -19,49 +23,54 @@ public class GenreController {
         this.repository = repository;
     }
 
-    @GetMapping("/web/genres")
+    @GetMapping("/genres")
     String getGenres(Model model){
         model.addAttribute("allGenres", repository.findAll());
         return "genre-list";
     }
 
-    @GetMapping("/web/genres-admin")
-    String getGameAdmin(Model model){
+    @GetMapping("/genres/admin")
+    String getGenresAdmin(Model model){
         model.addAttribute("allGenres", repository.findAll());
         return "genre-list-admin";
     }
 
-    @GetMapping(value = "/web/saveGenre")
+    @GetMapping(value = "/genre/save")
     public String genreForm(Model model) {
         model.addAttribute("Genre", new Genre());
 
         return "save-genre";
     }
-    @PostMapping(value = "/web/saveGenre")
-    public String createUser(Model model, @ModelAttribute Genre genre) {
+    @PostMapping(value = "/genre/save")
+    public String saveGenre(Model model, @ModelAttribute("Genre") Genre genre, @RequestParam("image") MultipartFile multipartFile) throws IOException {
+        String filename = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+        genre.setPathCover("/genres/"+filename);
+        String uploadDir = "src/main/resources/static/genres";
+        FileUploadUtil.saveFile(uploadDir, filename, multipartFile);
         repository.save(genre);
 
-        return "redirect:/web/genres-admin";
+        //model.addAttribute("allGames", gameRepository.findAll());
+        return "redirect:/genres/admin";
     }
 
-    @GetMapping(value = "/web/editGenre/{id}")
-    public String editGame(@PathVariable("id") long id, ModelMap model) {
+    @GetMapping(value = "/genre/edit/{id}")
+    public String editGenre(@PathVariable("id") long id, ModelMap model) {
         model.addAttribute("editedGenre", repository.getById(id));
 
         return "edit-genre";
     }
 
-    @PostMapping("/web/editGenre")
-    public String editGame(@ModelAttribute("editedGame") Genre genre){
+    @PostMapping("/genre/edit")
+    public String editGenre(@ModelAttribute("editedGame") Genre genre){
         repository.save(genre);
 
-        return "redirect:/web/genres-admin";
+        return "redirect:/genres/admin";
     }
 
-    @GetMapping("/web/deleteGenre/{id}")
-    public String deleteGame(@PathVariable("id") long id) {
+    @GetMapping("/genre/delete/{id}")
+    public String deleteGenre(@PathVariable("id") long id) {
         repository.deleteById(id);
 
-        return "redirect:/web/genres-admin";
+        return "redirect:/genres/admin";
     }
 }

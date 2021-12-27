@@ -9,8 +9,13 @@ public class Publisher {
 
     private @Id @GeneratedValue @Column(name="id") long ID;
     private String name;
+    private String pathCover;
 
     public Publisher() {}
+    public Publisher(String name) {
+        this.name = name;
+        this.pathCover = pathCover;
+    }
 
     public long getID() {
         return ID;
@@ -28,12 +33,20 @@ public class Publisher {
         this.name = name;
     }
 
-    public Publisher(String name) {
-        this.name = name;
+    public String getPathCover() {
+        return pathCover;
+    }
+
+    public void setPathCover(String pathCover) {
+        this.pathCover = pathCover;
     }
 
     @Override
-    public String toString(){
-        return "Publisher{id="+this.ID + ", name='"+this.name+"'}";
+    public String toString() {
+        return "Publisher{" +
+                "ID=" + ID +
+                ", name='" + name + '\'' +
+                ", pathCover='" + pathCover + '\'' +
+                '}';
     }
 }

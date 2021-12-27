@@ -19,7 +19,7 @@ public class ConsoleRestController {
         this.repository = repository;
     }
 
-    @GetMapping("/console")
+    @GetMapping("/api/console")
     List<Console> getAllGames(){
         return repository.findAll();
     }

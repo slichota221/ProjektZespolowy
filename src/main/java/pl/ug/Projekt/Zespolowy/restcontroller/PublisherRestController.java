@@ -19,7 +19,7 @@ public class PublisherRestController {
         this.publisherRepository = publisherRepository;
     }
 
-    @GetMapping("/publishers")
+    @GetMapping("/api/publishers")
     List<Publisher> all(){
         return publisherRepository.findAll();
     }
