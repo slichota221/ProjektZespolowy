@@ -4,13 +4,15 @@ package pl.ug.Projekt.Zespolowy.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import pl.ug.Projekt.Zespolowy.domain.Genre;
 import pl.ug.Projekt.Zespolowy.domain.Publisher;
 import pl.ug.Projekt.Zespolowy.repository.PublisherRepository;
+import pl.ug.Projekt.Zespolowy.utility.FileUploadUtil;
+
+import java.io.IOException;
 
 @Controller
 public class PublisherController {
@@ -43,9 +45,15 @@ public class PublisherController {
     }
 
     @PostMapping("/publisher/save")
-    public String savePublisher(@ModelAttribute("newPublisher") Publisher publisher){
+    public String savePublisher(@ModelAttribute("newPublisher") Publisher publisher, @RequestParam("image") MultipartFile multipartFile) throws IOException {
+
+        String filename = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+        publisher.setPathCover("/publishers/"+filename);
+        String uploadDir = "src/main/resources/static/publishers";
+        FileUploadUtil.saveFile(uploadDir, filename, multipartFile);
         publisherRepository.save(publisher);
 
+        //model.addAttribute("allGames", gameRepository.findAll());
         return "redirect:/publishers/admin";
     }
 

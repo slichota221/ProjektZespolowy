@@ -8,8 +8,12 @@ import java.util.Objects;
 public class Genre {
     private @Id @GeneratedValue @Column(name="id") long ID;
     private String name;
+    private String pathCover;
 
     public Genre() {}
+    public Genre(String name) {
+        this.name = name;
+    }
 
     public long getID() {
         return ID;
@@ -27,9 +31,14 @@ public class Genre {
         this.name = name;
     }
 
-    public Genre(String name) {
-        this.name = name;
+    public String getPathCover() {
+        return pathCover;
     }
+
+    public void setPathCover(String pathCover) {
+        this.pathCover = pathCover;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(this.ID);
@@ -37,6 +46,10 @@ public class Genre {
 
     @Override
     public String toString() {
-        return "Genre{" + "id=" + this.ID + ", name='" + this.name + '}';
+        return "Genre{" +
+                "ID=" + ID +
+                ", name='" + name + '\'' +
+                ", pathCover='" + pathCover + '\'' +
+                '}';
     }
 }

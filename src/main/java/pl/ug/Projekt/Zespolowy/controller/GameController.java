@@ -68,6 +68,8 @@ public class GameController {
 
         return "game";
     }
+
+
     @GetMapping("/games/sorted")
     String getGameSorted(Model model, Principal principal){
 
@@ -80,7 +82,33 @@ public class GameController {
                 .collect(Collectors.toList());
 
         model.addAttribute("allGames", gameDTOS);
-        return "game-list";
+        return "ranking-list";
+    }
+
+    @GetMapping("/games/sorted/chose")
+    String getGameSortedMode(Model model, Principal principal, @RequestParam("mode") String mode){
+        String username = principal == null ? null : principal.getName();
+        if(mode.equals("Descending")){
+            List<GameDTO> gameDTOS = gameRepository.findAll()
+                    .stream()
+                    .map(game -> mapToDto(game, username))
+                    .sorted((o1, o2) -> o2.getAverageValue().compareTo(o1.getAverageValue()))
+                    .collect(Collectors.toList());
+
+            model.addAttribute("allGames", gameDTOS);
+        }
+        else if(mode.equals("Ascending")){
+            List<GameDTO> gameDTOS = gameRepository.findAll()
+                    .stream()
+                    .map(game -> mapToDto(game, username))
+                    .sorted((o1, o2) -> o1.getAverageValue().compareTo(o2.getAverageValue()))
+                    .collect(Collectors.toList());
+
+            model.addAttribute("allGames", gameDTOS);
+        }
+
+        return "ranking-list";
+
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")

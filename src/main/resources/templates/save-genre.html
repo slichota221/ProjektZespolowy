@@ -26,10 +26,14 @@
 
     <div id="save_page">
         <h2>Add a new genre</h2>
-        <form method="post" th:action="@{/genre/save/}" th:object="${Genre}">
+        <form method="post" enctype="multipart/form-data" th:action="@{/genre/save/}" th:object="${Genre}">
             <div class="save_page_row">
                 <label for="name">Genre Name: </label>
                 <input id="name" placeholder="Enter genre name" required type="text" th:field="*{name}"/><br>
+                <div class="save_page_row">
+                    <label for="pathCover">Path to cover: </label>
+                    <input type="file" name="image" accept="image/png, image/jpeg" /><br>
+                </div>
             </div>
             <input id="save_page_submit" type="submit" value="Create Genre">
         </form>

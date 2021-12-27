@@ -26,10 +26,14 @@
 
     <div id="save_page">
         <h2>Add a new publisher</h2>
-        <form method="post" th:action="@{/publisher/save}" th:object="${newPublisher}">
+        <form method="post" enctype="multipart/form-data" th:action="@{/publisher/save}" th:object="${newPublisher}">
             <div class="save_page_row">
                 <label for="name">Publisher Name: </label>
                 <input id="name" placeholder="Enter publisher name" required type="text" th:field="*{name}"/><br>
+                <div class="save_page_row">
+                    <label for="pathCover">Path to cover: </label>
+                    <input type="file" name="image" accept="image/png, image/jpeg" /><br>
+                </div>
             </div>
             <input id="save_page_submit" type="submit" value="Create Publisher">
         </form>
