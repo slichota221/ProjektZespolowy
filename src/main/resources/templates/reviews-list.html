@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Save Game</title>
-    <meta name="Save Game" content="Save Game">
+    <meta charset="utf-8">
+    <title>My reviews</title>
+    <meta name="Reviews list" content="List of my reviews">
     <meta name="author" content="Szymon Lichota, Szymon Porębski, Damian Pawłowski">
     <link th:href="@{/styles/css/styles.css}" rel="stylesheet" />
 </head>
@@ -23,28 +23,33 @@
         <li sec:authorize="isAuthenticated()" style="float:right"><a class="active" href="/rating/myreviews">My Reviews</a></li>
     </ul>
 </nav>
+<div id="game-list">
+    <h1>Oceny użytkownika:</h1>
+    <element th:each="rating: ${allRatings}">
 
-<div id="save_page">
-    <h2>Add a new review</h2>
+        <div style="float:left">
+            <div class="element_img">
+                <img th:src="${rating.game.pathCover}" alt="Game Cover" >
+            </div>
 
-    <form method="post" enctype="multipart/form-data" th:action="@{/rating/edit/{id}(id=${game.id})}" th:object="${rating}">
+            <div class="element_desc">
+                <h1 th:text="${rating.game.nameGame}"></h1>
+                <h2 th:text="${rating.game.genre.name}"></h2>
+                <h3>Data wystawienia komentarza:</h3>
+                <h3 th:text="${rating.publicationDate}"></h3>
+                <h3>Ocena:</h3>
+                <h3 th:text="${rating.value}"></h3>
+                <h3>Komentarz:</h3>
+                <h3 th:text="${rating.comment}"></h3>
+            </div>
 
-        <div class="save_page_row">
-            <label for="name">Comment: </label>
-            <input id="name" placeholder="Enter comment" required type="text" rows = "20" cols = "80" th:field="*{comment}" class="small" /><br>
+
+
         </div>
 
-        <div class="save_page_row">
-            <select th:field="*{value}">
-                Comment:
-                <option th:each="i : ${#numbers.sequence(1, 10)}" th:value="${i}" th:text="${i}">
-                </option>
-            </select>
-        </div>
 
 
-        <input id="save_page_submit" type="submit" value="Submit">
-    </form>
+    </element>
 </div>
 
 <footer>

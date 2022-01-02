@@ -16,6 +16,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.security.Principal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Controller
 @RequestMapping("/rating")
@@ -44,6 +45,15 @@ public class RatingController {
         return "save-rating";
     }
 
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @GetMapping("/myreviews")
+    String getMyReviews(Principal principal, Model model){
+        String username = principal == null ? null : principal.getName();
+        List<Rating> ratingList = ratingService.findAllByUserUsername(username);
+        model.addAttribute("allRatings", ratingList);
+
+        return "reviews-list";
+    }
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/edit/{gameId}")
     String getEditRatingForm(@PathVariable Long gameId, Model model, Principal principal){

@@ -12,6 +12,7 @@ public interface RatingRepository extends JpaRepository<Rating, Long> {
 
     List<Rating> findAllByGameId(Long gameId);
 
+    List<Rating> findAllByUserUsername(String username);
     Rating findRatingByGameIdAndUserId(Long gameId, Long userId);
 
     Rating findRatingByGameIdAndUserUsername(Long gameId, String username);
