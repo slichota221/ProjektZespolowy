@@ -12,6 +12,7 @@ public class GameDTO {
     private Genre genre;
     private Publisher publisher;
     private Double averageValue;
+    private Integer starRating;
     private Integer votes;
     private Boolean isRated;
 
@@ -94,4 +95,8 @@ public class GameDTO {
     public void setIsRated(Boolean rated) {
         isRated = rated;
     }
+
+    public Integer getStarRating() { return starRating; }
+
+    public void setStarRating(int starRating) { this.starRating = starRating; }
 }

@@ -152,10 +152,11 @@ footer p{
 }
 
 .game_list_stars{
-    font-size: 40px;
+    font-size: 18px;
     display: block;
-    margin-bottom: 10px;
-    margin-right: -5px;
+    margin-bottom: 20px;
+    margin-top: 15px;
+    color:white;
 }
 /* ===== GAME LIST END ===== */
 /* ===== GAME LIST - ADMIN BEGINNING ===== */
@@ -627,7 +628,70 @@ footer p{
 }
 
 /* ===== GAME PAGE END ===== */
+/* ===== STAR RATING BEGINNING ===== */
+.rate {
+    float: left;
+    margin-left: 50px;
+    height: 46px;
+    padding: 0;
+    margin-top: 20px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:50px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+    font-size:50px;
+}
+.rate > input:checked ~ label {
+    color: #ffc700;
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+/* ===== STAR RATING END ===== */
+/* ===== ADD / EDIT REVIEW BEGINNING ===== */
+#add_review_desc{
+    font-size: 22px;
+    margin: 25px 0px;
+    position: relative;
+    height: 250px;
+    float: left;
+}
 
+#add_review_desc textarea{
+    position: relative;
+    float:right;
+    width: 584px;
+    font-size: 21px;
+    font-family: Arial, Helvetica, sans-serif;
+    resize: none;
+    margin-top: 20px;
+}
+
+#review_form{
+    float:left;
+    border-top:1px solid white;
+}
+/* ===== ADD / EDIT REVIEW END ===== */
 
 main{
 
