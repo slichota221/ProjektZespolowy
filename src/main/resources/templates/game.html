@@ -26,60 +26,100 @@
 		</ul>
 	</nav>
 
-		<div id="game-list-switch" sec:authorize="hasRole('ROLE_ADMIN')" >
-			<a href="/games/admin">Switch to admin view</a>
+
+	<!-- game title -->
+	<h1 style="color:white; text-align:center" th:text="${game.nameGame}">The Witcher 3: Wild Hunt</h1>
+
+
+	<!-- game details -->
+	<div id="game_desc_page">
+
+		<!-- game cover -->
+		<div>
+			<img th:src="${game.pathCover}" alt="Game Cover" height="450px" width="300px">
 		</div>
 
+		<!-- info -->
+		<!-- rating -->
+		<div id="game_desc_left_side">
+			<span id="stars_game_desc"><span class="stars_golden">★★★★★★★★★</span>★</span>
+			<element style="color:#d4af37" th:text="${game.averageValue}">10.0</element><br>
+			<element style="margin-bottom:50px">
+				<span style="color:#d4af37" th:text="${game.votes}">10</span>
+				<span> Votes</span>
+			</element><br>
 
 
-	<div id="game-list">
-		<element>
-				<div style="float:left">
-					<div class="element_img">
-						<img th:src="${game.pathCover}" alt="Game Cover" >
-					</div>
-
-					<div class="element_desc">
-						<h1 th:text="${game.nameGame}"></h1>
-						<h2 th:text="${game.genre.name}"></h2>
-						<h3 th:text="${game.dateRelease}"></h3>
-						<h3 th:text="${game.publisher.name}"></h3>
-					</div>
+			<!-- genre -->
+			<div style="width:100%">
+				<!--========================= genre icon path here =========================-->
+				<img th:src="@{/images/crossed-swords.png}" alt="Genre Icon" width="100px" style="opacity:0.5">
+			</div>
+			<element th:text="${game.genre.name}">RPG</element><br>
 
 
-				</div>
-				<div class="game_list_rating">
-					<div class="game_list_stars"><span style="color:#d4af37">★★★★</span>★</div>
-					<span style="color:#d4af37" th:text="${game.averageValue}"></span><br><br>
-					<span style="color:white; margin-bottom:115px; display:block;"><span style="color:#d4af37" th:text="${game.votes}"></span></span>
-
-					<div class="game_list_more_button" th:if="${!isRated}">
-						<a th:href="@{/rating/create/{id}(id=${game.id})}">Add Review</a>
-					</div>
-					<div class="game_list_more_button" th:if="${isRated}">
-						<a th:href="@{/rating/edit/{id}(id=${game.id})}">Edit Review</a>
-					</div>
-				</div>
-
-		</element>
-	</div>
-
-	<div id="ratings">
-		<element th:each="rating: ${ratings}">
-
-			<div class="element_desc">
-				<h1 th:text="${rating.user.username}"></h1>
-				<h2 th:text="${rating.value}"></h2>
-				<h3 th:text="${rating.comment}"></h3>
-				<h3 th:text="${rating.publicationDate}"></h3>
+			<!-- publisher -->
+			<div id="game_page_publisher" >
+				<span style="color:#999999">Released</span><br>
+				<span th:text="${game.dateRelease}">01.01.1999</span><br>
+				<span style="color:#999999">Published by</span><br>
+				<span th:text="${game.publisher.name}">CD Projekt</span>
 			</div>
 
 
+		</div>
+
+		<div id="game_desc_right_side">
+
+			<!-- rate button -->
+			<a class="game_desc_rate_button" th:if="${!game.isRated}" th:href="@{/rating/save/{id}(id=${game.id})}">Add Review</a>
+			<br th:if="${!game.isRated}">
+			<a class="game_desc_rate_button" th:if="${game.isRated}" th:href="@{/rating/edit/{id}(id=${game.id})}">Edit Review</a>
+			<br th:if="${game.isRated}">
+
+			<!-- publisher logo -->
+			<div id="game_desc_publisher_logo">
+				<!--========================= publisher logo path here =========================-->
+				<img th:src="@{/images/cd_projekt_logo.png}" alt="Publisher Logo">
+			</div>
+		</div>
+
+		<!-- description -->
+		<div id="game_desc_description" th:text="${game.description}">
+
+		</div>
+
+
+	</div>
+
+	<!-- comments / ratings -->
+	<div id="game_page_ratings">
+		<element class="single_review" th:each="rating: ${ratings}">
+			<div >
+				<!--========================= user avatar path here =========================-->
+				<img class="game_page_user_pic" th:src="@{/images/gigachad2.jpg}" width="100px" alt="User Avatar">
+			</div>
+
+			<div class="single_review_left">
+				<span th:text="${rating.user.username}"></span><br>
+				<span style="font-size: 20px; color:gray" th:text="${rating.publicationDate}"></span>
+			</div>
+
+			<div class="single_review_right">
+				<span class="stars_golden">★★★★★★★★★★</span><br>
+				<span th:text="${rating.value}"></span><span>/10</span>
+			</div>
+
+
+			<div class="single_review_comment" th:text="${rating.comment}">
+				Indeed exquisite
+			</div>
 		</element>
 	</div>
 
-		<footer>
-			<p>Szymon Lichota, Szymon Porębski & Damian Pawłowski @2021</p>
-		</footer>
+	<!-- footer -->
+	<footer>
+		<p>Szymon Lichota, Szymon Porębski & Damian Pawłowski @2021</p>
+	</footer>
 	</body>
 </html>
