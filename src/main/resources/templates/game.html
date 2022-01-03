@@ -9,28 +9,58 @@
 	<link th:href="@{/styles/css/styles.css}" rel="stylesheet" />
 </head>
 
-	<body>
-	<nav>
-		<ul>
-			<li><a href="/">Home</a></li>
-			<li><a href="/new-releases">New Releases</a></li>
-			<li><a href="/games">Games</a></li>
-			<li><a href="/genres">Genres</a></li>
-			<li><a href="/publishers">Publishers</a></li>
-			<li><a href="/games/sorted">Ranking</a></li>
-			<li sec:authorize="isAuthenticated()"><a href="/web/users" class="admin_link">Users</a></li>
-			<li sec:authorize="isAnonymous()" style="float:right"><a class="active" href="/auth/login">Log in</a></li>
-			<li sec:authorize="isAuthenticated()" style="float:right"><a class="active" href="/auth/logout">Log out</a></li>
-			<li sec:authorize="isAuthenticated()" style="float:right"><a class="active" href="/web/user">Profile</a></li>
-			<li sec:authorize="isAuthenticated()" style="float:right"><a class="active" href="/rating/myreviews">My Reviews</a></li>
-		</ul>
-	</nav>
+<body>
 
-		<div id="game-list-switch" sec:authorize="hasRole('ROLE_ADMIN')" >
-			<a href="/games/admin">Switch to admin view</a>
-		</div>
+<!-- nav bar -->
+<nav>
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/new-releases">New Releases</a></li>
+		<li><a href="/games">Games</a></li>
+		<li><a href="/genres">Genres</a></li>
+		<li><a href="/publishers">Publishers</a></li>
+		<li><a href="/games/sorted">Ranking</a></li>
+		<li sec:authorize="isAuthenticated()"><a href="/web/users" class="admin_link">Users</a></li>
+		<li sec:authorize="isAnonymous()" style="float:right"><a class="active" href="/auth/login">Log in</a></li>
+		<li sec:authorize="isAuthenticated()" style="float:right"><a class="active" href="/auth/logout">Log out</a></li>
+		<li sec:authorize="isAuthenticated()" style="float:right"><a class="active" href="/web/user">Profile</a></li>
+		<li sec:authorize="isAuthenticated()" style="float:right"><a class="active" href="/rating/myreviews">My Reviews</a></li>
+	</ul>
+</nav>
+
+<div id="game-list-switch" sec:authorize="hasRole('ROLE_ADMIN')" >
+	<a href="/games/admin">Switch to admin view</a>
+</div>
+
+<!-- game title -->
+<h1 style="color:white; text-align:center" th:text="${game.nameGame}">The Witcher 3: Wild Hunt</h1>
 
 
+<!-- game details -->
+<div id="game_desc_page">
+
+	<!-- game cover -->
+	<div>
+		<img th:src="${game.pathCover}" alt="Game Cover" height="450px" width="300px">
+	</div>
+
+
+	<!-- info -->
+	<!-- rating -->
+	<div id="game_desc_left_side">
+		<span th:if="${game.starRating == 0}">★★★★★★★★★★</span>
+		<span th:if="${game.starRating == 10}" style="color:#d4af37">★★★★★★★★★★</span>
+
+		<span th:if="${game.starRating < 10 && game.starRating > 0}">
+					<span th:each="i : ${#numbers.sequence(1, game.starRating)}" style="color:#d4af37" th:text="'★'">
+					</span><span th:each="i : ${#numbers.sequence(1, 10-game.starRating)}" th:text="'★'"></span>
+				</span>
+		<br>
+		<element style="color:#d4af37" th:text="${game.averageValue}">10.0</element><br>
+		<element style="margin-bottom:50px">
+			<span style="color:#d4af37" th:text="${game.votes}">10</span>
+			<span> Votes</span>
+		</element><br>
 
 
 		<!-- genre -->
@@ -55,7 +85,7 @@
 	<div id="game_desc_right_side">
 
 		<!-- rate button -->
-		<a class="game_desc_rate_button" th:if="${!game.isRated}" th:href="@{/rating/create/{id}(id=${game.id})}">Add Review</a>
+		<a class="game_desc_rate_button" th:if="${!game.isRated}" th:href="@{/rating/save/{id}(id=${game.id})}">Add Review</a>
 		<br th:if="${!game.isRated}">
 		<a class="game_desc_rate_button" th:if="${game.isRated}" th:href="@{/rating/edit/{id}(id=${game.id})}">Edit Review</a>
 		<br th:if="${game.isRated}">

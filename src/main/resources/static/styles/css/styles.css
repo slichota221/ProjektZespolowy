@@ -1,111 +1,111 @@
 html, body{
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("/background/skyrim.jpg");
+	margin: 0;
+	padding: 0;
+	background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("/background/skyrim.jpg");
 
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    font-family: Arial, Helvetica, sans-serif;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 #page-container {
-    position: relative;
-    min-height: 100vh;
+	position: relative;
+	min-height: 100vh;
 }
 
 nav{
 	position: relative;
 	z-index: 999;
-  	height: 41px;
-    text-align: center;
-    padding: 5px 0px;
-    margin-bottom: 15px;
+	height: 41px;
+	text-align: center;
+	padding: 5px 0px;
+	margin-bottom: 15px;
 	font-size: 18px;
 }
 
 nav ul {
-    z-index: 999;
-  	position: fixed;
-  	top: 0;
-  	width: 100%;
-    background-color: #050505;
+	z-index: 999;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	background-color: #050505;
 	opacity: 0.9;
-  	list-style-type: none;
-  	margin: 0;
-  	padding: 0;
-  	overflow: hidden;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
 }
 
 nav ul li {
-  	float: left;
+	float: left;
 }
 
 nav ul li a {
-  	display: block;
-  	color: white;
-  	text-align: center;
-  	padding: 14px 16px;
-  	text-decoration: none;
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
 }
 
 nav ul li a:hover {
-  	background-color: #135a87
+	background-color: #135a87
 }
 
 
 footer{
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: 2.8rem;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: 2.8rem;
 
-    background-color: #050505;
-    color: white;
-    font-size: 16px;
-    opacity: 0.9;
+	background-color: #050505;
+	color: white;
+	font-size: 16px;
+	opacity: 0.9;
 }
 
 footer p{
-    margin-left: 10px;
+	margin-left: 10px;
 }
 
 
 /* ===== GAME LIST BEGINNING ===== */
 
 #game-list{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-bottom: 50px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin-bottom: 50px;
 }
 
 #game-list element{
-    width: 800px;
-    height: 300px;
-    margin: 15px 15px;
-    border: 2px white solid;
-    overflow: hidden;
-    background-color: #111111;
-    opacity: 0.9;
+	width: 800px;
+	height: 300px;
+	margin: 15px 15px;
+	border: 2px white solid;
+	overflow: hidden;
+	background-color: #111111;
+	opacity: 0.9;
 }
 
 #game-list element img{
-    height: 300px;
-    width: 220px;
-    border: 1px white solid;
+	height: 300px;
+	width: 220px;
+	border: 1px white solid;
 }
 
 .element_img{
-    float:left;
+	float:left;
 }
 
 .element_desc{
 	margin-left: 40px;
-    float: left;
-  	color:white;
-  	margin-bottom: 30px;
-  	width: 300px;
+	float: left;
+	color:white;
+	margin-bottom: 30px;
+	width: 300px;
 }
 
 #game-list-switch{
@@ -115,9 +115,9 @@ footer p{
 }
 
 #game-list-switch a{
-    width: 300px;
-    display: inline-block;
-    vertical-align: middle;
+	width: 300px;
+	display: inline-block;
+	vertical-align: middle;
 	padding: 20px 20px;
 	text-decoration: none;
 	color: white;
@@ -129,50 +129,50 @@ footer p{
 }
 
 #game-list-switch a:hover{
-    background-color: #135a87;
+	background-color: #135a87;
 }
 
 .game_list_more_button a{
-    margin-left: 40px;
-    color: white;
-    text-decoration: none;
-    border: 1px solid white;
-    padding: 5px 15px;
+	margin-left: 40px;
+	color: white;
+	text-decoration: none;
+	border: 1px solid white;
+	padding: 5px 15px;
 }
 
 .game_list_more_button a:hover{
-    background-color: #135a87;
+	background-color: #135a87;
 }
 
 .game_list_rating{
-    margin-left: 50px;
-    float: left;
-    margin-top: 10px;
-    text-align: right;
+	margin-left: 50px;
+	float: left;
+	margin-top: 10px;
+	text-align: right;
 }
 
 .game_list_stars{
-    font-size: 18px;
-    display: block;
-    margin-bottom: 20px;
-    margin-top: 15px;
-    color:white;
+	font-size: 18px;
+	display: block;
+	margin-bottom: 20px;
+	margin-top: 15px;
+	color:white;
 }
 /* ===== GAME LIST END ===== */
 /* ===== GAME LIST - ADMIN BEGINNING ===== */
 
 #game-list-admin{
-    justify-content: center;
-    color:white;
-    width: 1200px;
-    background-color: #111111;
-    margin:0 auto;
-    opacity: 0.9;
+	justify-content: center;
+	color:white;
+	width: 1200px;
+	background-color: #111111;
+	margin:0 auto;
+	opacity: 0.9;
 }
 
 #game-list-admin ul{
-    list-style-type: none;
-    padding-inline-start: 0px;
+	list-style-type: none;
+	padding-inline-start: 0px;
 }
 
 #game-list-admin ul li{
@@ -184,20 +184,20 @@ footer p{
 }
 
 #game-list-admin ul li span{
-    margin-left: 30px;
-    display: inline-block;
-    overflow-wrap: break-word;
-    vertical-align: middle;
+	margin-left: 30px;
+	display: inline-block;
+	overflow-wrap: break-word;
+	vertical-align: middle;
 }
 
 
 #game-list-admin ul a{
-  	color: #3391cc;
-  	text-decoration: none;
+	color: #3391cc;
+	text-decoration: none;
 }
 
 #game-list-admin ul a:hover {
-  	color:red;
+	color:red;
 }
 
 
@@ -208,144 +208,144 @@ footer p{
 	font-size: 22px;
 	color:white;
 	min-height:900px;
-    text-align: center;
+	text-align: center;
 }
 
 #login_page form{
-    position: relative;
+	position: relative;
 	text-align: center;
 	width: 100%;
 }
 
 #login_page_button{
-  	font-size: 22px;
-  	margin: 20px;
-  	padding: 15px 25px;
-    position: relative;
-  	color: white;
-  	background-color:#333;
-  	border: 2px white solid;
+	font-size: 22px;
+	margin: 20px;
+	padding: 15px 25px;
+	position: relative;
+	color: white;
+	background-color:#333;
+	border: 2px white solid;
 }
 
 #login_page_button:hover{
-  	cursor: pointer;
-  	color: #333;
-  	background-color:white;
+	cursor: pointer;
+	color: #333;
+	background-color:white;
 }
 
 .login_page_input{
-  	font-size: 22px;
-  	margin: 20px 0px;
-    position: relative;
-    width: 300px;
+	font-size: 22px;
+	margin: 20px 0px;
+	position: relative;
+	width: 300px;
 }
 
 #login_page main{
-  	position: relative;
-  	text-align: center;
-  	width: 100%;
+	position: relative;
+	text-align: center;
+	width: 100%;
 }
 
 #login_page main a{
-  	text-decoration:none;
-  	color: white;
-  	padding: 15px 25px;
-  	background-color:#333;
-  	border: 2px white solid;
+	text-decoration:none;
+	color: white;
+	padding: 15px 25px;
+	background-color:#333;
+	border: 2px white solid;
 }
 
 #login_page main a:hover{
-  	cursor: pointer;
-  	color: #333;
-  	background-color:white;
+	cursor: pointer;
+	color: #333;
+	background-color:white;
 }
 
 /* ===== LOGIN PAGE END ===== */
 /* ===== ADD NEW / SAVE PAGE BEGINNING */
 
 #save_page{
-    font-size: 22px;
-    color:white;
-    min-height:900px;
-    text-align: center;
-    width: 590px;
-    margin:0 auto;
+	font-size: 22px;
+	color:white;
+	min-height:900px;
+	text-align: center;
+	width: 590px;
+	margin:0 auto;
 }
 
 #save_page form{
-    position: relative;
+	position: relative;
 	text-align: center;
 	width: 100%;
-    top: 15px;
+	top: 15px;
 }
 
 .save_page_row{
-    font-size: 22px;
-    margin: 25px 0px;
-    position: relative;
+	font-size: 22px;
+	margin: 25px 0px;
+	position: relative;
 }
 
 #save_page_row_desc{
-    font-size: 22px;
-    margin: 25px 0px;
-    position: relative;
-    height: 250px;
+	font-size: 22px;
+	margin: 25px 0px;
+	position: relative;
+	height: 250px;
 }
 
 #save_page_row_desc textarea{
-    position: relative;
-    float:right;
-    width: 402px;
-    font-size: 21px;
-    font-family: Arial, Helvetica, sans-serif;
+	position: relative;
+	float:right;
+	width: 402px;
+	font-size: 21px;
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 .save_page_row input{
-    position: relative;
-    float:right;
-    width: 400px;
-    font-size: 21px;
+	position: relative;
+	float:right;
+	width: 400px;
+	font-size: 21px;
 }
 
 .save_page_row label{
-    position: relative;
-    float:left;
-    width: 180px;
-    font-size: 21px;
+	position: relative;
+	float:left;
+	width: 180px;
+	font-size: 21px;
 }
 
 .save_page_row select{
-    position: relative;
-    float:right;
-    width: 408px;
-    font-size: 21px;
+	position: relative;
+	float:right;
+	width: 408px;
+	font-size: 21px;
 }
 
 #save_page_submit{
-    font-size: 22px;
-    margin: 20px;
-    padding: 15px 25px;
-    position: relative;
-    color: white;
-    background-color:#111111;
-    border: 2px white solid;
-    opacity: 0.9;
-    cursor: pointer;
+	font-size: 22px;
+	margin: 20px;
+	padding: 15px 25px;
+	position: relative;
+	color: white;
+	background-color:#111111;
+	border: 2px white solid;
+	opacity: 0.9;
+	cursor: pointer;
 }
 
 #save_page_submit:hover{
-    background-color: #3391cc;
+	background-color: #3391cc;
 }
 
 .save_page_select{
-    font-size: 22px;
-    margin: 20px 0px;
-    position: relative;
-    width: 300px;
+	font-size: 22px;
+	margin: 20px 0px;
+	position: relative;
+	width: 300px;
 }
 
 #save_page #date{
-    font-family: Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
 }
 /* ===== ADD NEW / SAVE PAGE END */
 /* ===== FRONT PAGE BEGINNING */
@@ -355,12 +355,12 @@ footer p{
 	color:white;
 
 	width: 1000px;
-    text-align: center;
-    background-color: #111111;
-    opacity: 0.9;
-    margin:0 auto;
-    margin-bottom: 80px;
-    border: 1px solid black;
+	text-align: center;
+	background-color: #111111;
+	opacity: 0.9;
+	margin:0 auto;
+	margin-bottom: 80px;
+	border: 1px solid black;
 }
 
 /* ===== FRONT PAGE end */
@@ -371,12 +371,12 @@ footer p{
 	color:white;
 
 	width: 1000px;
-    text-align: center;
-    background-color: #111111;
-    opacity: 0.9;
-    margin: 0 auto;
-    margin-bottom: 80px;
-    border: 1px solid black;
+	text-align: center;
+	background-color: #111111;
+	opacity: 0.9;
+	margin: 0 auto;
+	margin-bottom: 80px;
+	border: 1px solid black;
 	position: relative;
 	z-index: 0;
 }
@@ -413,28 +413,28 @@ footer p{
 
 #user_details{
 	margin-top: 20px;
-    text-align: left;
+	text-align: left;
 	width: 1000px;
 	border-bottom: 2px solid black;
 }
 
 #user_details span{
 	width: 900px;
-    height: 40px;
+	height: 40px;
 	margin-left: 20px;
-    opacity: 0.9;
-    display: inline-block;
+	opacity: 0.9;
+	display: inline-block;
 	vertical-align: middle;
 	color: #2970e3;
 }
 
 #user_details element{
 	width: 900px;
-    height: 40px;
+	height: 40px;
 	margin-left: 20px;
-    opacity: 0.9;
-    display: inline-block;
-    vertical-align: middle;
+	opacity: 0.9;
+	display: inline-block;
+	vertical-align: middle;
 	color: white;
 }
 
@@ -448,12 +448,12 @@ footer p{
 /* ===== ADMIN STUFF BEGINNING ===== */
 
 .admin_link{
-    color:#bd3026;
+	color:#bd3026;
 }
 
 .admin_link:hover{
-    color:white;
-    background-color:#bd3026;
+	color:white;
+	background-color:#bd3026;
 }
 /* ===== ADMIN STUFF END ===== */
 /* ===== GAME PAGE BEGINNING ===== */
@@ -462,7 +462,7 @@ footer p{
 #game_desc_page{
 	color: white;
 	width: 920px;
-    margin: 0 auto;
+	margin: 0 auto;
 	position: relative;
 	z-index: 0;
 	font-size: 22px;
@@ -474,8 +474,8 @@ footer p{
 
 #stars_game_desc{
 	display: inline-block;
-    overflow-wrap: break-word;
-    vertical-align: middle;
+	overflow-wrap: break-word;
+	vertical-align: middle;
 	line-height: 1;
 	font-size: 35px;
 }
@@ -489,32 +489,32 @@ footer p{
 	line-height: 1;
 	font-size: 25px;
 	margin-top: 5px;
-    overflow-wrap: break-word;
-    vertical-align: middle;
+	overflow-wrap: break-word;
+	vertical-align: middle;
 }
 
 .game_desc_rate_button{
 	margin-top: 5px;
 	font-size: 22px;
-    padding: 15px 25px;
-    position: relative;
-    color: white;
+	padding: 15px 25px;
+	position: relative;
+	color: white;
 	border-radius: 15px;
-    border: 2px #d4af37 solid;
-    opacity: 0.9;
-    cursor: pointer;
+	border: 2px #d4af37 solid;
+	opacity: 0.9;
+	cursor: pointer;
 	text-decoration: none;
 	display: inline-block;
 }
 
 .game_desc_rate_button:hover{
-    background-color: #d4af37;
+	background-color: #d4af37;
 }
 
 #game_page_publisher{
 	display: inline-block;
-    overflow-wrap: break-word;
-    vertical-align: middle;
+	overflow-wrap: break-word;
+	vertical-align: middle;
 	line-height: 1.4;
 	margin-top: 15px;
 	position:absolute;
@@ -615,8 +615,8 @@ footer p{
 .single_review span{
 	opacity: 1;
 	display: inline-block;
-    overflow-wrap: break-word;
-    vertical-align: middle;
+	overflow-wrap: break-word;
+	vertical-align: middle;
 	line-height: 1.4;
 	font-size: 22px;
 	margin-bottom: 10px;
@@ -630,111 +630,111 @@ footer p{
 /* ===== GAME PAGE END ===== */
 /* ===== STAR RATING BEGINNING ===== */
 .rate {
-    float: left;
-    margin-left: 50px;
-    height: 46px;
-    padding: 0;
-    margin-top: 20px;
+	float: left;
+	margin-left: 50px;
+	height: 46px;
+	padding: 0;
+	margin-top: 20px;
 }
 .rate:not(:checked) > input {
-    position:absolute;
-    top:-9999px;
+	position:absolute;
+	top:-9999px;
 }
 .rate:not(:checked) > label {
-    float:right;
-    width:1em;
-    overflow:hidden;
-    white-space:nowrap;
-    cursor:pointer;
-    font-size:50px;
-    color:#ccc;
+	float:right;
+	width:1em;
+	overflow:hidden;
+	white-space:nowrap;
+	cursor:pointer;
+	font-size:50px;
+	color:#ccc;
 }
 .rate:not(:checked) > label:before {
-    content: '★ ';
-    font-size:50px;
+	content: '★ ';
+	font-size:50px;
 }
 .rate > input:checked ~ label {
-    color: #ffc700;
+	color: #ffc700;
 }
 .rate:not(:checked) > label:hover,
 .rate:not(:checked) > label:hover ~ label {
-    color: #deb217;
+	color: #deb217;
 }
 .rate > input:checked + label:hover,
 .rate > input:checked + label:hover ~ label,
 .rate > input:checked ~ label:hover,
 .rate > input:checked ~ label:hover ~ label,
 .rate > label:hover ~ input:checked ~ label {
-    color: #c59b08;
+	color: #c59b08;
 }
 /* ===== STAR RATING END ===== */
 /* ===== ADD / EDIT REVIEW BEGINNING ===== */
 #add_review_desc{
-    font-size: 22px;
-    margin: 25px 0px;
-    position: relative;
-    height: 250px;
-    float: left;
+	font-size: 22px;
+	margin: 25px 0px;
+	position: relative;
+	height: 250px;
+	float: left;
 }
 
 #add_review_desc textarea{
-    position: relative;
-    float:right;
-    width: 584px;
-    font-size: 21px;
-    font-family: Arial, Helvetica, sans-serif;
-    resize: none;
-    margin-top: 20px;
+	position: relative;
+	float:right;
+	width: 584px;
+	font-size: 21px;
+	font-family: Arial, Helvetica, sans-serif;
+	resize: none;
+	margin-top: 20px;
 }
 
 #review_form{
-    float:left;
-    border-top:1px solid white;
+	float:left;
+	border-top:1px solid white;
 }
 /* ===== ADD / EDIT REVIEW END ===== */
 /* ===== RANKING START ===== */
 #sorting_choice{
-    width: 600px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    height: 63px;
-    background-color: #111111;
-    opacity: 0.9;
-    padding: 20px;
-    border: 1px solid white;
+	width: 600px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	height: 63px;
+	background-color: #111111;
+	opacity: 0.9;
+	padding: 20px;
+	border: 1px solid white;
 }
 
 
 #sorting_choice #descending,
 #sorting_choice #ascending{
-    top: 0;
-    left: 0;
-    height: 25px;
-    width: 25px;
-    background-color: #eee;
-    border-radius: 50%;
+	top: 0;
+	left: 0;
+	height: 25px;
+	width: 25px;
+	background-color: #eee;
+	border-radius: 50%;
 }
 
 .sort_label{
-    font-size: 25px;
-    color: white;
-    position: relative;
-    top: -2px;
+	font-size: 25px;
+	color: white;
+	position: relative;
+	top: -2px;
 }
 
 #sorting_choice #submit{
-    font-size: 22px;
-    padding: 15px 25px;
-    color: white;
-    background-color: #111111;
-    border: 2px white solid;
-    float: right;
+	font-size: 22px;
+	padding: 15px 25px;
+	color: white;
+	background-color: #111111;
+	border: 2px white solid;
+	float: right;
 }
 
 #sorting_choice #submit:hover{
-  	cursor: pointer;
-  	color: #333;
-  	background-color:white;
+	cursor: pointer;
+	color: #333;
+	background-color:white;
 }
 
 /* ===== RANKING END ===== */
