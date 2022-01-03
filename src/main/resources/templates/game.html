@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<meta charset="utf-8">
-		<title>Game list</title>
-		<meta name="Game list" content="List of all games">
-		<meta name="author" content="Szymon Lichota, Szymon Porębski, Damian Pawłowski">
-		<link th:href="@{/styles/css/styles.css}" rel="stylesheet" />
-	</head>
+<head>
+	<meta charset="utf-8">
+	<title>Game list</title>
+	<meta name="Game list" content="List of all games">
+	<meta name="author" content="Szymon Lichota, Szymon Porębski, Damian Pawłowski">
+	<link th:href="@{/styles/css/styles.css}" rel="stylesheet" />
+</head>
 
 	<body>
 	<nav>
@@ -26,100 +26,88 @@
 		</ul>
 	</nav>
 
-
-	<!-- game title -->
-	<h1 style="color:white; text-align:center" th:text="${game.nameGame}">The Witcher 3: Wild Hunt</h1>
-
-
-	<!-- game details -->
-	<div id="game_desc_page">
-
-		<!-- game cover -->
-		<div>
-			<img th:src="${game.pathCover}" alt="Game Cover" height="450px" width="300px">
+		<div id="game-list-switch" sec:authorize="hasRole('ROLE_ADMIN')" >
+			<a href="/games/admin">Switch to admin view</a>
 		</div>
 
-		<!-- info -->
-		<!-- rating -->
-		<div id="game_desc_left_side">
-			<span id="stars_game_desc"><span class="stars_golden">★★★★★★★★★</span>★</span>
-			<element style="color:#d4af37" th:text="${game.averageValue}">10.0</element><br>
-			<element style="margin-bottom:50px">
-				<span style="color:#d4af37" th:text="${game.votes}">10</span>
-				<span> Votes</span>
-			</element><br>
 
 
-			<!-- genre -->
-			<div style="width:100%">
-				<!--========================= genre icon path here =========================-->
-				<img th:src="@{/images/crossed-swords.png}" alt="Genre Icon" width="100px" style="opacity:0.5">
-			</div>
-			<element th:text="${game.genre.name}">RPG</element><br>
 
-
-			<!-- publisher -->
-			<div id="game_page_publisher" >
-				<span style="color:#999999">Released</span><br>
-				<span th:text="${game.dateRelease}">01.01.1999</span><br>
-				<span style="color:#999999">Published by</span><br>
-				<span th:text="${game.publisher.name}">CD Projekt</span>
-			</div>
-
-
+		<!-- genre -->
+		<div style="width:100%">
+			<!--========================= genre icon path here =========================-->
+			<img th:src="@{/images/crossed-swords.png}" alt="Genre Icon" width="100px" style="opacity:0.5">
 		</div>
+		<element th:text="${game.genre.name}">RPG</element><br>
 
-		<div id="game_desc_right_side">
 
-			<!-- rate button -->
-			<a class="game_desc_rate_button" th:if="${!game.isRated}" th:href="@{/rating/save/{id}(id=${game.id})}">Add Review</a>
-			<br th:if="${!game.isRated}">
-			<a class="game_desc_rate_button" th:if="${game.isRated}" th:href="@{/rating/edit/{id}(id=${game.id})}">Edit Review</a>
-			<br th:if="${game.isRated}">
-
-			<!-- publisher logo -->
-			<div id="game_desc_publisher_logo">
-				<!--========================= publisher logo path here =========================-->
-				<img th:src="@{/images/cd_projekt_logo.png}" alt="Publisher Logo">
-			</div>
-		</div>
-
-		<!-- description -->
-		<div id="game_desc_description" th:text="${game.description}">
-
+		<!-- publisher -->
+		<div id="game_page_publisher" >
+			<span style="color:#999999">Released</span><br>
+			<span th:text="${game.dateRelease}">01.01.1999</span><br>
+			<span style="color:#999999">Published by</span><br>
+			<span th:text="${game.publisher.name}">CD Projekt</span>
 		</div>
 
 
 	</div>
 
-	<!-- comments / ratings -->
-	<div id="game_page_ratings">
-		<element class="single_review" th:each="rating: ${ratings}">
-			<div >
-				<!--========================= user avatar path here =========================-->
-				<img class="game_page_user_pic" th:src="@{/images/gigachad2.jpg}" width="100px" alt="User Avatar">
-			</div>
+	<div id="game_desc_right_side">
 
-			<div class="single_review_left">
-				<span th:text="${rating.user.username}"></span><br>
-				<span style="font-size: 20px; color:gray" th:text="${rating.publicationDate}"></span>
-			</div>
+		<!-- rate button -->
+		<a class="game_desc_rate_button" th:if="${!game.isRated}" th:href="@{/rating/create/{id}(id=${game.id})}">Add Review</a>
+		<br th:if="${!game.isRated}">
+		<a class="game_desc_rate_button" th:if="${game.isRated}" th:href="@{/rating/edit/{id}(id=${game.id})}">Edit Review</a>
+		<br th:if="${game.isRated}">
 
-			<div class="single_review_right">
-				<span class="stars_golden">★★★★★★★★★★</span><br>
-				<span th:text="${rating.value}"></span><span>/10</span>
-			</div>
-
-
-			<div class="single_review_comment" th:text="${rating.comment}">
-				Indeed exquisite
-			</div>
-		</element>
+		<!-- publisher logo -->
+		<div id="game_desc_publisher_logo">
+			<!--========================= publisher logo path here =========================-->
+			<img th:src="@{/images/cd_projekt_logo.png}" alt="Publisher Logo">
+		</div>
 	</div>
 
-	<!-- footer -->
-	<footer>
-		<p>Szymon Lichota, Szymon Porębski & Damian Pawłowski @2021</p>
-	</footer>
-	</body>
+	<!-- description -->
+	<div id="game_desc_description" th:text="${game.description}">
+
+	</div>
+
+
+</div>
+
+<!-- comments / ratings -->
+<div id="game_page_ratings">
+	<element class="single_review" th:each="rating: ${ratings}">
+		<div >
+			<!--========================= user avatar path here =========================-->
+			<img class="game_page_user_pic" th:src="@{/images/gigachad2.jpg}" width="100px" alt="User Avatar">
+		</div>
+
+		<div class="single_review_left">
+			<span th:text="${rating.user.username}"></span><br>
+			<span style="font-size: 20px; color:gray" th:text="${rating.publicationDate}"></span>
+		</div>
+
+		<div class="single_review_right">
+			<span th:if="${rating.value == 0}">★★★★★★★★★★</span>
+			<span th:if="${rating.value == 10}" style="color:#d4af37">★★★★★★★★★★</span>
+
+			<span th:if="${rating.value < 10 && rating.value > 0}">
+				<span th:each="i : ${#numbers.sequence(1, rating.value)}" style="color:#d4af37" th:text="'★'">
+				</span><span th:each="i : ${#numbers.sequence(1, 10-rating.value)}" th:text="'★'"></span>
+			</span>
+		</div>
+
+
+		<div class="single_review_comment" th:text="${rating.comment}">
+			Indeed exquisite
+		</div>
+	</element>
+</div>
+
+<!-- footer -->
+<footer>
+	<p>Szymon Lichota, Szymon Porębski & Damian Pawłowski @2021</p>
+</footer>
+</body>
 </html>

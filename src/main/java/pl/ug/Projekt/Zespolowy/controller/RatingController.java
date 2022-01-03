@@ -121,6 +121,7 @@ public class RatingController {
         gameDTO.setPublisher(game.getPublisher());
         gameDTO.setDateRelease(game.getDateRelease());
         gameDTO.setAverageValue(averageValue.doubleValue());
+        gameDTO.setStarRating(averageValue.intValue());
         gameDTO.setVotes(ratingService.getNumberOfVotes(game.getId()));
         gameDTO.setIsRated(ratingService.isUserRatedGame(game.getId(), username));
 

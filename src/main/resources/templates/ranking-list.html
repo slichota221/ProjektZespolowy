@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="utf-8">
     <title>Game list</title>
@@ -26,18 +26,20 @@
     </ul>
 </nav>
 
-<div id="game-list-switch" sec:authorize="hasRole('ROLE_ADMIN')" >
-    <a href="/games/admin">Switch to admin view</a>
-</div>
-<div class="save_page_row">
+<div id="game-list" style="width:900px;margin:0 auto;margin-bottom: 100px;">
 
-    <form action="/games/sorted/chose">
-        <input type="radio" id="descending" name="mode" value="Descending" checked="checked">
-        <label for="descending">Descending</label><br>
-        <input type="radio" id="ascending" name="mode" value="Ascending">
-        <label for="ascending">Ascending</label><br>
-        <input type="submit" value="Wybierz">
+    <form id="sorting_choice" action="/games/sorted/chose">
+        <div style="float:left;height:100%">
+            <input type="radio" id="descending" name="mode" value="Descending">
+            <label class="sort_label" for="descending">🠗 Descending</label><br>
+            <input type="radio" id="ascending" name="mode" value="Ascending">
+            <label class="sort_label" for="ascending">🠕 Ascending</label><br>
+        </div>
+        <div style="float:right;height:100%">
+            <input type="submit" id="submit" value="Sort">
+        </div>
     </form>
+
 <!--    <form>-->
 <!--        <label for="mode">Choose mode:</label>-->
 <!--        <select name="mode" id="mode">-->
@@ -47,7 +49,6 @@
 <!--        <input type="submit" value="Submit">-->
 <!--    </form>-->
 
-    <div id="game-list">
         <element th:each="game: ${allGames}">
 
             <div style="float:left">
@@ -68,9 +69,18 @@
 
             </div>
             <div class="game_list_rating">
-                <div class="game_list_stars"><span style="color:#d4af37">★★★★</span>★</div>
+                <div class="game_list_stars">
+                    <span th:if="${game.starRating == 0}">★★★★★★★★★★</span>
+                    <span th:if="${game.starRating == 10}" style="color:#d4af37">★★★★★★★★★★</span>
+
+                    <span th:if="${game.starRating < 10 && game.starRating > 0}">
+							<span th:each="i : ${#numbers.sequence(1, game.starRating)}" style="color:#d4af37" th:text="'★'">
+							</span><span th:each="i : ${#numbers.sequence(1, 10-game.starRating)}" th:text="'★'"></span>
+                    </span>
+                </div>
+
                 <span style="color:#d4af37" th:text="${game.averageValue}"></span><br><br>
-                <span style="color:white; margin-bottom:115px; display:block;"><span style="color:#d4af37" th:text="${game.votes}"></span></span>
+                <span style="color:white; margin-bottom:116px; display:block;"><span style="color:#d4af37" th:text="${game.votes}"></span> Votes</span>
 
                 <div class="game_list_more_button" th:if="${!game.isRated}">
                     <a th:href="@{/rating/save/{id}(id=${game.id})}">Add Review</a>
