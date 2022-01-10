@@ -27,12 +27,7 @@
 				<li sec:authorize="isAuthenticated()" style="float:right"><a class="active" href="/rating/myreviews">My Reviews</a></li>
 			</ul>
 		</nav>
-
-		<div id="game-list-switch" sec:authorize="hasRole('ROLE_ADMIN')" >
-			<a href="/games/admin">Switch to admin view</a>
-		</div>
-
-
+		
 		<div id="no_recent_releases">
 			<h1 th:if="${allGames.isEmpty()}">No recent releases.</h1>
 		</div>
