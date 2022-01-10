@@ -32,8 +32,15 @@
 			<a href="/games/admin">Switch to admin view</a>
 		</div>
 
+
+		<div id="no_recent_releases">
+			<h1 th:if="${allGames.isEmpty()}">No recent releases.</h1>
+		</div>
+
 		<div id="game-list">
 			<element th:each="game: ${allGames}">
+
+
 
 				<div style="float:left">
 					<div class="element_img">
@@ -54,12 +61,12 @@
 				</div>
 				<div class="game_list_rating">
 					<div class="game_list_stars">
-						<span th:if="${game.starRating == 0}">★★★★★★★★★★</span>
-						<span th:if="${game.starRating == 10}" style="color:#d4af37">★★★★★★★★★★</span>
+						<span th:if="${game.averageValue == 0}">★★★★★★★★★★</span>
+						<span th:if="${game.averageValue == 10}" style="color:#d4af37">★★★★★★★★★★</span>
 
-						<span th:if="${game.starRating < 10 && game.starRating > 0}">
-									<span th:each="i : ${#numbers.sequence(1, game.starRating)}" style="color:#d4af37" th:text="'★'">
-									</span><span th:each="i : ${#numbers.sequence(1, 10-game.starRating)}" th:text="'★'"></span>
+						<span th:if="${game.starRating < 10 && game.averageValue >= 1}">
+										<span th:each="i : ${#numbers.sequence(1, game.averageValue)}" style="color:#d4af37" th:text="'★'">
+										</span><span th:each="i : ${#numbers.sequence(1, 10-game.averageValue)}" th:text="'★'"></span>
 						</span>
 
 					</div>

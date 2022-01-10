@@ -20,6 +20,6 @@ public class NewReleasesController {
     @GetMapping
     String getGame(Model model){
         model.addAttribute("allGames", gameService.getGamesReleasedLast7Days());
-        return "game-list";
+        return "game-list-new";
     }
 }

@@ -740,9 +740,18 @@ footer p{
 
 /* ===== RANKING END ===== */
 
-
-
-
+#no_recent_releases{
+    text-align: center;
+    color: white;
+    width: 600px;
+    background-color: #111111;
+    opacity: 0.9;
+    padding: 20px;
+    border: 1px solid white;
+    margin: auto;
+    position: relative;
+    top: 50px;
+}
 
 main{
 
