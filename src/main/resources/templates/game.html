@@ -66,7 +66,7 @@
 		<!-- genre -->
 		<div style="width:100%">
 			<!--========================= genre icon path here =========================-->
-			<img th:src="@{/images/crossed-swords.png}" alt="Genre Icon" width="100px" style="opacity:0.5">
+			<img th:src="${game.genre.pathCover}" alt="Genre Icon" width="100px" style="opacity:0.5">
 		</div>
 		<element th:text="${game.genre.name}">RPG</element><br>
 
@@ -93,7 +93,7 @@
 		<!-- publisher logo -->
 		<div id="game_desc_publisher_logo">
 			<!--========================= publisher logo path here =========================-->
-			<img th:src="@{/images/cd_projekt_logo.png}" alt="Publisher Logo">
+			<img th:src="${game.publisher.pathCover}" alt="Publisher Logo">
 		</div>
 	</div>
 

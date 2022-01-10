@@ -12,7 +12,7 @@ public class Publisher {
     private String pathCover;
 
     public Publisher() {}
-    public Publisher(String name) {
+    public Publisher(String name, String pathCover) {
         this.name = name;
         this.pathCover = pathCover;
     }

@@ -23,8 +23,8 @@ public class LoadDatabase {
     @Bean
     CommandLineRunner initDatabase(GenreRepository repository){
         return args ->{
-            log.info("Preloading " + repository.save(new Genre("RPG")));
-            log.info("Preloading " + repository.save(new Genre("Action")));
+            log.info("Preloading " + repository.save(new Genre("RPG", "/genres/crossed-swords.png")));
+            log.info("Preloading " + repository.save(new Genre("Action", "/genres/crossed-swords.png")));
 
         };
     }
@@ -40,16 +40,17 @@ public class LoadDatabase {
     @Bean
     CommandLineRunner addPublisher(PublisherRepository publisherRepository){
         return args ->{
-            log.info("Preloading " + publisherRepository.save(new Publisher("Konami")));
+            log.info("Preloading " + publisherRepository.save(new Publisher("Konami", "/publishers/cd_projekt_logo.png")));
         };
     }
     @Bean
     CommandLineRunner addGame(GameRepository gameRepository){
         return args ->{
             log.info("Preloading" + gameRepository.save(new Game("Witcher", LocalDate.of(2007, 10, 26),
-                    "You kill monsters", "/covers/cover_witcher1.jpg", new Genre("RPG"), new Publisher("CDProjekt Red"))));
+                    "You kill monsters", "/covers/cover_witcher1.jpg", new Genre("RPG", "/genres/crossed-swords.png"), new Publisher("CDProjekt Red", "" +
+                    "/publishers/cd_projekt_logo.png"))));
             log.info("Preloading" + gameRepository.save(new Game("Witcher 3", LocalDate.of(2015, 5, 19),
-                    "You kill more monsters", "/covers/cover_witcher3.jpg", new Genre("RPG"), new Publisher("CDProjekt"))));
+                    "You kill more monsters", "/covers/cover_witcher3.jpg", new Genre("RPG", "/genres/crossed-swords.png"), new Publisher("CDProjekt", "/publishers/cd_projekt_logo.png"))));
         };
     }
     /*

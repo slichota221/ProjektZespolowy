@@ -11,8 +11,9 @@ public class Genre {
     private String pathCover;
 
     public Genre() {}
-    public Genre(String name) {
+    public Genre(String name, String pathCover) {
         this.name = name;
+        this.pathCover = pathCover;
     }
 
     public long getID() {
