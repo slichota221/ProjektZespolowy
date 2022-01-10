@@ -84,9 +84,9 @@ public class RatingController {
         model.addAttribute("isRated", ratingService.isUserRatedGame(gameId, username));
         model.addAttribute("game", mapToDto(game, username));
         model.addAttribute("ratings", ratingService.findRatingsByGameId(game.getId()));
+        model.addAttribute("viewer", username);
 
         return "game";
-
     }
 
     @PreAuthorize("hasRole('ROLE_USER')")
@@ -105,7 +105,8 @@ public class RatingController {
         model.addAttribute("isRated", ratingService.isUserRatedGame(gameId, username));
         model.addAttribute("game", mapToDto(game, username));
         model.addAttribute("ratings", ratingService.findRatingsByGameId(game.getId()));
-
+        model.addAttribute("viewer", username);
+        
         return "game";
     }
 

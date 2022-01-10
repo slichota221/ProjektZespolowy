@@ -32,7 +32,7 @@
 			<h1>No recent releases.</h1>
 		</div>
 
-		<div id="game-list">
+		<div th:if="${!allGames.isEmpty()}" id="game-list">
 			<element th:each="game: ${allGames}">
 
 

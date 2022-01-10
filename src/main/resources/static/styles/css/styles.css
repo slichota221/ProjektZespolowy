@@ -753,6 +753,47 @@ footer p{
     top: 50px;
 }
 
+.reviewed_game{
+    width: 100%;
+    border: 2px solid gray;
+    height: 136px;
+    margin-bottom: 15px;
+    background-color: black;
+    opacity: 0.8;
+}
+
+.reviewed_game_desc{
+    display: inline-block;
+    overflow-wrap: break-word;
+    vertical-align: middle;
+    width: 580px;
+    float: left;
+    font-size: 22px;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.reviewed_game_button{
+    margin: 0px;
+    font-size: 15px;
+    padding: 8px 15px;
+    position: relative;
+    color: white;
+    border-radius: 15px;
+    border: 2px #d4af37 solid;
+    opacity: 0.9;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    float: right;
+}
+
+.reviewed_game_button:hover{
+	background-color: #d4af37;
+}
+
+
+
 main{
 
 }

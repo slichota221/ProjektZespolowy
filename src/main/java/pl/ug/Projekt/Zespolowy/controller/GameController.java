@@ -82,6 +82,7 @@ public class GameController {
         model.addAttribute("game", mapToDto(gameRepository.getById(id), username));
         model.addAttribute("isRated", ratingService.isUserRatedGame(id, username));
         model.addAttribute("ratings", ratingService.findRatingsByGameId(id));
+        model.addAttribute("viewer", username);
 
         return "game";
     }

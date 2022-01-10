@@ -107,7 +107,7 @@
 
 	<!-- comments / ratings -->
 	<div id="game_page_ratings">
-		<element class="single_review" th:each="rating: ${ratings}">
+		<div class="single_review" th:each="rating: ${ratings}">
 			<div >
 				<!--========================= user avatar path here =========================-->
 				<img class="game_page_user_pic" th:src="@{/images/gigachad2.jpg}" width="100px" alt="User Avatar">
@@ -115,24 +115,30 @@
 
 			<div class="single_review_left">
 				<span th:text="${rating.user.username}"></span><br>
-				<span style="font-size: 20px; color:gray" th:text="${rating.publicationDate}"></span>
+				<span style="font-size: 20px; color:gray" th:text="${rating.FormattedDateToString()}"></span>
 			</div>
 
 			<div class="single_review_right">
-				<span th:if="${rating.value == 0}">★★★★★★★★★★</span>
-				<span th:if="${rating.value == 10}" style="color:#d4af37">★★★★★★★★★★</span>
+				<span th:if="${rating.value == 0}" style="margin-bottom:20px;">★★★★★★★★★★</span>
+				<span th:if="${rating.value == 10}" style="color:#d4af37;margin-bottom:20px;">★★★★★★★★★★</span>
 
 				<span th:if="${rating.value < 10 && rating.value > 0}">
 					<span th:each="i : ${#numbers.sequence(1, rating.value)}" style="color:#d4af37" th:text="'★'">
 					</span><span th:each="i : ${#numbers.sequence(1, 10-rating.value)}" th:text="'★'"></span>
 				</span>
+
+
+				<a th:if="${rating.user.username == viewer}" class="reviewed_game_button" style="margin-top:-10px;"
+				   th:href="@{/rating/edit/{id}(id=${rating.game.id})}">Edit Review</a>
+
+
 			</div>
 
 
 			<div class="single_review_comment" th:text="${rating.comment}">
 				Indeed exquisite
 			</div>
-		</element>
+		</div>
 	</div>
 
 	<!-- footer -->

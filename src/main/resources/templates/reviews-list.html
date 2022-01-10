@@ -27,33 +27,65 @@
         </ul>
     </nav>
 
-    <div id="game-list">
-        <h1>Oceny użytkownika:</h1>
-        <element th:each="rating: ${allRatings}">
+    <div th:if="${allRatings.isEmpty()}" id="no_recent_releases">
+        <h1>You haven't rated anything yet.</h1>
+    </div>
 
-            <div style="float:left">
-                <div class="element_img">
-                    <img th:src="${rating.game.pathCover}" alt="Game Cover" >
+    <div th:if="${!allRatings.isEmpty()}" style="text-align:center;color:white;padding:10px 0px 20px 0px;">
+        <h1>My Reviews</h1>
+    </div>
+
+    <div th:if="${!allRatings.isEmpty()}" id="game_page_ratings">
+        <div th:each="rating: ${allRatings}">
+
+            <div class="reviewed_game">
+                <div style="border: 1px solid gray;">
+                    <img th:src="${rating.game.pathCover}" alt="Game Cover" width="100px" height="130px" >
                 </div>
 
-                <div class="element_desc">
-                    <h1 th:text="${rating.game.nameGame}"></h1>
-                    <h2 th:text="${rating.game.genre.name}"></h2>
-                    <h3>Data wystawienia komentarza:</h3>
-                    <h3 th:text="${rating.publicationDate}"></h3>
-                    <h3>Ocena:</h3>
-                    <h3 th:text="${rating.value}"></h3>
-                    <h3>Komentarz:</h3>
-                    <h3 th:text="${rating.comment}"></h3>
+                <div style="width:650px;">
+                    <span class="reviewed_game_desc" th:text="${rating.game.nameGame}"></span>
+                    <span class="reviewed_game_desc" th:text="${rating.game.publisher.name}"></span>
                 </div>
 
+                <div style="width:150px">
+                    <a class="reviewed_game_button" style="margin-top:24px;" th:href="@{/game/{id}(id=${rating.game.id})}">More ...</a>
+                </div>
 
 
             </div>
 
+            <div class="single_review">
+                <div>
+                    <!--========================= user avatar path here =========================-->
+                    <img class="game_page_user_pic" th:src="@{/images/gigachad2.jpg}" width="100px" alt="User Avatar">
+                </div>
+
+                <div class="single_review_left">
+                    <span th:text="${rating.user.username}"></span><br>
+                    <span style="font-size: 20px; color:gray" th:text="${rating.FormattedDateToString()}"></span>
+                </div>
+
+                <div class="single_review_right">
+                    <span th:if="${rating.value == 0}" style="margin-bottom:20px;">★★★★★★★★★★</span>
+                    <span th:if="${rating.value == 10}" style="color:#d4af37;margin-bottom:20px;">★★★★★★★★★★</span>
+
+                    <span th:if="${rating.value < 10 && rating.value > 0}">
+                        <span th:each="i : ${#numbers.sequence(1, rating.value)}" style="color:#d4af37" th:text="'★'">
+                        </span><span th:each="i : ${#numbers.sequence(1, 10-rating.value)}" th:text="'★'"></span>
+                    </span>
+
+                    <a class="reviewed_game_button" style="margin-top:-10px;" th:href="@{/rating/edit/{id}(id=${rating.game.id})}">Edit Review</a>
+                </div>
 
 
-        </element>
+                <div class="single_review_comment" th:text="${rating.comment}">
+                    Indeed exquisite
+                </div>
+            </div>
+
+
+        </div>
     </div>
 
     <footer>
