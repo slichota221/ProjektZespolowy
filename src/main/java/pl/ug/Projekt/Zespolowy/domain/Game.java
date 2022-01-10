@@ -32,7 +32,7 @@ public class Game {
     private Publisher publisher;
 
 
-   // @ManyToMany()
+    // @ManyToMany()
     //private List<Console> consoles = new ArrayList<>();
 
     public Game() {
@@ -112,11 +112,9 @@ public class Game {
     public List<Console> getConsoles() {
         return consoles;
     }
-
     public void setConsoles(List<Console> consoles) {
         this.consoles = consoles;
     }
-
      */
 
     @Override

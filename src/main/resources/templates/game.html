@@ -36,12 +36,31 @@
 	<h1 style="color:white; text-align:center" th:text="${game.nameGame}">The Witcher 3: Wild Hunt</h1>
 
 
+<<<<<<< HEAD
 	<!-- game details -->
 	<div id="game_desc_page">
 
 		<!-- game cover -->
 		<div>
 			<img th:src="${game.pathCover}" alt="Game Cover" height="450px" width="300px">
+=======
+		<span th:if="${game.starRating < 10 && game.starRating > 0}">
+					<span th:each="i : ${#numbers.sequence(1, game.starRating)}" style="color:#d4af37" th:text="'★'">
+					</span><span th:each="i : ${#numbers.sequence(1, 10-game.starRating)}" th:text="'★'"></span>
+				</span>
+		<br>
+		<element style="color:#d4af37" th:text="${game.averageValue}">10.0</element><br>
+		<element style="margin-bottom:50px">
+			<span style="color:#d4af37" th:text="${game.votes}">10</span>
+			<span> Votes</span>
+		</element><br>
+
+
+		<!-- genre -->
+		<div style="width:100%">
+			<!--========================= genre icon path here =========================-->
+			<img th:src="${game.genre.pathCover}" alt="Genre Icon" width="100px" style="opacity:0.5">
+>>>>>>> 696f4a9118d59539c7214b77a073cc6a04b5270a
 		</div>
 
 
@@ -71,6 +90,7 @@
 			<element th:text="${game.genre.name}">RPG</element><br>
 
 
+<<<<<<< HEAD
 			<!-- publisher -->
 			<div id="game_page_publisher" >
 				<span style="color:#999999">Released</span><br>
@@ -78,6 +98,14 @@
 				<span style="color:#999999">Published by</span><br>
 				<span th:text="${game.publisher.name}">CD Projekt</span>
 			</div>
+=======
+		<!-- publisher logo -->
+		<div id="game_desc_publisher_logo">
+			<!--========================= publisher logo path here =========================-->
+			<img th:src="${game.publisher.pathCover}" alt="Publisher Logo">
+		</div>
+	</div>
+>>>>>>> 696f4a9118d59539c7214b77a073cc6a04b5270a
 
 
 		</div>
