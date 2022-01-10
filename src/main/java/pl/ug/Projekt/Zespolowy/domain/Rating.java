@@ -29,7 +29,7 @@ public class Rating {
 
     @Min(1)
     @Max(10)
-    private Integer value;
+    private Integer value = 1;
 
     @Size(max = 255)
     private String comment;
