@@ -14,6 +14,7 @@ import pl.ug.Projekt.Zespolowy.repository.ConsoleRepository;
 import pl.ug.Projekt.Zespolowy.repository.GameRepository;
 import pl.ug.Projekt.Zespolowy.repository.GenreRepository;
 import pl.ug.Projekt.Zespolowy.repository.PublisherRepository;
+import pl.ug.Projekt.Zespolowy.service.GameService;
 import pl.ug.Projekt.Zespolowy.service.RatingService;
 import pl.ug.Projekt.Zespolowy.utility.FileUploadUtil;
 
@@ -33,14 +34,16 @@ public class GameController {
     private final PublisherRepository publisherRepository;
     private final ConsoleRepository consoleRepository;
     private final RatingService ratingService;
+    private final GameService gameService;
 
     GameController(GameRepository repository, GenreRepository genreRepository, PublisherRepository publisherRepository,
-                   ConsoleRepository consoleRepository, RatingService ratingService){
+                   ConsoleRepository consoleRepository, RatingService ratingService, GameService gameService){
         this.gameRepository = repository;
         this.genreRepository = genreRepository;
         this.publisherRepository = publisherRepository;
         this.consoleRepository = consoleRepository;
         this.ratingService = ratingService;
+        this.gameService = gameService;
     }
 
     @GetMapping("/games")
@@ -55,6 +58,20 @@ public class GameController {
         
         model.addAttribute("allGames", gameDTOS);
         return "game-list";
+    }
+
+    @GetMapping("/games/new")
+    String getNewGame(Model model, Principal principal){
+
+        String username = principal == null ? null : principal.getName();
+
+        List<GameDTO> gameDTOS = gameService.getGamesReleasedLast7Days()
+                .stream()
+                .map(game -> mapToDto(game, username))
+                .collect(Collectors.toList());
+
+        model.addAttribute("allGames", gameDTOS);
+        return "game-list-new";
     }
 
     @GetMapping("/game/{id}")

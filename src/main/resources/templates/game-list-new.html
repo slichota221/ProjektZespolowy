@@ -15,7 +15,7 @@
 		<nav>
 			<ul>
 				<li><a href="/">Home</a></li>
-				<li><a href="/new-releases">New Releases</a></li>
+				<li><a href="/games/new">New Releases</a></li>
 				<li><a href="/games">Games</a></li>
 				<li><a href="/genres">Genres</a></li>
 				<li><a href="/publishers">Publishers</a></li>
@@ -27,9 +27,9 @@
 				<li sec:authorize="isAuthenticated()" style="float:right"><a class="active" href="/rating/myreviews">My Reviews</a></li>
 			</ul>
 		</nav>
-		
-		<div id="no_recent_releases">
-			<h1 th:if="${allGames.isEmpty()}">No recent releases.</h1>
+
+		<div th:if="${allGames.isEmpty()}" id="no_recent_releases">
+			<h1>No recent releases.</h1>
 		</div>
 
 		<div id="game-list">
