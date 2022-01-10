@@ -1,59 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
 <head>
-    <meta charset="utf-8">
-    <title>My reviews</title>
-    <meta name="Reviews list" content="List of my reviews">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Szymon Lichota, Szymon Porębski, Damian Pawłowski">
+    <link rel="icon" th:href="@{/icons/favicon.png}" type="image/png">
+    <title>Reviews</title>
     <link th:href="@{/styles/css/styles.css}" rel="stylesheet" />
 </head>
+
 <body>
-<nav>
-    <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/new-releases">New Releases</a></li>
-        <li><a href="/games">Games</a></li>
-        <li><a href="/genres">Genres</a></li>
-        <li><a href="/publishers">Publishers</a></li>
-        <li><a href="/games/sorted">Ranking</a></li>
-        <li sec:authorize="isAuthenticated()"><a href="/web/users" class="admin_link">Users</a></li>
-        <li sec:authorize="isAnonymous()" style="float:right"><a class="active" href="/auth/login">Log in</a></li>
-        <li sec:authorize="isAuthenticated()" style="float:right"><a class="active" href="/auth/logout">Log out</a></li>
-        <li sec:authorize="isAuthenticated()" style="float:right"><a class="active" href="/web/user">Profile</a></li>
-        <li sec:authorize="isAuthenticated()" style="float:right"><a class="active" href="/rating/myreviews">My Reviews</a></li>
-    </ul>
-</nav>
-<div id="game-list">
-    <h1>Oceny użytkownika:</h1>
-    <element th:each="rating: ${allRatings}">
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/new-releases">New Releases</a></li>
+            <li><a href="/games">Games</a></li>
+            <li><a href="/genres">Genres</a></li>
+            <li><a href="/publishers">Publishers</a></li>
+            <li><a href="/games/sorted">Ranking</a></li>
+            <li sec:authorize="isAuthenticated()"><a href="/web/users" class="admin_link">Users</a></li>
+            <li sec:authorize="isAnonymous()" style="float:right"><a class="active" href="/auth/login">Log in</a></li>
+            <li sec:authorize="isAuthenticated()" style="float:right"><a class="active" href="/auth/logout">Log out</a></li>
+            <li sec:authorize="isAuthenticated()" style="float:right"><a class="active" href="/web/user">Profile</a></li>
+            <li sec:authorize="isAuthenticated()" style="float:right"><a class="active" href="/rating/myreviews">My Reviews</a></li>
+        </ul>
+    </nav>
 
-        <div style="float:left">
-            <div class="element_img">
-                <img th:src="${rating.game.pathCover}" alt="Game Cover" >
+    <div id="game-list">
+        <h1>Oceny użytkownika:</h1>
+        <element th:each="rating: ${allRatings}">
+
+            <div style="float:left">
+                <div class="element_img">
+                    <img th:src="${rating.game.pathCover}" alt="Game Cover" >
+                </div>
+
+                <div class="element_desc">
+                    <h1 th:text="${rating.game.nameGame}"></h1>
+                    <h2 th:text="${rating.game.genre.name}"></h2>
+                    <h3>Data wystawienia komentarza:</h3>
+                    <h3 th:text="${rating.publicationDate}"></h3>
+                    <h3>Ocena:</h3>
+                    <h3 th:text="${rating.value}"></h3>
+                    <h3>Komentarz:</h3>
+                    <h3 th:text="${rating.comment}"></h3>
+                </div>
+
+
+
             </div>
 
-            <div class="element_desc">
-                <h1 th:text="${rating.game.nameGame}"></h1>
-                <h2 th:text="${rating.game.genre.name}"></h2>
-                <h3>Data wystawienia komentarza:</h3>
-                <h3 th:text="${rating.publicationDate}"></h3>
-                <h3>Ocena:</h3>
-                <h3 th:text="${rating.value}"></h3>
-                <h3>Komentarz:</h3>
-                <h3 th:text="${rating.comment}"></h3>
-            </div>
 
 
+        </element>
+    </div>
 
-        </div>
-
-
-
-    </element>
-</div>
-
-<footer>
-    <p>Szymon Lichota, Szymon Porębski & Damian Pawłowski @2021</p>
-</footer>
+    <footer>
+        <p>Szymon Lichota, Szymon Porębski & Damian Pawłowski @2021</p>
+    </footer>
 </body>
+
 </html>

@@ -1,56 +1,47 @@
-<!DOCTYPE html>
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <meta charset="utf-8">
-    <title>Game list</title>
-    <meta name="Game list" content="List of all games">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Szymon Lichota, Szymon Porębski, Damian Pawłowski">
+    <link rel="icon" th:href="@{/icons/favicon.png}" type="image/png">
+    <title>Ranking</title>
     <link th:href="@{/styles/css/styles.css}" rel="stylesheet" />
 </head>
 
 <body>
-<nav>
-    <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/new-releases">New Releases</a></li>
-        <li><a href="/games">Games</a></li>
-        <li><a href="/genres">Genres</a></li>
-        <li><a href="/publishers">Publishers</a></li>
-        <li><a href="/games/sorted">Ranking</a></li>
-        <li sec:authorize="isAuthenticated()"><a href="/web/users" class="admin_link">Users</a></li>
-        <li sec:authorize="isAnonymous()" style="float:right"><a class="active" href="/auth/login">Log in</a></li>
-        <li sec:authorize="isAuthenticated()" style="float:right"><a class="active" href="/auth/logout">Log out</a></li>
-        <li sec:authorize="isAuthenticated()" style="float:right"><a class="active" href="/web/user">Profile</a></li>
-        <li sec:authorize="isAuthenticated()" style="float:right"><a class="active" href="/rating/myreviews">My Reviews</a></li>
-    </ul>
-</nav>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/new-releases">New Releases</a></li>
+            <li><a href="/games">Games</a></li>
+            <li><a href="/genres">Genres</a></li>
+            <li><a href="/publishers">Publishers</a></li>
+            <li><a href="/games/sorted">Ranking</a></li>
+            <li sec:authorize="isAuthenticated()"><a href="/web/users" class="admin_link">Users</a></li>
+            <li sec:authorize="isAnonymous()" style="float:right"><a class="active" href="/auth/login">Log in</a></li>
+            <li sec:authorize="isAuthenticated()" style="float:right"><a class="active" href="/auth/logout">Log out</a></li>
+            <li sec:authorize="isAuthenticated()" style="float:right"><a class="active" href="/web/user">Profile</a></li>
+            <li sec:authorize="isAuthenticated()" style="float:right"><a class="active" href="/rating/myreviews">My Reviews</a></li>
+        </ul>
+    </nav>
 
-<div id="game-list" style="width:900px;margin:0 auto;margin-bottom: 100px;">
+    <div id="game-list" style="width:900px;margin:0 auto;margin-bottom: 100px;">
 
-    <form id="sorting_choice" action="/games/sorted/chose">
-        <div style="float:left;height:100%">
-            <input type="radio" id="descending" name="mode" value="Descending">
-            <label class="sort_label" for="descending">🠗 Descending</label><br>
-            <input type="radio" id="ascending" name="mode" value="Ascending">
-            <label class="sort_label" for="ascending">🠕 Ascending</label><br>
-        </div>
-        <div style="float:right;height:100%">
-            <input type="submit" id="submit" value="Sort">
-        </div>
-    </form>
-
-<!--    <form>-->
-<!--        <label for="mode">Choose mode:</label>-->
-<!--        <select name="mode" id="mode">-->
-<!--            <option value="descending">Descending</option>-->
-<!--            <option value="ascending">Ascending</option>-->
-<!--        </select>-->
-<!--        <input type="submit" value="Submit">-->
-<!--    </form>-->
+        <form id="sorting_choice" action="/games/sorted/chose">
+            <div style="float:left;height:100%">
+                <input type="radio" id="descending" name="mode" value="Descending">
+                <label class="sort_label" for="descending">🠗 Descending</label><br>
+                <input type="radio" id="ascending" name="mode" value="Ascending">
+                <label class="sort_label" for="ascending">🠕 Ascending</label><br>
+            </div>
+            <div style="float:right;height:100%">
+                <input type="submit" id="submit" value="Sort">
+            </div>
+        </form>
 
         <element th:each="game: ${allGames}">
-
             <div style="float:left">
                 <div class="element_img">
                     <img th:src="${game.pathCover}" alt="Game Cover" >
@@ -74,8 +65,8 @@
                     <span th:if="${game.starRating == 10}" style="color:#d4af37">★★★★★★★★★★</span>
 
                     <span th:if="${game.starRating < 10 && game.starRating > 0}">
-							<span th:each="i : ${#numbers.sequence(1, game.starRating)}" style="color:#d4af37" th:text="'★'">
-							</span><span th:each="i : ${#numbers.sequence(1, 10-game.starRating)}" th:text="'★'"></span>
+                            <span th:each="i : ${#numbers.sequence(1, game.starRating)}" style="color:#d4af37" th:text="'★'">
+                            </span><span th:each="i : ${#numbers.sequence(1, 10-game.starRating)}" th:text="'★'"></span>
                     </span>
                 </div>
 
@@ -89,15 +80,12 @@
                     <a th:href="@{/rating/edit/{id}(id=${game.id})}">Edit Review</a>
                 </div>
             </div>
-
-
         </element>
     </div>
-</div>
 
-
-<footer>
-    <p>Szymon Lichota, Szymon Porębski & Damian Pawłowski @2021</p>
-</footer>
+    <footer>
+        <p>Szymon Lichota, Szymon Porębski & Damian Pawłowski @2021</p>
+    </footer>
 </body>
+
 </html>

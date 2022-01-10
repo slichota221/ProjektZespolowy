@@ -1,13 +1,16 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="utf-8">
-        <title>Registration Success</title>
-        <meta name="Registration Success" content="Registration Success">
-        <meta name="author" content="Szymon Lichota, Szymon Porębski, Damian Pawłowski">
-        <link th:href="@{/styles/css/styles.css}" rel="stylesheet" />
-    </head>
-    <body>
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Szymon Lichota, Szymon Porębski, Damian Pawłowski">
+    <link rel="icon" th:href="@{/icons/favicon.png}" type="image/png">
+    <title>Register Success!</title>
+    <link th:href="@{/styles/css/styles.css}" rel="stylesheet" />
+</head>
+
+<body>
     <nav>
         <ul>
             <li><a href="/">Home</a></li>
@@ -24,16 +27,17 @@
         </ul>
     </nav>
 
-        <div id="login_page">
-            <h3>Your account has been created!</h3>
-            <main>
-                <p>Click below to log in!</p><br>
-                <a th:href="@{/auth/login}" th:text="Login">Log in</a>
-            </main>
-        </div>
+    <div id="login_page">
+        <h3>Your account has been created!</h3>
+        <main>
+            <p>Click below to log in!</p><br>
+            <a th:href="@{/auth/login}" th:text="Login">Log in</a>
+        </main>
+    </div>
 
-        <footer>
-            <p>Szymon Lichota, Szymon Porębski & Damian Pawłowski @2021</p>
-        </footer>
-    </body>
+    <footer>
+        <p>Szymon Lichota, Szymon Porębski & Damian Pawłowski @2021</p>
+    </footer>
+</body>
+
 </html>

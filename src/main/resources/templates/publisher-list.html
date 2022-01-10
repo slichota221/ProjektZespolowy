@@ -1,15 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 
-<html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<meta charset="utf-8">
-		<title>Game list</title>
-		<meta name="Game list" content="List of all games">
-		<meta name="author" content="Szymon Lichota, Szymon Porębski, Damian Pawłowski">
-		<link th:href="@{/styles/css/styles.css}" rel="stylesheet" />
-	</head>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="author" content="Szymon Lichota, Szymon Porębski, Damian Pawłowski">
+	<link rel="icon" th:href="@{/icons/favicon.png}" type="image/png">
+	<title>Publishers</title>
+	<link th:href="@{/styles/css/styles.css}" rel="stylesheet" />
+</head>
 
-	<body>
+<body>
 	<nav>
 		<ul>
 			<li><a href="/">Home</a></li>
@@ -26,26 +27,27 @@
 		</ul>
 	</nav>
 
-		<div id="game-list-switch" sec:authorize="hasRole('ROLE_ADMIN')" >
-			<a href="/publishers/admin">Switch to admin view</a>
-		</div>
+	<div id="game-list-switch" sec:authorize="hasRole('ROLE_ADMIN')" >
+		<a href="/publishers/admin">Switch to admin view</a>
+	</div>
 
 
-		<div id="game-list-admin">
-			<ul>
-				<li>
-					<span style="width:80px">ID</span>
-					<span style="width:800px">Name</span>
-				</li>
-				<li th:each="publisher: ${allPublishers}">
-					<span style="width:80px" th:text="${publisher.ID}"></span>
-					<span style="width:800px" th:text="${publisher.name}"></span>
-				</li>
-			</ul>
-		</div>
+	<div id="game-list-admin">
+		<ul>
+			<li>
+				<span style="width:80px">ID</span>
+				<span style="width:800px">Name</span>
+			</li>
+			<li th:each="publisher: ${allPublishers}">
+				<span style="width:80px" th:text="${publisher.ID}"></span>
+				<span style="width:800px" th:text="${publisher.name}"></span>
+			</li>
+		</ul>
+	</div>
 
-		<footer>
-			<p>Szymon Lichota, Szymon Porębski & Damian Pawłowski @2021</p>
-		</footer>
-	</body>
+	<footer>
+		<p>Szymon Lichota, Szymon Porębski & Damian Pawłowski @2021</p>
+	</footer>
+</body>
+
 </html>

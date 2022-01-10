@@ -1,13 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-    <head>
-        <meta charset="utf-8">
-        <title>Login</title>
-        <meta name="Login" content="Login">
-        <meta name="author" content="Szymon Lichota, Szymon Porębski, Damian Pawłowski">
-        <link th:href="@{/styles/css/styles.css}" rel="stylesheet" />
-    </head>
-    <body>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Szymon Lichota, Szymon Porębski, Damian Pawłowski">
+    <link rel="icon" th:href="@{/icons/favicon.png}" type="image/png">
+    <title>Login</title>
+    <link th:href="@{/styles/css/styles.css}" rel="stylesheet" />
+</head>
+
+<body>
     <nav>
         <ul>
             <li><a href="/">Home</a></li>
@@ -24,32 +27,33 @@
         </ul>
     </nav>
 
-        <div id="login_page">
-            <h3>Log in to your account</h3>
-            <form th:action="@{/auth/login}" method="post">
-                <div>
-                    <label> Username:<br><input class="login_page_input" type="text" name="username" />
-                    </label>
-                </div>
-                <div>
-                    <label> Password:<br><input class="login_page_input" type="password" name="password" />
-                    </label>
-                </div>
-                <div>
-                    <input id="login_page_button" type="submit" value="Sign In" />
-                </div>
-            </form>
-            <div th:if="${param.error}">Invalid username or password.<br></div>
-            <div th:if="${param.logout}">You have been logged out.<br></div>
-            <main>
-                <p>Don't have an account ?</p>
-                <p>No problem! Click below to register for free!</p><br>
-                <a th:href="@{/auth/register}" th:text="Register">Register</a>
-            </main>
-        </div>
+    <div id="login_page">
+        <h3>Log in to your account</h3>
+        <form th:action="@{/auth/login}" method="post">
+            <div>
+                <label> Username:<br><input class="login_page_input" type="text" name="username" />
+                </label>
+            </div>
+            <div>
+                <label> Password:<br><input class="login_page_input" type="password" name="password" />
+                </label>
+            </div>
+            <div>
+                <input id="login_page_button" type="submit" value="Sign In" />
+            </div>
+        </form>
+        <div th:if="${param.error}">Invalid username or password.<br></div>
+        <div th:if="${param.logout}">You have been logged out.<br></div>
+        <main>
+            <p>Don't have an account ?</p>
+            <p>No problem! Click below to register for free!</p><br>
+            <a th:href="@{/auth/register}" th:text="Register">Register</a>
+        </main>
+    </div>
 
-        <footer>
-            <p>Szymon Lichota, Szymon Porębski & Damian Pawłowski @2021</p>
-        </footer>
-    </body>
+    <footer>
+        <p>Szymon Lichota, Szymon Porębski & Damian Pawłowski @2021</p>
+    </footer>
+</body>
+
 </html>
