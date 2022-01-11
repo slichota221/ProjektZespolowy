@@ -5,7 +5,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Entity
@@ -20,6 +19,8 @@ public class User {
     private String encodedPassword;
 
     private String email;
+
+    private String pathAvatar;
 
     private LocalDateTime registrationDate;
 
@@ -66,6 +67,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPathAvatar() {
+        return pathAvatar;
+    }
+
+    public void setPathAvatar(String pathAvatar) {
+        this.pathAvatar = pathAvatar;
     }
 
     public LocalDateTime getRegistrationDate() {
