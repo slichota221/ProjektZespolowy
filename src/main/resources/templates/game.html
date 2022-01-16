@@ -110,9 +110,8 @@
 		<div class="single_review" th:each="rating: ${ratings}">
 			<div >
 				<!--========================= user avatar path here =========================-->
-				<img class="game_page_user_pic" th:src="@{/images/gigachad2.jpg}" width="100px" alt="User Avatar">
+				<img class="game_page_user_pic" th:src="${rating.user.pathAvatar}" width="100px" alt="User Avatar">
 			</div>
-
 			<div class="single_review_left">
 				<span th:text="${rating.user.username}"></span><br>
 				<span style="font-size: 20px; color:gray" th:text="${rating.FormattedDateToString()}"></span>

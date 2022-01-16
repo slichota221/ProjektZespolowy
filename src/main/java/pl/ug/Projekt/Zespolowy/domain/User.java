@@ -20,7 +20,7 @@ public class User {
 
     private String email;
 
-    private String pathAvatar;
+    private String pathAvatar = "/images/profilePic.png";
 
     private LocalDateTime registrationDate;
 
