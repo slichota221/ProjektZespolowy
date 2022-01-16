@@ -1,4 +1,7 @@
-package pl.ug.Projekt.Zespolowy.domain;
+package pl.ug.Projekt.Zespolowy.dto;
+
+import pl.ug.Projekt.Zespolowy.domain.Genre;
+import pl.ug.Projekt.Zespolowy.domain.Publisher;
 
 import java.time.LocalDate;
 

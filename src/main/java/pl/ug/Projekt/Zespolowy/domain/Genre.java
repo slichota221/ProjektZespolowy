@@ -1,6 +1,7 @@
 package pl.ug.Projekt.Zespolowy.domain;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -9,6 +10,9 @@ public class Genre {
     private @Id @GeneratedValue @Column(name="id") long ID;
     private String name;
     private String pathCover;
+
+    @OneToMany(mappedBy = "genre")
+    private List<Game> games;
 
     public Genre() {}
     public Genre(String name, String pathCover) {
@@ -38,6 +42,14 @@ public class Genre {
 
     public void setPathCover(String pathCover) {
         this.pathCover = pathCover;
+    }
+
+    public List<Game> getGames() {
+        return games;
+    }
+
+    public void setGames(List<Game> games) {
+        this.games = games;
     }
 
     @Override

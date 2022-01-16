@@ -1,6 +1,5 @@
 package pl.ug.Projekt.Zespolowy.controller;
 
-import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,7 +8,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import pl.ug.Projekt.Zespolowy.domain.Game;
-import pl.ug.Projekt.Zespolowy.domain.GameDTO;
+import pl.ug.Projekt.Zespolowy.dto.GameDTO;
 import pl.ug.Projekt.Zespolowy.repository.ConsoleRepository;
 import pl.ug.Projekt.Zespolowy.repository.GameRepository;
 import pl.ug.Projekt.Zespolowy.repository.GenreRepository;

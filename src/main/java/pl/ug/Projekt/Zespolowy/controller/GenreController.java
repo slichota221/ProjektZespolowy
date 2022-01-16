@@ -8,19 +8,21 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import pl.ug.Projekt.Zespolowy.domain.Genre;
 import pl.ug.Projekt.Zespolowy.repository.GenreRepository;
+import pl.ug.Projekt.Zespolowy.service.GenreService;
 import pl.ug.Projekt.Zespolowy.utility.FileUploadUtil;
 
 import java.io.IOException;
-import java.util.List;
 
 
 @Controller
 public class GenreController {
 
     private final GenreRepository repository;
+    private final GenreService genreService;
 
-    GenreController(GenreRepository repository){
+    GenreController(GenreRepository repository, GenreService genreService){
         this.repository = repository;
+        this.genreService = genreService;
     }
 
     @GetMapping("/genres")
@@ -31,7 +33,7 @@ public class GenreController {
 
     @GetMapping("/genres/admin")
     String getGenresAdmin(Model model){
-        model.addAttribute("allGenres", repository.findAll());
+        model.addAttribute("allGenres", genreService.getAllGenresForAdminView());
         return "genre-list-admin";
     }
 
@@ -44,12 +46,11 @@ public class GenreController {
     @PostMapping(value = "/genre/save")
     public String saveGenre(Model model, @ModelAttribute("Genre") Genre genre, @RequestParam("image") MultipartFile multipartFile) throws IOException {
         String filename = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-        genre.setPathCover("/genres/"+filename);
+        genre.setPathCover("/genres/" + filename);
         String uploadDir = "src/main/resources/static/genres";
         FileUploadUtil.saveFile(uploadDir, filename, multipartFile);
         repository.save(genre);
 
-        //model.addAttribute("allGames", gameRepository.findAll());
         return "redirect:/genres/admin";
     }
 
