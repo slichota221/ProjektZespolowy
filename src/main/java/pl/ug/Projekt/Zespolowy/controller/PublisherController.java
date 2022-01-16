@@ -1,6 +1,7 @@
 package pl.ug.Projekt.Zespolowy.controller;
 
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -32,6 +33,7 @@ public class PublisherController {
         return "publisher-list";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/publishers/admin")
     String getPublisherAdmin(Model model){
         model.addAttribute("allPublishers", publisherService.getAllPublishersForAdminView());
@@ -39,6 +41,7 @@ public class PublisherController {
         return "publisher-list-admin";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/publisher/save")
     public String addPublisher(Model model){
         model.addAttribute("newPublisher", new Publisher());
@@ -46,6 +49,7 @@ public class PublisherController {
         return "save-publisher";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/publisher/save")
     public String savePublisher(@ModelAttribute("newPublisher") Publisher publisher, @RequestParam("image") MultipartFile multipartFile) throws IOException {
 
@@ -59,6 +63,7 @@ public class PublisherController {
         return "redirect:/publishers/admin";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping(value = "/publisher/edit/{id}")
     public String editPublisher(@PathVariable("id") long id, ModelMap model) {
         model.addAttribute("editedPublisher", publisherRepository.getById(id));
@@ -66,6 +71,7 @@ public class PublisherController {
         return "edit-publisher";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/publisher/edit")
     public String editPublisher(@ModelAttribute("editedGame") Publisher publisher){
         publisherRepository.save(publisher);
@@ -73,6 +79,7 @@ public class PublisherController {
         return "redirect:/publishers/admin";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/publisher/delete/{id}")
     public String deletePublisher(@PathVariable("id") long id) {
         publisherRepository.deleteById(id);
