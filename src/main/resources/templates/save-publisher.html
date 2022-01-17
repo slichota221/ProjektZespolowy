@@ -35,7 +35,7 @@
                 <input id="name" placeholder="Enter publisher name" required type="text" th:field="*{name}"/><br>
                 <div class="save_page_row">
                     <label for="pathCover">Path to cover: </label>
-                    <input type="file" name="image" accept="image/png, image/jpeg" /><br>
+                    <input id="pathCover" type="file" name="image" required accept="image/png, image/jpeg" /><br>
                 </div>
             </div>
             <input id="save_page_submit" type="submit" value="Create Publisher">

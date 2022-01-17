@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 public class User {
@@ -91,6 +92,11 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public String FormattedDateToString(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return registrationDate.format(formatter);
     }
 }
 

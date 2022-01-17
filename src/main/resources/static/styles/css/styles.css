@@ -416,7 +416,6 @@ footer p{
 	margin-top: 20px;
 	text-align: left;
 	width: 1000px;
-	border-bottom: 2px solid black;
 }
 
 #user_details span{
@@ -496,6 +495,7 @@ footer p{
 
 .game_desc_rate_button{
 	margin-top: 5px;
+	margin-bottom: 25px;
 	font-size: 22px;
 	padding: 15px 25px;
 	position: relative;
@@ -793,19 +793,33 @@ footer p{
 }
 
 .user_profile_edit_button{
-	margin-top: 5px;
-	font-size: 22px;
-	padding: 15px 25px;
-	position: relative;
-	color: white;
-	border-radius: 15px;
-	border: 2px #d4af37 solid;
-	opacity: 0.9;
-	cursor: pointer;
-	text-decoration: none;
-	display: inline-block;
+    font-size: 22px;
+    padding: 5px 15px;
+    color: white;
+    border-radius: 15px;
+    border: 2px #2970e3 solid;
+    opacity: 0.9;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    position: absolute;
+    right: 20px;
+    top: 83px;
 }
 
+.user_profile_edit_button:hover{
+    background-color:#2970e3;
+}
+
+#last_reviews{
+    min-height: 280px;
+}
+
+#newAvatar{
+    float:none;
+    left: 77px;
+    margin: 25px;
+}
 
 main{
 
