@@ -45,7 +45,7 @@
 					<span style="width:800px" th:text="${genre.name}"></span>
 
 					<span style="width:65px"><a th:href="@{/genre/edit/{id}(id=${genre.ID})}">Edit</a></span>
-					<span style="width:65px"><a th:href="@{/genre/delete/{id}(id=${genre.ID})}">Delete</a></span>
+					<span style="width:65px"><a th:if="${genre.canBeDeleted}" th:href="@{/genre/delete/{id}(id=${genre.ID})}">Delete</a></span>
 
 				</li>
 			</ul>

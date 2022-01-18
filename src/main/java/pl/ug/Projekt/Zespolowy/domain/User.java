@@ -5,8 +5,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 public class User {
@@ -20,6 +20,8 @@ public class User {
     private String encodedPassword;
 
     private String email;
+
+    private String pathAvatar = "/images/profilePic.png";
 
     private LocalDateTime registrationDate;
 
@@ -68,6 +70,14 @@ public class User {
         this.email = email;
     }
 
+    public String getPathAvatar() {
+        return pathAvatar;
+    }
+
+    public void setPathAvatar(String pathAvatar) {
+        this.pathAvatar = pathAvatar;
+    }
+
     public LocalDateTime getRegistrationDate() {
         return registrationDate;
     }
@@ -82,6 +92,11 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public String FormattedDateToString(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return registrationDate.format(formatter);
     }
 }
 

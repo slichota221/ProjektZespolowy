@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.ug.Projekt.Zespolowy.domain.Game;
-import pl.ug.Projekt.Zespolowy.domain.GameDTO;
+import pl.ug.Projekt.Zespolowy.dto.GameDTO;
 import pl.ug.Projekt.Zespolowy.domain.Rating;
 import pl.ug.Projekt.Zespolowy.domain.User;
 import pl.ug.Projekt.Zespolowy.service.GameService;

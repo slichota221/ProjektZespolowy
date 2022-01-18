@@ -44,7 +44,7 @@
 					<span style="width:800px" th:text="${publisher.name}"></span>
 
 					<span style="width:65px"><a th:href="@{/publisher/edit/{id}(id=${publisher.ID})}">Edit</a></span>
-					<span style="width:65px"><a th:href="@{/publisher/delete/{id}(id=${publisher.ID})}">Delete</a></span>
+					<span style="width:65px"><a th:if="${publisher.canBeDeleted}" th:href="@{/publisher/delete/{id}(id=${publisher.ID})}">Delete</a></span>
 
 				</li>
 			</ul>
