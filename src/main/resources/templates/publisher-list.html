@@ -32,17 +32,18 @@
 	</div>
 
 
-	<div id="game-list-admin">
-		<ul>
-			<li>
-				<span style="width:80px">ID</span>
-				<span style="width:800px">Name</span>
-			</li>
-			<li th:each="publisher: ${allPublishers}">
-				<span style="width:80px" th:text="${publisher.ID}"></span>
-				<span style="width:800px" th:text="${publisher.name}"></span>
-			</li>
-		</ul>
+	<div id="publisher_list">
+		<element th:each="publisher: ${allPublishers}">
+			<div class="publisher_logo">
+				<img th:src="${publisher.pathCover}" alt="Publisher Cover">
+			</div>
+			<div class="publisher_name">
+				<span th:text="${publisher.name}"></span>
+			</div>
+			<div class="publisher_games_button_block">
+				<a th:href="@{/publisher/{id}(id=${publisher.ID})}">Search for games</a>
+			</div>
+		</element>
 	</div>
 
 	<footer>

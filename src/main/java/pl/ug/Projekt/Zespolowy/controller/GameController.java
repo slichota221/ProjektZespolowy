@@ -113,6 +113,7 @@ public class GameController {
                     .collect(Collectors.toList());
 
             model.addAttribute("allGames", gameDTOS);
+            model.addAttribute("order", 0);
         }
         else if(mode.equals("Ascending")){
             List<GameDTO> gameDTOS = gameRepository.findAll()
@@ -122,6 +123,7 @@ public class GameController {
                     .collect(Collectors.toList());
 
             model.addAttribute("allGames", gameDTOS);
+            model.addAttribute("order", 1);
         }
 
         return "ranking-list";

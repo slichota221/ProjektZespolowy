@@ -14,6 +14,7 @@ import pl.ug.Projekt.Zespolowy.repository.UserRepository;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Configuration
 public class LoadDatabase {
@@ -24,8 +25,21 @@ public class LoadDatabase {
     CommandLineRunner initDatabase(GenreRepository repository){
         return args ->{
             log.info("Preloading " + repository.save(new Genre("RPG", "/genres/crossed-swords.png")));
-            log.info("Preloading " + repository.save(new Genre("Action", "/genres/crossed-swords.png")));
-
+            log.info("Preloading " + repository.save(new Genre("Racing", "/genres/checkered-flag.png")));
+            log.info("Preloading " + repository.save(new Genre("Farming", "/genres/farmer.png")));
+            log.info("Preloading " + repository.save(new Genre("Platformer", "/genres/flat-platform.png")));
+            log.info("Preloading " + repository.save(new Genre("Rhythm-based", "/genres/musical-notes.png")));
+            log.info("Preloading " + repository.save(new Genre("FPS", "/genres/pistol-gun.png")));
+            log.info("Preloading " + repository.save(new Genre("Metroid-vania", "/genres/samus-helmet.png")));
+            log.info("Preloading " + repository.save(new Genre("Action", "/genres/swordman.png")));
+            log.info("Preloading " + repository.save(new Genre("RTS", "/genres/tower-flag.png")));
+            log.info("Preloading " + repository.save(new Genre("Boxing", "/genres/boxing-glove.png")));
+            log.info("Preloading " + repository.save(new Genre("Table-top", "/genres/card-ace-diamonds.png")));
+            log.info("Preloading " + repository.save(new Genre("Turn-based", "/genres/extra-time.png")));
+            log.info("Preloading " + repository.save(new Genre("Rouge-like", "/genres/hood.png")));
+            log.info("Preloading " + repository.save(new Genre("Puzzle", "/genres/puzzle.png")));
+            log.info("Preloading " + repository.save(new Genre("Adventure", "/genres/backpack.png")));
+            log.info("Preloading " + repository.save(new Genre("VR", "/genres/vr-headset.png")));
         };
     }
 
@@ -33,26 +47,47 @@ public class LoadDatabase {
     CommandLineRunner initAdmin(UserRepository repository){
         return args ->{
             log.info("Preloading " + repository.save(new User("admin", new BCryptPasswordEncoder().encode("admin"), "admin", LocalDateTime.now(), Role.ADMIN)));
-
         };
     }
 
     @Bean
     CommandLineRunner addPublisher(PublisherRepository publisherRepository){
         return args ->{
-            log.info("Preloading " + publisherRepository.save(new Publisher("Konami", "/publishers/cd_projekt_logo.png")));
+            log.info("Preloading " + publisherRepository.save(new Publisher("Sony Interactive Entertainment", "/publishers/Sony_Interactive_Entertainment.png")));
+            log.info("Preloading " + publisherRepository.save(new Publisher("Tencent Games", "/publishers/Tencent.png")));
+            log.info("Preloading " + publisherRepository.save(new Publisher("Nintendo", "/publishers/Nintendo.png")));
+            log.info("Preloading " + publisherRepository.save(new Publisher("Microsoft", "/publishers/Microsoft.png")));
+            log.info("Preloading " + publisherRepository.save(new Publisher("NetEase", "/publishers/Netease.png")));
+            log.info("Preloading " + publisherRepository.save(new Publisher("Activision Blizzard", "/publishers/Activision_Blizzard.png")));
+            log.info("Preloading " + publisherRepository.save(new Publisher("Electronic Arts", "/publishers/Electronic_Arts.png")));
+            log.info("Preloading " + publisherRepository.save(new Publisher("Take-Two Interactive", "/publishers/Take-Two_Interactive.png")));
+            log.info("Preloading " + publisherRepository.save(new Publisher("Square Enix", "/publishers/Square_Enix.png")));
+            log.info("Preloading " + publisherRepository.save(new Publisher("Nexon", "/publishers/Nexon.png")));
+            log.info("Preloading " + publisherRepository.save(new Publisher("Ubisoft", "/publishers/Ubisoft.png")));
+            log.info("Preloading " + publisherRepository.save(new Publisher("Konami", "/publishers/Konami.png")));
+            log.info("Preloading " + publisherRepository.save(new Publisher("Sega", "/publishers/SEGA.png")));
+            log.info("Preloading " + publisherRepository.save(new Publisher("Capcom", "/publishers/Capcom.png")));
+            log.info("Preloading " + publisherRepository.save(new Publisher("Bandai Namco", "/publishers/Bandai_Namco.png")));
+            log.info("Preloading " + publisherRepository.save(new Publisher("CDProjekt", "/publishers/cd_projekt_logo.png")));
         };
     }
     @Bean
-    CommandLineRunner addGame(GameRepository gameRepository){
+    CommandLineRunner initGame(GameRepository gameRepository,GenreRepository genreRepository ){
+
+
         return args ->{
-            log.info("Preloading" + gameRepository.save(new Game("Witcher", LocalDate.of(2007, 10, 26),
-                    "You kill monsters", "/covers/cover_witcher1.jpg", new Genre("RPG", "/genres/crossed-swords.png"), new Publisher("CDProjekt Red", "" +
-                    "/publishers/cd_projekt_logo.png"))));
+
+            log.info("Preloading" + gameRepository.save(new Game("Witcher 1", LocalDate.of(2015, 5, 19),
+                    "You kill more monsters", "/covers/cover_witcher3.jpg",  new Genre("RPG", "/genres/crossed-swords.png"), new Publisher("CDProjekt", "/publishers/cd_projekt_logo.png"))));
+            log.info("Preloading" + gameRepository.save(new Game("Witcher 2", LocalDate.of(2015, 5, 19),
+                    "You kill more monsters", "/covers/cover_witcher1.jpg", new Genre("RPG", "/genres/crossed-swords.png"), new Publisher("CDProjekt", "/publishers/cd_projekt_logo.png"))));
             log.info("Preloading" + gameRepository.save(new Game("Witcher 3", LocalDate.of(2015, 5, 19),
                     "You kill more monsters", "/covers/cover_witcher3.jpg", new Genre("RPG", "/genres/crossed-swords.png"), new Publisher("CDProjekt", "/publishers/cd_projekt_logo.png"))));
         };
     }
+
+
+
     /*
         @Bean
     CommandLineRunner initDatabaseGame(GameRepository gameRepository){

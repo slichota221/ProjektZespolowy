@@ -28,14 +28,22 @@
 			</ul>
 		</nav>
 
-		<div th:if="${allGames.isEmpty()}" id="no_recent_releases">
-			<h1>No recent releases.</h1>
+		<div id="game-list-switch">
+			<a href="/genres">Return to genres</a>
 		</div>
 
-		<div th:if="${!allGames.isEmpty()}" id="game-list">
-			<element th:each="game: ${allGames}">
+		<div id="chosen_genre" th:if="${chosenGenre}" th:object="${chosenGenre}">
+			<h1 th:text="${chosenGenre.name}"></h1>
+			<img th:src="${chosenGenre.pathCover}" alt="Genre Cover" height="250px" width="250px">
+		</div>
 
+		<div th:if="${allGames.isEmpty()}" id="no_recent_releases" style="width:760px;top:25px;">
+			<h1>This genre has no registered games.</h1>
+		</div>
 
+		<div id="game-list">
+
+			<element th:if="${!allGames.isEmpty()}" th:each="game: ${allGames}">
 
 				<div style="float:left">
 					<div class="element_img">
@@ -54,12 +62,12 @@
 				</div>
 				<div class="game_list_rating">
 					<div class="game_list_stars">
-						<span th:if="${game.averageValue == 0}">★★★★★★★★★★</span>
-						<span th:if="${game.averageValue == 10}" style="color:#d4af37">★★★★★★★★★★</span>
+						<span th:if="${game.starRating == 0}">★★★★★★★★★★</span>
+						<span th:if="${game.starRating == 10}" style="color:#d4af37">★★★★★★★★★★</span>
 
-						<span th:if="${game.starRating < 10 && game.averageValue >= 1}">
-										<span th:each="i : ${#numbers.sequence(1, game.averageValue)}" style="color:#d4af37" th:text="'★'">
-										</span><span th:each="i : ${#numbers.sequence(1, 10-game.averageValue)}" th:text="'★'"></span>
+						<span th:if="${game.starRating < 10 && game.starRating > 0}">
+								<span th:each="i : ${#numbers.sequence(1, game.starRating)}" style="color:#d4af37" th:text="'★'">
+								</span><span th:each="i : ${#numbers.sequence(1, 10-game.starRating)}" th:text="'★'"></span>
 						</span>
 
 					</div>

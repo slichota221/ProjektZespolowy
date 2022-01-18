@@ -32,17 +32,15 @@
 	</div>
 
 
-	<div id="game-list-admin">
-		<ul>
-			<li>
-				<span style="width:80px">ID</span>
-				<span style="width:800px">Name</span>
-			</li>
-			<li th:each="genre: ${allGenres}">
-				<span style="width:80px" th:text="${genre.ID}"></span>
-				<span style="width:800px" th:text="${genre.name}"></span>
-			</li>
-		</ul>
+	<div id="genre_list">
+		<element th:each="genre: ${allGenres}">
+			<div style="float:left;">
+				<img th:src="${genre.pathCover}" alt="Genre Cover" height="150px" width="150px">
+			</div>
+			<div class="genre_name" th:text="${genre.name}"></div>
+
+			<a th:href="@{/genre/{id}(id=${genre.ID})}">Search for games</a>
+		</element>
 	</div>
 
 	<footer>
