@@ -23,11 +23,11 @@ public class Game {
     private String description;
     private String pathCover;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name="genre_id", referencedColumnName = "id")
     private Genre genre;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "publisher_id", referencedColumnName = "id")
     private Publisher publisher;
 
