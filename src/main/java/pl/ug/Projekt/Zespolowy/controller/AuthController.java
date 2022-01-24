@@ -1,16 +1,15 @@
 package pl.ug.Projekt.Zespolowy.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.servlet.ModelAndView;
 import pl.ug.Projekt.Zespolowy.dto.UserRequestDTO;
 import pl.ug.Projekt.Zespolowy.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping(value = "/auth")
@@ -34,8 +33,11 @@ public class AuthController {
     }
 
     @PostMapping(value = "/register")
-    public String register(UserRequestDTO userRequestDTO) {
-        userService.register(userRequestDTO);
+    public String register(@ModelAttribute("user") @Valid UserRequestDTO user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "register";
+        }
+        userService.register(user);
         return "register_success";
     }
 

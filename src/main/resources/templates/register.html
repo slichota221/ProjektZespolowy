@@ -31,11 +31,15 @@
         <h3>Create an account</h3>
         <form action="#" th:action="@{/auth/register}" th:object="${user}" method="post">
             <p>Username:<br><input class="login_page_input" type="text" th:field="*{username}" /></p>
+            <p th:if="${#fields.hasErrors('username')}"  th:errors="*{username}" />
             <p>Email:<br><input class="login_page_input" type="text" th:field="*{email}" /></p>
+            <p th:if="${#fields.hasErrors('email')}"  th:errors="*{email}" />
             <p>Password:<br><input class="login_page_input" type="password" th:field="*{password}" /></p>
+            <p th:if="${#fields.hasErrors('password')}"  th:errors="*{password}" />
             <p><input id="login_page_button" type="submit" value="Submit" /></p>
 
         </form>
+        <div th:if="${param.error}">Invalid username or password.<br></div>
         <main>
             <p>Already have an account ?</p>
             <p>Click below to log in!</p><br>
